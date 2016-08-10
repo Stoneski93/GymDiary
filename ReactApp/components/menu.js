@@ -27,6 +27,7 @@ import ListViewExample from '../screens/listview'
 import Tabs from '../screens/tabs'
 import Home from '../screens/home'
 import MainScreen from '../screens/mainScreen'
+import UserSettings from '../screens/userSettings'
 
 
 /* Component ==================================================================== */
@@ -39,6 +40,7 @@ class Menu extends Component {
       menu: [
         {title: 'Start', component: Home},
         {title: 'Trening', component: MainScreen},
+        {title: 'Ustawienia', component: UserSettings},
         // {title: 'Style Guide', component: StyleGuide},
         // {title: 'Tabs', component: Tabs},
         // {title: 'Forms', component: FormExample},

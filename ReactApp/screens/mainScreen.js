@@ -15,9 +15,11 @@ import {
   TouchableOpacity,
   Modal,
 } from 'react-native'
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 // App Globals
 import AppStyles from '../styles'
+import AppConfig from '../config'
 
 // Components
 import Button from '../components/button'
@@ -66,24 +68,41 @@ class MainScreen extends Component {
     */
   render = () => {
     let text = this.props.placeholder || 'Siemano jestem Norbi';
+    const text2 = "1.07.2016r";
 
     // Done
     return (
-      <View style={[AppStyles.container, AppStyles.containerCentered]}>
-        <Text style={[AppStyles.baseText, AppStyles.p]}>
-          {text}
+      <View style={[AppStyles.container, AppStyles.containerStrecht]}>
+      <View style={[AppStyles.row, AppStyles.trainingBar, AppStyles.containerCentered]}>
+        <Text style={[AppStyles.dateText]}>
+          {text2}
         </Text>
-        <Modal animationType={'fade'} 
-          transparent={false} 
-          visible={this.state.splashScreenVisible}
-          onRequestClose={()=>{}}>
-          <FirstLoad navigator={this.props.navigator}
-            close={this.onSplashSkip} />
-        </Modal>
+        <TouchableOpacity activeOpacity={0.7} 
+          style={styles.navbarButton}
+          hitSlop={{top: 7, right: 7, bottom: 7, left: 7}}>
+        <Icon name='calendar' size={30} color={AppConfig.primaryColor} />
+      </TouchableOpacity>
+      </View>
+      <Modal animationType={'fade'} 
+        transparent={false} 
+        visible={this.state.splashScreenVisible}
+        onRequestClose={()=>{}}>
+        <FirstLoad navigator={this.props.navigator}
+          close={this.onSplashSkip} />
+      </Modal>
       </View>
     );
   }
 }
+
+/* Styles ==================================================================== */
+const styles = StyleSheet.create({
+  navbarButton: {
+    position: 'absolute',
+    right: 20,
+    top: 4,
+  },
+});
 
 /* Export Component ==================================================================== */
 export default MainScreen

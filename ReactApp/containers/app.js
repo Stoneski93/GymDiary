@@ -34,7 +34,6 @@ import NavbarElements from '../components/navbar.elements';
 
 // Screens
 import Home from '../screens/home';
-
 /* Component ==================================================================== */
 class AppContainer extends Component {
   /**

@@ -35,6 +35,16 @@ module.exports = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  trainingBar: {
+    height: 40,
+    alignSelf: "stretch",
+    backgroundColor: '#fafafa',
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    borderBottomColor: '#dedede',
+    borderTopColor: '#dedede',
+
+  },
   windowSize: {
     height: AppConfig.windowHeight,
     width: AppConfig.windowWidth,
@@ -52,6 +62,10 @@ module.exports = StyleSheet.create({
     color: AppConfig.textColor,
     fontSize: AppConfig.baseFontSize,
     lineHeight: parseInt(AppConfig.baseFontSize + (AppConfig.baseFontSize * 0.5)),
+  },
+  dateText: {
+    fontSize: AppConfig.baseFontSize * 1.5,
+     color: AppConfig.primaryColor,
   },
   h1: {
     fontFamily: AppConfig.baseFont,
@@ -156,6 +170,9 @@ module.exports = StyleSheet.create({
   },
   paddingBottomSml: {
     paddingBottom: 10,
+  },
+  paddingHorizontalLar: {
+    paddingHorizontal: 40,
   },
 
   /* General Spacing */

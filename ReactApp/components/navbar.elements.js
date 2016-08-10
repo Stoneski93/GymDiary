@@ -65,6 +65,6 @@ const styles = StyleSheet.create({
   navbarTitle: {
     color: AppConfig.primaryColor,
     bottom: 6,
-    fontSize: 18,
+    fontSize: 20,
   },
 });

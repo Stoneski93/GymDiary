@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   // Standard
   button: {
     backgroundColor: '#000000',
-    height: 50,
+    height: 40,
     justifyContent: 'center',
     borderRadius: 3,
     marginBottom: 10,
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     lineHeight: parseInt(20 + (15 * 0.5)),
     fontFamily: AppConfig.baseFont,
-    fontWeight: '800',
+    fontWeight: '400',
   },
 
   // Outlined
