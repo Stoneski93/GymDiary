@@ -31,6 +31,10 @@ module.exports = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  containerStrecht: {
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
   windowSize: {
     height: AppConfig.windowHeight,
     width: AppConfig.windowWidth,
@@ -234,4 +238,9 @@ module.exports = StyleSheet.create({
     marginBottom: 10,
     backgroundColor: "#fff",
   },
+  navbar: {
+    borderBottomWidth: 1,
+    borderColor: AppConfig.primaryColor,
+
+  }
 });

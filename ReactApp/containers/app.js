@@ -33,7 +33,7 @@ import Menu from '../components/menu';
 import NavbarElements from '../components/navbar.elements';
 
 // Screens
-import Index from '../screens/soon';
+import Home from '../screens/home';
 
 /* Component ==================================================================== */
 class AppContainer extends Component {
@@ -96,7 +96,7 @@ class AppContainer extends Component {
           title={<NavbarElements.Title title={route.title || null} />}
           statusBar={{style: 'light-content', hidden: false}}
           style={[AppStyles.navbar]}
-          tintColor={AppConfig.primaryColor}
+          tintColor={AppConfig.secondaryColor}
           leftButton={<NavbarElements.LeftButton onPress={leftButton.onPress} icon={leftButton.icon} />} />
 
         <route.component navigator={navigator} route={route} {...route.passProps} />
@@ -127,7 +127,7 @@ class AppContainer extends Component {
               return Navigator.SceneConfigs.FloatFromRight;
           }}
           initialRoute={{
-            component: Index,
+            component: Home,
             index: 0,
             navigator: this.refs.rootNavigator,
             passProps: {

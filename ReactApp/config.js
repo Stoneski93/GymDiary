@@ -30,11 +30,13 @@ exports.navbarHeight = navbarHeight;
 exports.statusBarHeight = 22;
 
 // Fonts
-exports.baseFont = 'Avenir';
+exports.baseFont = 'Roboto-Regular';
 exports.baseFontSize = 14;
 
 // Colors
-exports.primaryColor = "#4099FF";
-exports.secondaryColor = "#FFE229";
+// exports.primaryColor = "#4099FF";
+exports.primaryColor = "#000000";
+exports.secondaryColor = "#fff";
+// exports.secondaryColor = "#FFE229";
 exports.textColor = "#555";
 exports.borderColor = "#E7E7E7";

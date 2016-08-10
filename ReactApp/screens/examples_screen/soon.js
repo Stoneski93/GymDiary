@@ -24,11 +24,10 @@ import Button from '../components/button'
 
 // Screens
 import FirstLoad from './first.load'
-import 
 
 /* Component ==================================================================== */
-class Dupa extends Component {
-  static componentName = 'Dupa';
+class ComingSoon extends Component {
+  static componentName = 'ComingSoon';
 
   constructor(props) {
     super(props);
@@ -50,7 +49,7 @@ class Dupa extends Component {
   _navigate = (navbarTitle) => {
     this.props.navigator.push({
       title: navbarTitle, 
-      component: Dupa, 
+      component: ComingSoon, 
       index: 2
     });
   }
@@ -66,7 +65,7 @@ class Dupa extends Component {
     * RENDER
     */
   render = () => {
-    let text = this.props.placeholder || 'Dupa'
+    let text = this.props.placeholder || 'Siemano jestem Norbi';
 
     // Done
     return (
@@ -78,13 +77,16 @@ class Dupa extends Component {
         <View style={[AppStyles.spacer_10]} />
 
         <Button type={'outlined'}
-          text={'Tap to test go to Home'}
-          onPress={()=>this._navigate(home)} />
-
-          <Button type={'outlined'}
           text={'Tap to test the back button'}
           onPress={()=>this._navigate(text)} />
 
+        <Modal animationType={'fade'} 
+          transparent={false} 
+          visible={this.state.splashScreenVisible}
+          onRequestClose={()=>{}}>
+          <FirstLoad navigator={this.props.navigator}
+            close={this.onSplashSkip} />
+        </Modal>
       </View>
     );
   }

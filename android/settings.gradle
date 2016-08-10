@@ -1,4 +1,4 @@
-rootProject.name = 'StarterKit'
+rootProject.name = 'GymDiary'
 
 include ':app'
 include ':react-native-vector-icons'

@@ -26,8 +26,8 @@ import Button from '../components/button'
 import FirstLoad from './first.load'
 
 /* Component ==================================================================== */
-class ComingSoon extends Component {
-  static componentName = 'ComingSoon';
+class MainScreen extends Component {
+  static componentName = 'MainScreen';
 
   constructor(props) {
     super(props);
@@ -73,13 +73,6 @@ class ComingSoon extends Component {
         <Text style={[AppStyles.baseText, AppStyles.p]}>
           {text}
         </Text>
-
-        <View style={[AppStyles.spacer_10]} />
-
-        <Button type={'outlined'}
-          text={'Tap to test the back button'}
-          onPress={()=>this._navigate(text)} />
-
         <Modal animationType={'fade'} 
           transparent={false} 
           visible={this.state.splashScreenVisible}
@@ -93,4 +86,4 @@ class ComingSoon extends Component {
 }
 
 /* Export Component ==================================================================== */
-export default ComingSoon
+export default MainScreen

@@ -68,7 +68,7 @@ class Button extends Component {
 const styles = StyleSheet.create({
   // Standard
   button: {
-    backgroundColor: AppConfig.primaryColor,
+    backgroundColor: '#000000',
     height: 50,
     justifyContent: 'center',
     borderRadius: 3,
@@ -78,8 +78,8 @@ const styles = StyleSheet.create({
   button_text: {
     color: "#FFF",
     textAlign: 'center',
-    fontSize: 15,
-    lineHeight: parseInt(15 + (15 * 0.5)),
+    fontSize: 20,
+    lineHeight: parseInt(20 + (15 * 0.5)),
     fontFamily: AppConfig.baseFont,
     fontWeight: '800',
   },

@@ -17,6 +17,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 // App Globals
 import AppStyles from '../styles'
+import AppConfig from '../config'
 
 
 /* Navbar Title Component ==================================================================== */
@@ -27,7 +28,7 @@ class NavbarTitle extends Component {
 
   render = () => {
     return (
-      <Text style={[AppStyles.baseText, AppStyles.strong, styles.navbarTitle]}>{this.props.title || 'Starter Kit'}</Text>
+      <Text style={[AppStyles.baseText, AppStyles.strong, styles.navbarTitle]}>{this.props.title || 'GymDiary'}</Text>
     );
   }
 }
@@ -47,7 +48,7 @@ class NavbarLeftButton extends Component {
       <TouchableOpacity onPress={this.props.onPress} activeOpacity={0.7} 
         style={styles.navbarButton}
         hitSlop={{top: 7, right: 7, bottom: 7, left: 7}}>
-        <Icon name={this.props.icon} size={36} color={"#FFF"} />
+        <Icon name={this.props.icon} size={36} color={AppConfig.primaryColor} />
       </TouchableOpacity>
     );
   }
@@ -62,8 +63,8 @@ const styles = StyleSheet.create({
     top: 4,
   },
   navbarTitle: {
-    color: '#FFFFFF',
+    color: AppConfig.primaryColor,
     bottom: 6,
-    fontSize: 13,
+    fontSize: 18,
   },
 });
