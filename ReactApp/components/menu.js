@@ -24,7 +24,7 @@ import StyleGuide from '../screens/style.guide'
 import ComingSoon from '../screens/soon'
 import FormExample from '../screens/forms'
 import ListViewExample from '../screens/listview'
-import Tabs from '../screens/tabs'
+import Exercises from '../screens/exercises'
 import Home from '../screens/home'
 import MainScreen from '../screens/mainScreen'
 import UserSettings from '../screens/userSettings'
@@ -42,7 +42,7 @@ class Menu extends Component {
         {title: 'Trening', component: MainScreen},
         {title: 'Ustawienia', component: UserSettings},
         // {title: 'Style Guide', component: StyleGuide},
-        // {title: 'Tabs', component: Tabs},
+        {title: 'Exercises', component: Exercises},
         // {title: 'Forms', component: FormExample},
         // {title: 'List Example', component: ListViewExample},
         // // {title: 'List Example', component: ListViewExample, props: {passProps: {noImages: true}}},

@@ -28,8 +28,8 @@ import ComingSoon from './soon'
 import ListView from './listview'
 
 /* Component ==================================================================== */
-class Tabs extends Component {
-  static componentName = 'Tabs';
+class Exercises extends Component {
+  static componentName = 'Exercises';
 
     constructor(props) {
       super(props);
@@ -41,10 +41,8 @@ class Tabs extends Component {
         navigation: {
           index: 0,
           routes: [
-            { key: '1', title: 'Tab 1'},
-            { key: '2', title: 'Tab 2'},
-            { key: '3', title: 'Tab 3'},
-            { key: '4', title: 'Tab 4'},
+            { key: '1', title: 'Lista Ćwiczeń'},
+            { key: '2', title: 'Ulubione'},
           ],
         },
       };
@@ -114,21 +112,6 @@ class Tabs extends Component {
 	              navigator={this.props.navigator} />
             </View>
           );
-        case '3':
-          return (
-          	<View style={AppStyles.windowSize}>
-	            <ComingSoon
-	            	placeholder={'This is ' + route.title}
-	              navigator={this.props.navigator} />
-            </View>
-          );
-        case '4':
-          return (
-          	<View style={AppStyles.windowSize}>
-	            <ListView
-	              navigator={this.props.navigator} />
-            </View>
-          );
         default:
           return null;
       }
@@ -178,4 +161,4 @@ const styles = StyleSheet.create({
 });
 
 /* Export Component ==================================================================== */
-export default Tabs
+export default Exercises

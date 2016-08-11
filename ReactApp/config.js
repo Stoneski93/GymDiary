@@ -34,9 +34,9 @@ exports.baseFont = 'Roboto-Regular';
 exports.baseFontSize = 14;
 
 // Colors
-// exports.primaryColor = "#4099FF";
+
 exports.primaryColor = "#000000";
 exports.secondaryColor = "#fff";
-// exports.secondaryColor = "#FFE229";
-exports.textColor = "#555";
+exports.textColor = "#000000";
 exports.borderColor = "#E7E7E7";
+// exports.textColor = "#555";
