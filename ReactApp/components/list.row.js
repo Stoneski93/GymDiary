@@ -21,6 +21,8 @@ import {
   TouchableOpacity,
 } from 'react-native'
 
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 // App Globals
 import AppStyles from '../styles'
 import AppConfig from '../config'
@@ -48,9 +50,12 @@ class ListRow extends Component {
         <TouchableOpacity 
           style={[styles.listRow, image && styles.imageBackground]} 
           onPress={onPress} activeOpacity={0.7}>
-          <Image source={{uri: image}} style={[styles.imageBackground_image]}>
-            <Text style={[AppStyles.baseText, styles.listRow_text, styles.listRowImage_text]}>{title.toUpperCase()}</Text>
-          </Image>
+          <Text style={[AppStyles.baseText, styles.listRow_text, styles.listRowImage_text]}>{title.toUpperCase()}</Text>
+          <TouchableOpacity activeOpacity={0.7} 
+              style={styles.navbarButton}
+              hitSlop={{top: 7, right: 7, bottom: 7, left: 7}}>
+            <Icon name='calendar' size={30} color={AppConfig.primaryColor} />
+          </TouchableOpacity>
         </TouchableOpacity>
       )
     } else {
@@ -58,6 +63,11 @@ class ListRow extends Component {
         <TouchableOpacity style={[styles.listRow]} onPress={onPress} activeOpacity={0.7}>
           <View style={styles.listRowInner}>
             <Text style={[AppStyles.baseText, styles.listRow_text]}>{title.toUpperCase()}</Text>
+            <TouchableOpacity activeOpacity={0.7} 
+              style={styles.navbarButton}
+              hitSlop={{top: 7, right: 7, bottom: 7, left: 7}}>
+            <Icon name='star' size={20} color={AppConfig.primaryColor} />
+          </TouchableOpacity>
           </View>
         </TouchableOpacity>
       )
@@ -72,15 +82,21 @@ const styles = StyleSheet.create({
     right: 0,
     backgroundColor: "#FFF",
   },
+  navbarButton: {
+    position: 'absolute',
+    right: 20,
+    top: 10,
+  },
   listRowInner: {
-    paddingVertical: 20,
+    paddingVertical: 10,
     borderBottomWidth: 1,
     borderBottomColor: AppConfig.borderColor,
   },
   listRow_text: {
     color: AppConfig.textColor,
-    textAlign: 'center',
-    fontWeight: '500',
+    textAlign: 'left',
+    marginLeft: 20,
+    fontWeight: '400',
     backgroundColor: 'transparent',
   },
   listRowImage_text: {

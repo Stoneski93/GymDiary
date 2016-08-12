@@ -15,6 +15,8 @@ import {
   TouchableOpacity
 } from 'react-native'
 
+import { Actions } from 'react-native-router-flux';
+
 // App Globals
 import AppStyles from '../styles'
 import AppConfig from '../config'
@@ -38,13 +40,13 @@ class Menu extends Component {
     // Initial state
     this.state = {
       menu: [
-        {title: 'Start', component: Home},
-        {title: 'Trening', component: MainScreen},
-        {title: 'Ustawienia', component: UserSettings},
+        {title: 'Start', action: Actions.home },
+        {title: 'Trening', action: Actions.training },
+        {title: 'Ustawienia', action: Actions.userSettings },
+        {title: 'List Example', action: Actions.listview, props: {passProps: {noImages: true}}},
         // {title: 'Style Guide', component: StyleGuide},
-        {title: 'Exercises', component: Exercises},
+        //{title: 'Exercises', action: Actions.exercises },
         // {title: 'Forms', component: FormExample},
-        // {title: 'List Example', component: ListViewExample},
         // // {title: 'List Example', component: ListViewExample, props: {passProps: {noImages: true}}},
         // {title: 'List Example 2', component: ListViewExample},
       ],
@@ -65,11 +67,11 @@ class Menu extends Component {
     // Build the actual Menu Items
     let menuItems = [];
     menu.map((item)=>{
-      let { title, component, props } = item;
+      let { title, component, props, action } = item;
 
       menuItems.push(
         <TouchableOpacity key={'menu-item-'+title}
-          onPress={()=>navigate(title, component, props)}>
+          onPress={action}>
           <View style={[styles.menuItem]}>
             <Text style={[AppStyles.baseText, styles.menuItem_text]}>{title}</Text>
           </View>
@@ -85,7 +87,6 @@ class Menu extends Component {
   }
 }
 
-
 /* Styles ==================================================================== */
 const styles = StyleSheet.create({
   menuContainer: {
@@ -99,7 +100,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     height: AppConfig.windowHeight,
-    backgroundColor: "#111111",
+    backgroundColor: "#dedede",
     padding: 20,
     paddingTop: AppConfig.statusBarHeight,
   },
@@ -115,7 +116,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     marginTop: 10,
     flex: 1,
-    color: "#EEE"
+    color: "#00000"
   },
 });
 

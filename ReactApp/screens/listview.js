@@ -29,39 +29,13 @@ import Screen from './soon'
 // Demo data
 const defaultData = [
   {
-    title: 'Lorem ipsum adipiscing',
-    summary: 'A vivamus neque consectetur parturient mi nisl proin molestie vestibulum in fames condimentum cum a.',
-    image: 'http://lorempixel.com/g/1000/250/nature',
+    title: 'Żołnierskie',
   },
   {
-    title: 'Guim petis',
-    summary: 'A vivamus neque consectetur parturient mi nisl proin molestie vestibulum in fames condimentum cum a.',
-    image: 'http://lorempixel.com/g/1000/250/animals',
+    title: 'Przysiad',
   },
   {
-    title: 'Filos be amik',
-    summary: 'A vivamus neque consectetur parturient mi nisl proin molestie vestibulum in fames condimentum cum a.',
-    image: 'http://lorempixel.com/g/1000/250/transport',
-  },
-  {
-    title: 'Mi a adipiscing',
-    summary: 'A vivamus neque consectetur parturient mi nisl proin molestie vestibulum in fames condimentum cum a.',
-    image: 'http://lorempixel.com/g/1000/250/nightlife',
-  },
-  {
-    title: 'Ching vivamus le',
-    summary: 'A vivamus neque consectetur parturient mi nisl proin molestie vestibulum in fames condimentum cum a.',
-    image: 'http://lorempixel.com/g/1000/250/food',
-  },
-  {
-    title: 'Parturinent my proin',
-    summary: 'A vivamus neque consectetur parturient mi nisl proin molestie vestibulum in fames condimentum cum a.',
-    image: 'http://lorempixel.com/g/1000/250/fashion',
-  },
-  {
-    title: 'Vestibulum in fames',
-    summary: 'A vivamus neque consectetur parturient mi nisl proin molestie vestibulum in fames condimentum cum a.',
-    image: 'http://lorempixel.com/g/1000/250/business',
+    title: 'Wykroki',
   },
 ];
 
@@ -113,16 +87,7 @@ class ListViewExample extends Component {
     let { title, image } = data;
 
     return (
-      <ListRow title={title.toString()}
-        image={!this.props.noImages ? image : null}
-        onPress={()=>{
-          this.props.navigator.push({
-            title: title,
-            component: Screen,
-            index: 2,
-            transition: 'FloatFromBottom',
-          });
-        }} />
+      <ListRow title={title.toString()} />
     );
   }
 
@@ -133,11 +98,12 @@ class ListViewExample extends Component {
     return (
       <View style={[AppStyles.container]}>
         <ListView
-          initialListSize={8}
+          initialListSize={3}
           automaticallyAdjustContentInsets={false}
           dataSource={this.state.dataSource}
           renderRow={this._renderRow}
           contentContainerStyle={AppStyles.paddingBottom} 
+          style={[styles.listContainer]}
           refreshControl={
             <RefreshControl
               refreshing={this.state.isRefreshing}
@@ -151,6 +117,9 @@ class ListViewExample extends Component {
 
 /* Styles ==================================================================== */
 const styles = StyleSheet.create({
+  listContainer: {
+    marginTop: 52,
+  }
 });
 
 /* Export Component ==================================================================== */

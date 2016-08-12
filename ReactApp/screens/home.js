@@ -17,6 +17,8 @@ import {
 	Image
 } from 'react-native'
 
+import { Actions } from 'react-native-router-flux';
+
 // App Globals
 import AppStyles from '../styles'
 import AppConfig from '../config'
@@ -70,7 +72,7 @@ class Home extends Component {
 						<View style={[AppStyles.flex1, AppStyles.paddingHorizontal]}>
 							<Button
 								text={'Start'}
-								onPress={()=>this._navigate()} />
+								onPress={Actions.training} />
 						</View>
 					</View>
       	</View>
@@ -82,7 +84,6 @@ class Home extends Component {
 /* Styles ==================================================================== */
 const styles = StyleSheet.create({
 	containerCover: {
-		marginTop: -AppConfig.navbarHeight,
 		backgroundColor: "#FFF",
 		justifyContent: 'center',
 	},

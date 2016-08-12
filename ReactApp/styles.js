@@ -36,6 +36,7 @@ module.exports = StyleSheet.create({
     alignItems: 'center',
   },
   trainingBar: {
+    marginTop: 54,
     height: 40,
     alignSelf: "stretch",
     backgroundColor: '#fafafa',
@@ -44,6 +45,10 @@ module.exports = StyleSheet.create({
     borderBottomColor: '#dedede',
     borderTopColor: '#dedede',
 
+  },
+  hamburger: {
+    backgroundColor: '#00000',
+    width: 100,
   },
   windowSize: {
     height: AppConfig.windowHeight,
@@ -257,7 +262,10 @@ module.exports = StyleSheet.create({
   },
   navbar: {
     borderBottomWidth: 1,
+    justifyContent: 'center',
     borderColor: AppConfig.primaryColor,
+    height: 40,
+    backgroundColor: '#03A9F4',
 
   }
 });

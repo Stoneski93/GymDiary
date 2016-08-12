@@ -21,6 +21,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import AppStyles from '../styles'
 import AppConfig from '../config'
 
+import { Actions } from 'react-native-router-flux';
+
 // Components
 import Button from '../components/button'
 
@@ -83,6 +85,9 @@ class MainScreen extends Component {
         <Icon name='calendar' size={30} color={AppConfig.primaryColor} />
       </TouchableOpacity>
       </View>
+      <View style={[AppStyles.container, AppStyles.containerCentered, styles.bulbButtonContainer]}>
+        <Button type='bulb' text="+"  onPress={Actions.listview} />
+      </View>
       <Modal animationType={'fade'} 
         transparent={false} 
         visible={this.state.splashScreenVisible}
@@ -101,6 +106,11 @@ const styles = StyleSheet.create({
     position: 'absolute',
     right: 20,
     top: 4,
+  },
+  bulbButtonContainer: {
+    position: 'absolute',
+    right: 20,
+    bottom: 20,
   },
 });
 

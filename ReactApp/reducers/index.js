@@ -11,10 +11,13 @@ import { combineReducers } from 'redux'
 // Our custom reducers
 // We need to import each one here and add them to the combiner at the bottom
 import sideMenu from './sidemenu'
+//Add routes with sceses
+import routes from './routes';
 
 // Combine all
 const appReducer = combineReducers({
   sideMenu,
+  routes,
 });
 
 // Setup root reducer

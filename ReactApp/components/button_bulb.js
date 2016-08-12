@@ -29,7 +29,7 @@ import AppConfig from '../config'
 
 
 /* Component ==================================================================== */
-class Button extends Component {
+class ButtonBulb extends Component {
   static propTypes = {
     onPress: React.PropTypes.func.isRequired,
     type: React.PropTypes.oneOf(['', 'outlined']),
@@ -41,7 +41,7 @@ class Button extends Component {
   static defaultProps = {
     onPress: () => {}, // Do nothing
     type: '',
-    text: 'Click Here',
+    text: '+',
     size: 'medium',
     disabled: false,
   }
@@ -54,7 +54,7 @@ class Button extends Component {
 
     return (
       <TouchableOpacity onPress={onPress} activeOpacity={0.7} disabled={disabled}
-        style={[styles.button, type == 'outlined' && styles.buttonOutline, type == 'bulb' && styles.buttonBulb, size == 'small' && styles.buttonSml, size == 'large' && styles.buttonLrg, disabled && styles.disabled]}>
+        style={[styles.button, type == 'outlined' && styles.buttonOutline, size == 'small' && styles.buttonSml, size == 'large' && styles.buttonLrg, disabled && styles.disabled]}>
         <Text style={[AppStyles.baseText, styles.button_text, type == 'outlined' && styles.buttonOutline_text, size == 'small' && styles.buttonSml_text, size == 'large' && styles.buttonLrg_text]}>
           {text}
         </Text>
@@ -70,10 +70,9 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: '#000000',
     height: 40,
+    width: 40,
     justifyContent: 'center',
-    borderRadius: 3,
-    marginBottom: 10,
-    paddingHorizontal: 10,
+    borderRadius: 100,
   },
   button_text: {
     color: "#FFF",
@@ -92,14 +91,6 @@ const styles = StyleSheet.create({
   },
   buttonOutline_text: {
     color: AppConfig.primaryColor,
-  },
-  
-  buttonBulb: {
-    backgroundColor: '#ff5d00',
-    height: 45,
-    width: 45,
-    borderRadius: 100,
-    borderColor: AppConfig.primaryColor,
   },
 
   // Large
@@ -128,4 +119,4 @@ const styles = StyleSheet.create({
 
 
 /* Export Component ==================================================================== */
-export default Button
+export default ButtonBulb

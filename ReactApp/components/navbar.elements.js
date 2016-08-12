@@ -48,7 +48,7 @@ class NavbarLeftButton extends Component {
       <TouchableOpacity onPress={this.props.onPress} activeOpacity={0.7} 
         style={styles.navbarButton}
         hitSlop={{top: 7, right: 7, bottom: 7, left: 7}}>
-        <Icon name={this.props.icon} size={36} color={AppConfig.primaryColor} />
+        <Icon name={this.props.icon} size={36} color={AppConfig.secondaryColor} />
       </TouchableOpacity>
     );
   }

@@ -10,13 +10,20 @@
 import React, { Component } from 'react'
 import {
   Navigator,
+  StyleSheet,
   Text,
   View,
   TouchableOpacity,
   Image,
   StatusBar,
 } from 'react-native'
-import { connect } from 'react-redux'
+
+import { connect, Provider } from 'react-redux'
+//Add with React Native Router
+import { Router, Scene } from 'react-native-router-flux';
+import { createStore, applyMiddleware, compose } from 'redux';
+
+//NavigationBar and SideMenu
 import NavigationBar from 'react-native-navbar'
 import SideMenu from 'react-native-side-menu'
 
@@ -31,113 +38,62 @@ import AppUtil from '../util';
 // Components
 import Menu from '../components/menu';
 import NavbarElements from '../components/navbar.elements';
+import SideDrawer from '../components/drawer';
 
 // Screens
 import Home from '../screens/home';
+import Main from '../screens/mainScreen.js';
+import UserSettings from '../screens/userSettings.js';
+import ListViewExample from '../screens/listview.js';
+
+const RouterWithRedux = connect()(Router);
+import reducers from '../reducers';
+// other imports...
+
+// create store...
+const middleware = [/* ...your middleware (i.e. thunk) */];
+const store = compose(
+  applyMiddleware(...middleware)
+)(createStore)(reducers);
+
 /* Component ==================================================================== */
 class AppContainer extends Component {
-  /**
-    * On first load
-    */
-  componentDidMount = () => {
-    StatusBar.setHidden(false, 'slide');
-  }
-
-  /**
-    * An option was pressed in the Side Menu. Go to scene...
-    */
-  _onSideMenuPress = (title, component, extraProps) => {
-    // Close menu
-    this.props.closeSideMenu();
-
-    if(AppUtil.objIsEmpty(extraProps)) extraProps = {};
-
-    // Change Scene
-    this.refs.rootNavigator.replace({
-      title: title,
-      component: component,
-      index: 0,
-      ...extraProps
-    });
-  }
-
-  /**
-    * Toggle Side Menu
-    */
-  _onSideMenuChange = (isOpen) => {
-    if (isOpen != this.props.sideMenuIsOpen) {
-      this.props.toggleSideMenu();
-    }
-  }
-
-  /**
-    * Render each scene with a Navbar and Sidebar
-    */
-  _renderScene = (route, navigator) => {
-    // Show Hamburger Icon when index is 0, and Back Arrow Icon when index is > 0
-    let leftButton = {
-      onPress: (route.index > 0)
-        ? this.refs.rootNavigator.pop 
-        : this.props.toggleSideMenu,
-      icon: (route.index > 0)
-        ? 'ios-arrow-back-outline'
-        : 'ios-menu-outline'
-    };
-
-    // Show a cross icon when transition pops from bottom
-    if(route.transition == 'FloatFromBottom')  {
-      leftButton.icon = 'ios-close-outline';
-    }
-
-    return (
-      <View style={[AppStyles.appContainer, AppStyles.container]}>
-        <NavigationBar
-          title={<NavbarElements.Title title={route.title || null} />}
-          statusBar={{style: 'light-content', hidden: false}}
-          style={[AppStyles.navbar]}
-          tintColor={AppConfig.secondaryColor}
-          leftButton={<NavbarElements.LeftButton onPress={leftButton.onPress} icon={leftButton.icon} />} />
-
-        <route.component navigator={navigator} route={route} {...route.passProps} />
-      </View>
-    );
-  }
-
   /**
     * RENDER
     */
   render() {
     return (
-      <SideMenu
-        ref="rootSidebarMenu"
-        menu={<Menu navigate={this._onSideMenuPress} ref="rootSidebarMenuMenu" />}
-        disableGestures={this.props.sideMenuGesturesDisabled}
-        isOpen={this.props.sideMenuIsOpen}
-        onChange={this._onSideMenuChange}>
-
-        <Navigator 
-          ref="rootNavigator"
-          style={[AppStyles.container, AppStyles.appContainer]}
-          renderScene={this._renderScene}
-          configureScene={function(route, routeStack) {
-            if(route.transition == 'FloatFromBottom') 
-              return Navigator.SceneConfigs.FloatFromBottom;
-            else
-              return Navigator.SceneConfigs.FloatFromRight;
-          }}
-          initialRoute={{
-            component: Home,
-            index: 0,
-            navigator: this.refs.rootNavigator,
-            passProps: {
-              showSplashScreen: true,
-            }
-          }} />
-
-      </SideMenu>
+      <Provider store={store}>
+        <RouterWithRedux navigationBarStyle={styles.customNav} leftButtonStyle={styles.leftButtonStyle} leftButtonIconStyle={styles.barButtonIconStyle}>
+          <Scene key="drawer" component={SideDrawer} open={false} >
+            <Scene key="first" tabs={true}>
+            <Scene key="home" component={Home} initial={true} hideNavBar={true} />
+               <Scene key="training" component={Main} hideNavBar={false} title={'Trening'} />            
+               <Scene key="userSettings" component={UserSettings} hideNavBar={false} title={'Ustawienia'} />       
+               <Scene key="listview" component={ListViewExample} hideNavBar={false} title={'List View'} />       
+            </Scene>
+          </Scene>
+        </RouterWithRedux>
+      </Provider>
     );
   }
 }
+
+const styles = StyleSheet.create({
+	customNav: {
+		backgroundColor: "#FFF",
+    alignContent: 'center',
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+	},
+  barButtonIconStyle: {
+    tintColor:'#000000',
+    width: 18,
+  },
+
+});
 
 // Define which part of the state we're passing to this component
 const mapStateToProps = (state) => ({
