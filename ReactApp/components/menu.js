@@ -12,10 +12,13 @@ import {
   StyleSheet,
   View,
   Text,
-  TouchableOpacity
+  TouchableOpacity,
+  Image
 } from 'react-native'
 
 import { Actions } from 'react-native-router-flux';
+
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 // App Globals
 import AppStyles from '../styles'
@@ -40,10 +43,10 @@ class Menu extends Component {
     // Initial state
     this.state = {
       menu: [
-        {title: 'Start', action: Actions.home },
-        {title: 'Trening', action: Actions.training },
-        {title: 'Ustawienia', action: Actions.userSettings },
-        {title: 'List Example', action: Actions.listview, props: {passProps: {noImages: true}}},
+        {title: 'Start', action: Actions.home, icon: 'home' },
+        {title: 'Trening', action: Actions.training, icon: 'clock-o' },
+        {title: 'Ustawienia', action: Actions.userSettings, icon: 'cog' },
+        {title: 'List Example', action: Actions.listview, props: {passProps: {noImages: true}}, icon: 'list-ul'},
         // {title: 'Style Guide', component: StyleGuide},
         //{title: 'Exercises', action: Actions.exercises },
         // {title: 'Forms', component: FormExample},
@@ -67,13 +70,14 @@ class Menu extends Component {
     // Build the actual Menu Items
     let menuItems = [];
     menu.map((item)=>{
-      let { title, component, props, action } = item;
+      let { title, component, props, action, icon } = item;
 
       menuItems.push(
         <TouchableOpacity key={'menu-item-'+title}
           onPress={action}>
           <View style={[styles.menuItem]}>
-            <Text style={[AppStyles.baseText, styles.menuItem_text]}>{title}</Text>
+             <Icon name={icon} size={20} color={AppConfig.primaryColor} />
+             <Text style={[AppStyles.baseText, styles.menuItem_text]}>{title}</Text>
           </View>
         </TouchableOpacity>
       );
@@ -81,6 +85,19 @@ class Menu extends Component {
 
     return (
       <View style={[styles.menuContainer]}>
+        <View style={[styles.header]}>
+          <View style={[styles.headerBoxAvatar]}>
+            <View style={[styles.headerAvatar]}>
+              <Image style={[styles.image]}
+							source={require('../images/10.jpg')}
+						  />
+            </View>
+          </View>
+          <View style={[styles.headerBoxSubtitle]}>
+            <Text style={[styles.mainSubtitleText]}>Jan Kowalski</Text>
+            <Text style={[styles.secondarySubtitleText]}>jan@kowalski.pl</Text>
+          </View>
+        </View>
         <View style={[styles.menu]}>{menuItems}</View>
       </View>
     );
@@ -95,29 +112,67 @@ const styles = StyleSheet.create({
     right: 0,
     backgroundColor: "#111111",
   },
+  header: {
+    height: 148,
+    backgroundColor: 'transparent',
+    paddingBottom: 8,
+  },
+  headerBoxAvatar: {
+    height: 84,
+    padding: 15,
+    backgroundColor: '#000000',
+  },
+  headerAvatar: {
+    height: 63,
+    width: 63,
+    borderRadius: 100,
+    backgroundColor: '#fff',
+    overflow: 'hidden',
+  },
+  headerBoxSubtitle: {
+    height: 56,
+    padding: 15,
+    backgroundColor: '#000000',
+  },
+  mainSubtitleText: {
+    fontSize: 14,
+    color: "#FFF",
+  },
+  secondarySubtitleText: {
+    fonrSize: 13,
+    color: "#FFF",
+  },
   menu: {
     flex: 1,
     left: 0,
     right: 0,
     height: AppConfig.windowHeight,
-    backgroundColor: "#dedede",
-    padding: 20,
-    paddingTop: AppConfig.statusBarHeight,
+    backgroundColor: "#fff",
+    borderRightWidth: 1,
+    borderRightColor: '#000000',
+    paddingTop: 8,
   },
   menuItem: {
     flex: 1,
-    borderBottomWidth: 1,
-    borderBottomColor: "#333",
-    paddingBottom: 10,
+    height: 48,
+    paddingLeft: 15,
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   menuItem_text: {
-    fontSize: 18,
-    lineHeight: parseInt(18 + (18 * 0.5)),
+    fontSize: 14,
+    marginLeft: 15,
+    //lineHeight: parseInt(48),
     fontWeight: '500',
-    marginTop: 10,
-    flex: 1,
-    color: "#00000"
+    // marginTop: 10,
+    // flex: 1,
+    color: "#000000"
   },
+  image: {
+    width: 63,
+    height: 63,
+    borderRadius: 100,
+  }
 });
 
 /* Export Component ==================================================================== */
