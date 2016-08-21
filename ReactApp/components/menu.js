@@ -18,17 +18,18 @@ import {
 
 import { Actions } from 'react-native-router-flux';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
-
 // App Globals
 import AppStyles from '../styles'
 import AppConfig from '../config'
+
+// Components
+import MenuItem from './menuItem'
 
 // Screens
 import StyleGuide from '../screens/style.guide'
 import ComingSoon from '../screens/soon'
 import FormExample from '../screens/forms'
-import ListViewExample from '../screens/listview'
+import TabExercises from '../screens/tabExercises'
 import Exercises from '../screens/exercises'
 import Home from '../screens/home'
 import MainScreen from '../screens/mainScreen'
@@ -46,7 +47,7 @@ class Menu extends Component {
         {title: 'Start', action: Actions.home, icon: 'home' },
         {title: 'Trening', action: Actions.training, icon: 'clock-o' },
         {title: 'Ustawienia', action: Actions.userSettings, icon: 'cog' },
-        {title: 'List Example', action: Actions.listview, props: {passProps: {noImages: true}}, icon: 'list-ul'},
+        {title: 'Lista Ćwiczeń', action: Actions.tabExercises, props: {passProps: {noImages: true}}, icon: 'list-ul'},
         // {title: 'Style Guide', component: StyleGuide},
         //{title: 'Exercises', action: Actions.exercises },
         // {title: 'Forms', component: FormExample},
@@ -70,16 +71,8 @@ class Menu extends Component {
     // Build the actual Menu Items
     let menuItems = [];
     menu.map((item)=>{
-      let { title, component, props, action, icon } = item;
-
       menuItems.push(
-        <TouchableOpacity key={'menu-item-'+title}
-          onPress={action}>
-          <View style={[styles.menuItem]}>
-             <Icon name={icon} size={20} color={AppConfig.primaryColor} />
-             <Text style={[AppStyles.baseText, styles.menuItem_text]}>{title}</Text>
-          </View>
-        </TouchableOpacity>
+       <MenuItem item={item} />
       );
     });
 
@@ -88,7 +81,7 @@ class Menu extends Component {
         <View style={[styles.header]}>
           <View style={[styles.headerBoxAvatar]}>
             <View style={[styles.headerAvatar]}>
-              <Image style={[styles.image]}
+              <Image style={[styles.avatar]}
 							source={require('../images/10.jpg')}
 						  />
             </View>
@@ -152,23 +145,7 @@ const styles = StyleSheet.create({
     borderRightColor: '#000000',
     paddingTop: 8,
   },
-  menuItem: {
-    flex: 1,
-    height: 48,
-    paddingLeft: 15,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  menuItem_text: {
-    fontSize: 14,
-    marginLeft: 15,
-    //lineHeight: parseInt(48),
-    fontWeight: '500',
-    // marginTop: 10,
-    // flex: 1,
-    color: "#000000"
-  },
-  image: {
+  avatar: {
     width: 63,
     height: 63,
     borderRadius: 100,

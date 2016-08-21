@@ -25,7 +25,7 @@ import Loading from '../components/loading'
 
 // Screens
 import ComingSoon from './soon'
-import ListView from './listview'
+// import ListView from './listView'
 
 /* Component ==================================================================== */
 class Exercises extends Component {

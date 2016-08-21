@@ -21,7 +21,7 @@ import AppConfig from '../config'
 import AppUtil from '../util'
 
 // Components
-import ListRow from '../components/list.row'
+import ListRow from '../components/listExercisesRow'
 
 // Screens
 import Screen from './soon'
@@ -41,8 +41,8 @@ const defaultData = [
 
 
 /* Component ==================================================================== */
-class ListViewExample extends Component {
-  static componentName = 'ListViewExample';
+class ListExercises extends Component {
+  static componentName = 'listExercises';
 
   constructor(props) {
     super(props);
@@ -117,10 +117,7 @@ class ListViewExample extends Component {
 
 /* Styles ==================================================================== */
 const styles = StyleSheet.create({
-  listContainer: {
-    marginTop: 52,
-  }
 });
 
 /* Export Component ==================================================================== */
-export default ListViewExample
+export default ListExercises

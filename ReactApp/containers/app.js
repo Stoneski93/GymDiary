@@ -44,7 +44,8 @@ import SideDrawer from '../components/drawer';
 import Home from '../screens/home';
 import Main from '../screens/mainScreen.js';
 import UserSettings from '../screens/userSettings.js';
-import ListViewExample from '../screens/listview.js';
+import ListExercises from '../screens/listExercises.js';
+import TabExercises from '../screens/tabExercises.js';
 
 const RouterWithRedux = connect()(Router);
 import reducers from '../reducers';
@@ -70,7 +71,8 @@ class AppContainer extends Component {
             <Scene key="home" component={Home} initial={true} hideNavBar={true} />
                <Scene key="training" component={Main} hideNavBar={false} title={'Trening'} />            
                <Scene key="userSettings" component={UserSettings} hideNavBar={false} title={'Ustawienia'} />       
-               <Scene key="listview" component={ListViewExample} hideNavBar={false} title={'List View'} />       
+               <Scene key="listExercises" component={ListExercises} hideNavBar={false} title={'List View'} />       
+               <Scene key="tabExercises" component={TabExercises} hideNavBar={false} title={'List Exercises'} />       
             </Scene>
           </Scene>
         </RouterWithRedux>
