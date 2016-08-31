@@ -24,7 +24,6 @@ import AppConfig from '../config'
 import Loading from '../components/loading'
 
 // Screens
-import ComingSoon from './soon'
 import ListView from './listView'
 
 /* Component ==================================================================== */

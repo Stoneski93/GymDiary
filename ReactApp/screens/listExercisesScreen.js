@@ -1,9 +1,3 @@
-/**
- * Listing SCREEN
- *
- * React Native Starter App
- * https://github.com/mcnamee/react-native-starter-app
- */
 'use strict';
 
 /* Setup ==================================================================== */
@@ -28,50 +22,34 @@ import ListRow from '../components/list.row'
 // Screens
 import Home from './home'
 import ListExercises from './listExercises'
-
-
+import ListExercisesFav from './listExercisesFav'
 
 /* Component ==================================================================== */
-class TabsExercises extends Component {
-  static componentName = 'tabsExercises';
-
+class ListExercisesScreen extends Component {
   constructor(props) {
     super(props);
-
-    // Initial state
-    this.state = {
-      dataSource: new ListView.DataSource({
-        rowHasChanged: (row1, row2) => row1 !== row2,
-      }),
-      isRefreshing: false,
-    }
   }
-
-  static propTypes = {
-    navigator: React.PropTypes.object.isRequired,
-  }
-
-  /**
-    * RENDER
-    */
-  render = () => {
+  /* Render ==================================================================== */
+  render() {
     return (
       <View style={[AppStyles.container]}>
         <ScrollableTabView style={{marginTop: 52, }} renderTabBar={() => <ScrollableTabBar />} >
           <ListExercises tabLabel="Cwiczenia" />
-          <ListExercises tabLabel="Ulubione" />
+          <ListExercisesFav tabLabel="Ulubione" />
         </ScrollableTabView>
       </View>
     );
   }
 }
 
+ListExercisesScreen.propTypes = {
+ //TODO
+}
+
 /* Styles ==================================================================== */
 const styles = StyleSheet.create({
-  listContainer: {
-    // marginTop: 52,
-  }
+  
 });
 
 /* Export Component ==================================================================== */
-export default TabsExercises
+export default ListExercisesScreen

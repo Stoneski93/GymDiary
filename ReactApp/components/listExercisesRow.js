@@ -43,7 +43,7 @@ class ListExercisesRow extends Component {
     * RENDER
     */
   render = () => {
-    let { title, image, onPress } = this.props;
+    let { title, image, onPress, favourite } = this.props;
 
       return (
         <TouchableOpacity style={[styles.listRow]} onPress={onPress} activeOpacity={0.7}>
@@ -52,7 +52,7 @@ class ListExercisesRow extends Component {
             <TouchableOpacity activeOpacity={0.7} 
               style={styles.navbarButton}
               hitSlop={{top: 7, right: 7, bottom: 7, left: 7}}>
-            <Icon name='star' size={20} color={AppConfig.primaryColor} />
+            <Icon name='star' size={20} color={favourite ? '#ffe500' : AppConfig.primaryColor} />
           </TouchableOpacity>
           </View>
         </TouchableOpacity>
@@ -99,6 +99,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 1,
+  },
+  starColor: {
+    
   }
 });
 

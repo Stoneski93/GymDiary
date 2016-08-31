@@ -1,9 +1,3 @@
-/**
- * Menu Contents
- *
- * React Native Starter App
- * https://github.com/mcnamee/react-native-starter-app
- */
 'use strict';
 
 /* Setup ==================================================================== */
@@ -26,11 +20,7 @@ import AppConfig from '../config'
 import MenuItem from './menuItem'
 
 // Screens
-import StyleGuide from '../screens/style.guide'
-import ComingSoon from '../screens/soon'
-import FormExample from '../screens/forms'
-import TabExercises from '../screens/tabExercises'
-import Exercises from '../screens/exercises'
+import ListExercisesScreen from '../screens/listExercisesScreen'
 import Home from '../screens/home'
 import MainScreen from '../screens/mainScreen'
 import UserSettings from '../screens/userSettings'
@@ -47,32 +37,22 @@ class Menu extends Component {
         {title: 'Start', action: Actions.home, icon: 'home' },
         {title: 'Trening', action: Actions.training, icon: 'clock-o' },
         {title: 'Ustawienia', action: Actions.userSettings, icon: 'cog' },
-        {title: 'Lista Ćwiczeń', action: Actions.tabExercises, props: {passProps: {noImages: true}}, icon: 'list-ul'},
-        // {title: 'Style Guide', component: StyleGuide},
-        //{title: 'Exercises', action: Actions.exercises },
-        // {title: 'Forms', component: FormExample},
-        // // {title: 'List Example', component: ListViewExample, props: {passProps: {noImages: true}}},
-        // {title: 'List Example 2', component: ListViewExample},
+        {title: 'Lista Ćwiczeń', action: Actions.listExercisesScreen, props: {passProps: {noImages: true}}, icon: 'list-ul'},
       ],
     };
   }
-
-  static propTypes = {
-    navigate: React.PropTypes.func.isRequired,
-  }
-
-  /**
-    * RENDER
-    */
-  render = () => {
+  
+  /* Styles ==================================================================== */
+  render() {
     let { navigate } = this.props;
     let { menu } = this.state;
 
     // Build the actual Menu Items
     let menuItems = [];
+
     menu.map((item)=>{
       menuItems.push(
-       <MenuItem item={item} />
+        <MenuItem item={item} />
       );
     });
 

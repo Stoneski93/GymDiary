@@ -21,19 +21,11 @@ import AppConfig from '../config'
 import AppUtil from '../util'
 
 // Components
-import ListRow from '../components/listExercisesRow';
+import ListRow from '../components/listExercisesRow'
 
 // Demo data
 const defaultData = [
   {
-    title: 'Przysiad',
-    favourite: false,
-  },
-  {
-    title: 'Wykroki',
-    favourite: false,
-  },
-   {
     title: 'Żołnierskie',
     favourite: true,
   },
@@ -42,30 +34,18 @@ const defaultData = [
     favourite: true,
   },
   {
-    title: 'Żołnierskie',
-    favourite: false,
-  },
-  {
     title: 'Wykroki',
     favourite: true,
   },
   {
     title: 'Żołnierskie',
     favourite: true,
-  },
-  {
-    title: 'Przysiad',
-    favourite: false,
-  },
-  {
-    title: 'Wykroki',
-    favourite: false,
   },
 ];
 
 
 /* Component ==================================================================== */
-class ListExercises extends Component {
+class ListExercisesFav extends Component {
   constructor(props) {
     super(props);
 
@@ -122,7 +102,7 @@ class ListExercises extends Component {
   }
 }
 
-ListExercises.propTypes = {
+ListExercisesFav.propTypes = {
 }
 
 /* Styles ==================================================================== */
@@ -131,4 +111,4 @@ const styles = StyleSheet.create({
 });
 
 /* Export Component ==================================================================== */
-export default ListExercises
+export default ListExercisesFav

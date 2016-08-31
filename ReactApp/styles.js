@@ -266,6 +266,20 @@ module.exports = StyleSheet.create({
     borderColor: AppConfig.primaryColor,
     height: 40,
     backgroundColor: '#03A9F4',
-
-  }
+  },
+  //
+  //NAVIGATION
+  //
+  navigationBarStyle: {
+    backgroundColor: "#FFF",
+    alignContent: 'center',
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  barButtonIconStyle: {
+    tintColor:'#000000',
+    width: 18,
+  },
 });

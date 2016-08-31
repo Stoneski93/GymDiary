@@ -1,9 +1,3 @@
-/**
- * App - set all the things up
- *
- * React Native Starter App
- * https://github.com/mcnamee/react-native-starter-app
- */
 'use strict';
 
 /* Setup ==================================================================== */
@@ -19,13 +13,11 @@ import {
 } from 'react-native'
 
 import { connect, Provider } from 'react-redux'
+import thunk from 'redux-thunk'
+
 //Add with React Native Router
 import { Router, Scene } from 'react-native-router-flux';
 import { createStore, applyMiddleware, compose } from 'redux';
-
-//NavigationBar and SideMenu
-import NavigationBar from 'react-native-navbar'
-import SideMenu from 'react-native-side-menu'
 
 // Actions
 import * as SideMenuActions from '../actions/sidemenu'
@@ -39,20 +31,23 @@ import AppUtil from '../util';
 import Menu from '../components/menu';
 import NavbarElements from '../components/navbar.elements';
 import SideDrawer from '../components/drawer';
+import NavigationBar from 'react-native-navbar'
+import SideMenu from 'react-native-side-menu'
 
 // Screens
 import Home from '../screens/home';
 import Main from '../screens/mainScreen.js';
 import UserSettings from '../screens/userSettings.js';
 import ListExercises from '../screens/listExercises.js';
-import TabExercises from '../screens/tabExercises.js';
+import ListExercisesFav from '../screens/listExercisesFav.js';
+import ListExercisesScreen from '../screens/listExercisesScreen.js';
 
 const RouterWithRedux = connect()(Router);
 import reducers from '../reducers';
 // other imports...
 
 // create store...
-const middleware = [/* ...your middleware (i.e. thunk) */];
+const middleware = [thunk];
 const store = compose(
   applyMiddleware(...middleware)
 )(createStore)(reducers);
@@ -65,14 +60,15 @@ class AppContainer extends Component {
   render() {
     return (
       <Provider store={store}>
-        <RouterWithRedux navigationBarStyle={styles.customNav} leftButtonStyle={styles.leftButtonStyle} leftButtonIconStyle={styles.barButtonIconStyle}>
+        <RouterWithRedux navigationBarStyle={AppStyles.navigationBarStyle} leftButtonStyle={AppStyles.leftButtonStyle} leftButtonIconStyle={AppStyles.barButtonIconStyle}>
           <Scene key="drawer" component={SideDrawer} open={false} >
             <Scene key="first" tabs={true}>
             <Scene key="home" component={Home} initial={true} hideNavBar={true} />
                <Scene key="training" component={Main} hideNavBar={false} title={'Trening'} />            
                <Scene key="userSettings" component={UserSettings} hideNavBar={false} title={'Ustawienia'} />       
-               <Scene key="listExercises" component={ListExercises} hideNavBar={false} title={'List View'} />       
-               <Scene key="tabExercises" component={TabExercises} hideNavBar={false} title={'List Exercises'} />       
+               <Scene key="listExercises" component={ListExercises} hideNavBar={false} title={'Wszystkie Ćwiczenia'} />       
+               <Scene key="listExercisesFav" component={ListExercisesFav} hideNavBar={false} title={'Ulubione Ćwiczenia'} />       
+               <Scene key="listExercisesScreen" component={ListExercisesScreen} hideNavBar={false} title={'Lista Ćwiczeń'} />       
             </Scene>
           </Scene>
         </RouterWithRedux>
@@ -81,31 +77,12 @@ class AppContainer extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-	customNav: {
-		backgroundColor: "#FFF",
-    alignContent: 'center',
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-	},
-  barButtonIconStyle: {
-    tintColor:'#000000',
-    width: 18,
-  },
-
-});
-
-// Define which part of the state we're passing to this component
 const mapStateToProps = (state) => ({
-  sideMenuIsOpen: state.sideMenu.isOpen,
+  //TODO
 });
 
-// Define the actions this component may dispatch
 const mapDispatchToProps = {
-  toggleSideMenu: SideMenuActions.toggle,
-  closeSideMenu: SideMenuActions.close,
+ //TODO
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AppContainer);

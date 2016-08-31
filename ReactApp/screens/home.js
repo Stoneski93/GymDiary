@@ -12,8 +12,6 @@ import {
   StyleSheet,
   View,
   Text,
-  TouchableOpacity,
-  StatusBar,
 	Image
 } from 'react-native'
 
@@ -31,30 +29,9 @@ import MainScreen from './mainScreen'
 
 /* Component ==================================================================== */
 class Home extends Component {
-  static componentName = 'Home';
-
-  static propTypes = {
-    navigator: React.PropTypes.object.isRequired,
-    close: React.PropTypes.func.isRequired,
-  }
-
-	/**
-	  * Navigates to Sign Up
-	  */
-	_navigate = () => {
-    //this.props.close();
-
-	  this.props.navigator.push({
-	    title: 'Główna',
-	    component: MainScreen, 
-	    index: 0,
-	  });
-	}
-
-  /**
-    * RENDER
-    */
-  render = () => {
+  
+	/* Render ==================================================================== */
+  render() {
     return (
       <View style={[AppStyles.container, styles.containerCover]}>
       	<View style={[AppStyles.paddingHorizontal, AppStyles.containerStrecht]}>
@@ -79,6 +56,10 @@ class Home extends Component {
       </View>
     );
   }
+}
+
+Home.propTypes = {
+	//TODO
 }
 
 /* Styles ==================================================================== */
