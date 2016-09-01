@@ -1,9 +1,3 @@
-/**
- * Global App Styles
- *
- * React Native Starter App
- * https://github.com/mcnamee/react-native-starter-app
- */
 'use strict';
 
 import React, { Component } from 'react';
@@ -35,6 +29,9 @@ module.exports = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+  containerCenteredV: {
+    alignItems: 'center'
+  },
   trainingBar: {
     marginTop: 54,
     height: 40,
@@ -45,6 +42,15 @@ module.exports = StyleSheet.create({
     borderBottomColor: '#dedede',
     borderTopColor: '#dedede',
 
+  },
+  detailsBar: {
+    height: 40,
+    alignSelf: "stretch",
+    backgroundColor: '#fafafa',
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
+    borderBottomColor: '#dedede',
+    borderTopColor: '#dedede',
   },
   hamburger: {
     backgroundColor: '#00000',

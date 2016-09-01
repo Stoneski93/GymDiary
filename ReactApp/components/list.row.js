@@ -64,10 +64,15 @@ class ListRow extends Component {
           <View style={styles.listRowInner}>
             <Text style={[AppStyles.baseText, styles.listRow_text]}>{title.toUpperCase()}</Text>
             <TouchableOpacity activeOpacity={0.7} 
-              style={styles.navbarButton}
+              style={styles.infoButton}
               hitSlop={{top: 7, right: 7, bottom: 7, left: 7}}>
-            <Icon name='star' size={20} color={AppConfig.primaryColor} />
-          </TouchableOpacity>
+              <Icon name='star' size={20} color={AppConfig.primaryColor} />
+            </TouchableOpacity>
+            <TouchableOpacity activeOpacity={0.7} 
+              style={styles.starButton}
+              hitSlop={{top: 7, right: 7, bottom: 7, left: 7}}>
+              <Icon name='star' size={20} color={AppConfig.primaryColor} />
+            </TouchableOpacity>
           </View>
         </TouchableOpacity>
       )

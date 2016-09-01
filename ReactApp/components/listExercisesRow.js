@@ -21,43 +21,47 @@ import {
   TouchableOpacity,
 } from 'react-native'
 
+import { Actions } from 'react-native-router-flux';
+
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 // App Globals
 import AppStyles from '../styles'
 import AppConfig from '../config'
 
+//Screen
+
 /* Component ==================================================================== */
 class ListExercisesRow extends Component {
-  static propTypes = {
-    onPress: React.PropTypes.func.isRequired,
-    title: React.PropTypes.string.isRequired,
-    image: React.PropTypes.string,
-  }
-
-  static defaultProps = {
-    title: 'Lorem Ipsum',
-  }
-
-  /**
-    * RENDER
-    */
-  render = () => {
+  
+/* Render ==================================================================== */
+  render() {
     let { title, image, onPress, favourite } = this.props;
-
       return (
         <TouchableOpacity style={[styles.listRow]} onPress={onPress} activeOpacity={0.7}>
           <View style={styles.listRowInner}>
             <Text style={[AppStyles.baseText, styles.listRow_text]}>{title.toUpperCase()}</Text>
             <TouchableOpacity activeOpacity={0.7} 
-              style={styles.navbarButton}
+              style={styles.infoButton}
+              onPress={Actions.exerciseDetailsScreen}
               hitSlop={{top: 7, right: 7, bottom: 7, left: 7}}>
-            <Icon name='star' size={20} color={favourite ? '#ffe500' : AppConfig.primaryColor} />
-          </TouchableOpacity>
+              <Icon name='info-circle' size={20} color={AppConfig.primaryColor} />
+            </TouchableOpacity>
+            <TouchableOpacity activeOpacity={0.7} 
+              style={styles.starButton}
+              hitSlop={{top: 7, right: 7, bottom: 7, left: 7}}>
+              <Icon name='star' size={20} color={favourite ? '#ffe500' : AppConfig.primaryColor} />
+            </TouchableOpacity>
           </View>
         </TouchableOpacity>
       )
     }
+  }
+
+  ListExercisesRow.propTypes = {
+    onPress: React.PropTypes.func.isRequired,
+    title: React.PropTypes.string.isRequired,
+    image: React.PropTypes.string,
   }
 
 /* Styles ==================================================================== */
@@ -70,6 +74,16 @@ const styles = StyleSheet.create({
   navbarButton: {
     position: 'absolute',
     right: 20,
+    top: 10,
+  },
+  starButton: {
+    position: 'absolute',
+    right: 20,
+    top: 10,
+  },
+  infoButton: {
+    position: 'absolute',
+    right: 60,
     top: 10,
   },
   listRowInner: {
@@ -100,9 +114,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 1,
   },
-  starColor: {
-    
-  }
 });
 
 /* Export Component ==================================================================== */

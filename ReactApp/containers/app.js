@@ -16,7 +16,7 @@ import { connect, Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 
 //Add with React Native Router
-import { Router, Scene } from 'react-native-router-flux';
+import { Router, Scene, Actions } from 'react-native-router-flux';
 import { createStore, applyMiddleware, compose } from 'redux';
 
 // Actions
@@ -41,6 +41,7 @@ import UserSettings from '../screens/userSettings.js';
 import ListExercises from '../screens/listExercises.js';
 import ListExercisesFav from '../screens/listExercisesFav.js';
 import ListExercisesScreen from '../screens/listExercisesScreen.js';
+import exerciseDetailsScreen from '../screens/exerciseDetails.js';
 
 const RouterWithRedux = connect()(Router);
 import reducers from '../reducers';
@@ -64,11 +65,12 @@ class AppContainer extends Component {
           <Scene key="drawer" component={SideDrawer} open={false} >
             <Scene key="first" tabs={true}>
             <Scene key="home" component={Home} initial={true} hideNavBar={true} />
-               <Scene key="training" component={Main} hideNavBar={false} title={'Trening'} />            
-               <Scene key="userSettings" component={UserSettings} hideNavBar={false} title={'Ustawienia'} />       
-               <Scene key="listExercises" component={ListExercises} hideNavBar={false} title={'Wszystkie Ćwiczenia'} />       
-               <Scene key="listExercisesFav" component={ListExercisesFav} hideNavBar={false} title={'Ulubione Ćwiczenia'} />       
-               <Scene key="listExercisesScreen" component={ListExercisesScreen} hideNavBar={false} title={'Lista Ćwiczeń'} />       
+              <Scene key="training" component={Main} hideNavBar={false} title={'Trening'} />            
+              <Scene key="userSettings" component={UserSettings} hideNavBar={false} title={'Ustawienia'} />       
+              <Scene key="listExercises" component={ListExercises} hideNavBar={false} title={'Wszystkie Ćwiczenia'} initial={true} />       
+              <Scene key="listExercisesFav" component={ListExercisesFav} hideNavBar={false} title={'Ulubione Ćwiczenia'} />       
+              <Scene key="listExercisesScreen" component={ListExercisesScreen} hideNavBar={false} title={'Lista Ćwiczeń'} />       
+              <Scene key="exerciseDetailsScreen" component={exerciseDetailsScreen} hideNavBar={true} title={'Szczegóły Ćwiczenia'} onLeft={Actions.listExercises} />       
             </Scene>
           </Scene>
         </RouterWithRedux>
