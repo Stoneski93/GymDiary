@@ -8,6 +8,8 @@
 
 /* Setup ==================================================================== */
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
+import { addUser, editUser } from '../actions/user';
 import {
   StyleSheet,
   View,
@@ -24,34 +26,21 @@ import AppStyles from '../styles'
 import AppUtil from '../util'
 import AppDB from '../db'
 
+import { Actions } from 'react-native-router-flux';
+
 // Components
 import Button from '../components/button'
 import Alerts from '../components/alerts'
 
 /* Component ==================================================================== */
 class UserSettings extends Component {
-  static componentName = 'UserSettings';
 
   constructor(props) {
     super(props);
 
-    // Email Validation
-    var valid_email = FormValidation.refinement(
-      FormValidation.String, function (email) {
-        var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-        return re.test(email);
-      }
-    );
-
-    // Password Validation - Must be 6 chars long
-    var valid_password = FormValidation.refinement(
-      FormValidation.String, function (password) {
-        if(password.length < 6) return false;
-        return true;
-      }
-    );
-
     // Initial state
+    const usr = this.props.user;
+
     this.state = {
       resultMsg: {
         status: '',
@@ -60,15 +49,15 @@ class UserSettings extends Component {
       },
       form_fields: FormValidation.struct({
         Pseudonim: FormValidation.String,
-        Wzrost: FormValidation.String,
-        Waga: FormValidation.String,
-        Kalorie: FormValidation.String,
+        Wzrost: FormValidation.Number,
+        Waga: FormValidation.Number,
+        Kalorie: FormValidation.Number,
       }),
       empty_form_values: {
-        Pseudonim: '',
-        Wzrost: '',
-        Waga: '',
-        Kalorie: '',
+        Pseudonim: usr.nickname,
+        Wzrost: usr.height,
+        Waga: usr.weight,
+        Kalorie: usr.calories,
       },
       form_values: {},
       options: {
@@ -77,37 +66,34 @@ class UserSettings extends Component {
           Wzrost: { error: 'Podaj nazwisko' },
           Waga: { error: 'Podaj wage' },
           Kalorie: { error: 'Podaj kalorie' },
-        }
+        },
+        hasError: true,
+        error: 'dupa',
       },
     }
+    this.saveSettings = this.saveSettings.bind(this);
   }
-
-  _signUp = () => {
-    // Get new values and update
-    var values = this.refs.form.getValue();
-
-
-    // Form is valid
-    if(values) {
-      this.setState({form_values: values}, () => {
-        this._saveData((result) => {
-          this.refs.scrollView.scrollTo({ y: 0 });
-
-          // Show save message
-          this.setState({
-            resultMsg: {
-              success: 'Awesome, that saved!',
-            }
-          });
-        });
-      });
-    }
+  componentWillReceiveProps(nextProps) {
+    this.setState({ 
+      empty_form_values : nextProps.user,
+     });
   }
-
   /**
     * RENDER
     */
-  render = () => {
+  saveSettings() {
+    // TODO check validation
+    const formValues = this.refs.form.getValue();
+    setTimeout(() => {
+      alert(this.state.options.hasError)
+    }, 500);
+    // if(!this.state.options.hasError) {
+    //   alert(this.state.options.hasError);
+    //   Actions.training();
+    //   this.props.editUser(formValues);
+    // }
+  }
+  render(){
     var Form = FormValidation.form.Form;
 
     return (
@@ -131,14 +117,14 @@ class UserSettings extends Component {
           <Form
             ref="form"
             type={this.state.form_fields}
-            value={this.state.form_values}
+            value={this.state.empty_form_values}
             options={this.state.options} />
         </View>
         <View style={AppStyles.hr} />
         <View style={[AppStyles.paddingHorizontalLar]}>
           <Button
             text={'Sign In'}
-            onPress={()=>alert('Just for looks')} />
+            onPress={this.saveSettings} />
         </View>
       </ScrollView>
     );
@@ -155,5 +141,9 @@ const styles = StyleSheet.create({
   },
 });
 
+function mapStateToProps(state) {
+  return { user: state.user };
+}
+
 /* Export Component ==================================================================== */
-export default UserSettings
+export default connect(mapStateToProps, { addUser, editUser })(UserSettings);

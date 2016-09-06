@@ -53,7 +53,7 @@ module.exports = StyleSheet.create({
     borderTopColor: '#dedede',
   },
   hamburger: {
-    backgroundColor: '#00000',
+    backgroundColor: '#000000',
     width: 100,
   },
   windowSize: {
@@ -278,7 +278,6 @@ module.exports = StyleSheet.create({
   //
   navigationBarStyle: {
     backgroundColor: "#FFF",
-    alignContent: 'center',
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',

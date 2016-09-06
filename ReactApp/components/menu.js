@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     color: "#FFF",
   },
   secondarySubtitleText: {
-    fonrSize: 13,
+    fontSize: 13,
     color: "#FFF",
   },
   menu: {
