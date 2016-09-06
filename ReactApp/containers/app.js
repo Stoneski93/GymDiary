@@ -67,7 +67,7 @@ class AppContainer extends Component {
             <Scene key="home" component={Home} initial={true} hideNavBar={true} />
               <Scene key="training" component={Main} hideNavBar={false} title={'Trening'} />            
               <Scene key="userSettings" component={UserSettings} hideNavBar={false} title={'Ustawienia'} />       
-              <Scene key="listExercises" component={ListExercises} hideNavBar={false} title={'Wszystkie Ćwiczenia'} initial={true} />       
+              <Scene key="listExercises" component={ListExercises} hideNavBar={false} title={'Wszystkie Ćwiczenia'} />       
               <Scene key="listExercisesFav" component={ListExercisesFav} hideNavBar={false} title={'Ulubione Ćwiczenia'} />       
               <Scene key="listExercisesScreen" component={ListExercisesScreen} hideNavBar={false} title={'Lista Ćwiczeń'} />       
               <Scene key="exerciseDetailsScreen" component={exerciseDetailsScreen} hideNavBar={true} title={'Szczegóły Ćwiczenia'} onLeft={Actions.listExercises} />       

@@ -1,12 +1,3 @@
-/**
- * Alerts - Status/Success/Error Messages
- *
- *  USAGE:
-      <Alerts status={'Something\'s happening...'} success={'Hello Success'} error={'Error hey'}  />
- *
- * React Native Starter App
- * https://github.com/mcnamee/react-native-starter-app
- */
  'use strict';
 
 /* Setup ==================================================================== */
@@ -22,19 +13,8 @@ import AppStyles from '../styles'
 
 /* Component ==================================================================== */
 class Alerts extends Component {
-  static propTypes = {
-    status: React.PropTypes.string,
-    success: React.PropTypes.string,
-    error: React.PropTypes.string,
-  }
 
-  static defaultProps = {
-    status: '',
-    success: '',
-    error: '',
-  }
-
-  render = () => {
+  render() {
     let { status, success, error } = this.props;
 
     // Allows you to show both error and success

@@ -15,6 +15,7 @@ import {
 	Image
 } from 'react-native'
 
+import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
 
 // App Globals
@@ -49,7 +50,7 @@ class Home extends Component {
 						<View style={[AppStyles.flex1, AppStyles.paddingHorizontal]}>
 							<Button
 								text={'Start'}
-								onPress={Actions.training} />
+								onPress={Actions.userSettings} />
 						</View>
 					</View>
       	</View>
@@ -81,5 +82,9 @@ const styles = StyleSheet.create({
 	}
 });
 
+function mapStateToProps(state) {
+  return { user: state.user };
+}
+
 /* Export Component ==================================================================== */
-export default Home
+export default connect(mapStateToProps)(Home);

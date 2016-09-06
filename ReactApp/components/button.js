@@ -1,16 +1,4 @@
-/**
- * Button
- *
-    <Button 
-      text={text}
-      type={'outlined'}
-      size={'medium'}
-      disabled={false}
-      onPress={()=>{alert('Go To Entry View')}} />
- *
- * React Native Starter App
- * https://github.com/mcnamee/react-native-starter-app
- */
+
 'use strict';
 
 /* Setup ==================================================================== */
@@ -30,13 +18,6 @@ import AppConfig from '../config'
 
 /* Component ==================================================================== */
 class Button extends Component {
-  static propTypes = {
-    onPress: React.PropTypes.func.isRequired,
-    type: React.PropTypes.oneOf(['', 'outlined']),
-    text: React.PropTypes.string.isRequired,
-    size: React.PropTypes.oneOf(['', 'small', 'medium', 'large']),
-    disabled: React.PropTypes.bool,
-  }
 
   static defaultProps = {
     onPress: () => {}, // Do nothing
@@ -46,10 +27,7 @@ class Button extends Component {
     disabled: false,
   }
 
-  /**
-    * RENDER
-    */
-  render = ()=> {
+  render() {
     let { text, type, onPress, size, disabled } = this.props;
 
     return (
@@ -63,6 +41,13 @@ class Button extends Component {
   }
 }
 
+Button.propTypes = {
+    onPress: React.PropTypes.func.isRequired,
+    type: React.PropTypes.oneOf(['', 'outlined']),
+    text: React.PropTypes.string.isRequired,
+    size: React.PropTypes.oneOf(['', 'small', 'medium', 'large']),
+    disabled: React.PropTypes.bool,
+  }
 
 /* Styles ==================================================================== */
 const styles = StyleSheet.create({

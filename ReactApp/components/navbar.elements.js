@@ -22,15 +22,16 @@ import AppConfig from '../config'
 
 /* Navbar Title Component ==================================================================== */
 class NavbarTitle extends Component {
-  static propTypes = {
-    title: React.PropTypes.string,
-  }
 
-  render = () => {
+  render() {
     return (
       <Text style={[AppStyles.baseText, AppStyles.strong, styles.navbarTitle]}>{this.props.title || 'GymDiary'}</Text>
     );
   }
+}
+
+NavbarTitle.propTypes = {
+  title: React.PropTypes.string,
 }
 
 exports.Title = NavbarTitle;
@@ -38,12 +39,8 @@ exports.Title = NavbarTitle;
 
 /* Navbar Left Button Component ==================================================================== */
 class NavbarLeftButton extends Component {
-  static propTypes = {
-    onPress: React.PropTypes.func.isRequired,
-    icon: React.PropTypes.string.isRequired,
-  }
 
-  render = () => {
+  render() {
     return (
       <TouchableOpacity onPress={this.props.onPress} activeOpacity={0.7} 
         style={styles.navbarButton}
@@ -52,6 +49,11 @@ class NavbarLeftButton extends Component {
       </TouchableOpacity>
     );
   }
+}
+
+NavbarLeftButton.propTypes = {
+  onPress: React.PropTypes.func.isRequired,
+  icon: React.PropTypes.string.isRequired,
 }
 
 exports.LeftButton = NavbarLeftButton;

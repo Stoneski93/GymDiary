@@ -22,12 +22,7 @@ import AppConfig from '../config'
 
 /* Component ==================================================================== */
 class Loading extends Component {
-  static propTypes = {
-    text: React.PropTypes.string,
-    transparent: React.PropTypes.bool,
-  }
-
-  render = () => {
+  render() {
     let { text, transparent } = this.props;
 
     let colorOfSpinner = "#AAA";
@@ -48,6 +43,10 @@ class Loading extends Component {
       </View>
     );
   }
+}
+Loading.propTypes = {
+  text: React.PropTypes.string,
+  transparent: React.PropTypes.bool,
 }
 
 /* Export Component ==================================================================== */

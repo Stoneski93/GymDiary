@@ -30,14 +30,8 @@ class MenuItem extends Component {
   constructor() {
     super();
   }
-  /**
-    * RENDER
-    */
-    static propTypes = {
-      
-    }
 
-  render = () => {
+  render() {
     return (
       <TouchableOpacity key={'menu-item-'+this.props.item.title}
         onPress={this.props.item.action}>

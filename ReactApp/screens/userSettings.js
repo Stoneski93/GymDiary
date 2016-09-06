@@ -68,32 +68,25 @@ class UserSettings extends Component {
           Kalorie: { error: 'Podaj kalorie' },
         },
         hasError: true,
-        error: 'dupa',
       },
     }
     this.saveSettings = this.saveSettings.bind(this);
   }
   componentWillReceiveProps(nextProps) {
+    console.log(this.props.user.nickname);
     this.setState({ 
       empty_form_values : nextProps.user,
      });
   }
-  /**
-    * RENDER
-    */
+
   saveSettings() {
     // TODO check validation
     const formValues = this.refs.form.getValue();
-    setTimeout(() => {
-      alert(this.state.options.hasError)
-    }, 500);
-    // if(!this.state.options.hasError) {
-    //   alert(this.state.options.hasError);
-    //   Actions.training();
-    //   this.props.editUser(formValues);
-    // }
+
+    Actions.training();
+    this.props.editUser(formValues);
   }
-  render(){
+  render() {
     var Form = FormValidation.form.Form;
 
     return (

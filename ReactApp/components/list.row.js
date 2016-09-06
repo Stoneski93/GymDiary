@@ -29,20 +29,12 @@ import AppConfig from '../config'
 
 /* Component ==================================================================== */
 class ListRow extends Component {
-  static propTypes = {
-    onPress: React.PropTypes.func.isRequired,
-    title: React.PropTypes.string.isRequired,
-    image: React.PropTypes.string,
-  }
 
   static defaultProps = {
     title: 'Lorem Ipsum',
   }
 
-  /**
-    * RENDER
-    */
-  render = () => {
+  render() {
     let { title, image, onPress } = this.props;
 
     if(image) {
@@ -78,6 +70,12 @@ class ListRow extends Component {
       )
     }
   }
+}
+
+ListRow.propTypes = {
+  onPress: React.PropTypes.func.isRequired,
+  title: React.PropTypes.string.isRequired,
+  image: React.PropTypes.string,
 }
 
 /* Styles ==================================================================== */

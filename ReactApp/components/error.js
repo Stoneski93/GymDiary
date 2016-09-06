@@ -22,7 +22,7 @@ import AppConfig from '../config'
 
 /* Component ==================================================================== */
 class Error extends Component {
-  render = () => {
+  render() {
     // What are we Erroring?
     var text = this.props.text || 'Woops, Something wen\'t wrong.';
 
