@@ -38,7 +38,7 @@ class ListExercisesRow extends Component {
   render() {
     let { title, image, onPress, favourite } = this.props;
       return (
-        <TouchableOpacity style={[styles.listRow]} onPress={onPress} activeOpacity={0.7}>
+        <TouchableOpacity style={[styles.listRow]} onPress={Actions.trainingScreen} activeOpacity={0.7}>
           <View style={styles.listRowInner}>
             <Text style={[AppStyles.baseText, styles.listRow_text]}>{title.toUpperCase()}</Text>
             <TouchableOpacity activeOpacity={0.7} 

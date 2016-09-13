@@ -42,16 +42,11 @@ import ListExercises from '../screens/listExercises.js';
 import ListExercisesFav from '../screens/listExercisesFav.js';
 import ListExercisesScreen from '../screens/listExercisesScreen.js';
 import exerciseDetailsScreen from '../screens/exerciseDetails.js';
+import trainingScreen from '../screens/training.js';
 
 const RouterWithRedux = connect()(Router);
 import reducers from '../reducers';
 // other imports...
-
-// create store...
-const middleware = [thunk];
-const store = compose(
-  applyMiddleware(...middleware)
-)(createStore)(reducers);
 
 /* Component ==================================================================== */
 class AppContainer extends Component {
@@ -60,21 +55,20 @@ class AppContainer extends Component {
     */
   render() {
     return (
-      <Provider store={store}>
-        <RouterWithRedux navigationBarStyle={AppStyles.navigationBarStyle} leftButtonStyle={AppStyles.leftButtonStyle} leftButtonIconStyle={AppStyles.barButtonIconStyle}>
-          <Scene key="drawer" component={SideDrawer} open={false} >
-            <Scene key="first" tabs={true}>
-            <Scene key="home" component={Home} initial={true} hideNavBar={true} />
-              <Scene key="training" component={Main} hideNavBar={false} title={'Trening'} />            
-              <Scene key="userSettings" component={UserSettings} hideNavBar={false} title={'Ustawienia'} />       
-              <Scene key="listExercises" component={ListExercises} hideNavBar={false} title={'Wszystkie Ćwiczenia'} />       
-              <Scene key="listExercisesFav" component={ListExercisesFav} hideNavBar={false} title={'Ulubione Ćwiczenia'} />       
-              <Scene key="listExercisesScreen" component={ListExercisesScreen} hideNavBar={false} title={'Lista Ćwiczeń'} />       
-              <Scene key="exerciseDetailsScreen" component={exerciseDetailsScreen} hideNavBar={true} title={'Szczegóły Ćwiczenia'} onLeft={Actions.listExercises} />       
-            </Scene>
+      <RouterWithRedux navigationBarStyle={AppStyles.navigationBarStyle} leftButtonStyle={AppStyles.leftButtonStyle} leftButtonIconStyle={AppStyles.barButtonIconStyle}>
+        <Scene key="drawer" component={SideDrawer} open={false} >
+          <Scene key="first" tabs={true}>
+          <Scene key="home" component={Home} initial={true} hideNavBar={true} />
+            <Scene key="training" component={Main} hideNavBar={false} title={'Trening'} />            
+            <Scene key="userSettings" component={UserSettings} hideNavBar={false} title={'Ustawienia'} />       
+            <Scene key="listExercises" component={ListExercises} hideNavBar={false} title={'Wszystkie Ćwiczenia'} />       
+            <Scene key="listExercisesFav" component={ListExercisesFav} hideNavBar={false} title={'Ulubione Ćwiczenia'} />       
+            <Scene key="listExercisesScreen" component={ListExercisesScreen} hideNavBar={false} title={'Lista Ćwiczeń'} />       
+            <Scene key="exerciseDetailsScreen" component={exerciseDetailsScreen} hideNavBar={true} title={'Szczegóły Ćwiczenia'} onLeft={Actions.listExercises} />
+            <Scene key="trainingScreen" component={trainingScreen} hideNavBar={true} title={'Ćwicz'} onLeft={Actions.listExercises} />         
           </Scene>
-        </RouterWithRedux>
-      </Provider>
+        </Scene>
+      </RouterWithRedux>
     );
   }
 }

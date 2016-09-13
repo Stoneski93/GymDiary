@@ -93,7 +93,7 @@ class ListExercises extends Component {
   }
 
   _renderRow = (data) => {
-    let { title, image, favourite } = data;
+    let { title, image, favourite, onPress } = data;
 
     return (
       <ListRow {...data} />

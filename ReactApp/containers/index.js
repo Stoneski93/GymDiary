@@ -11,6 +11,7 @@ import { applyMiddleware, compose, createStore } from 'redux'
 import { Provider } from 'react-redux'
 import logger from 'redux-logger'
 import thunk from 'redux-thunk'
+import devTools from 'remote-redux-devtools';
 
 import App from './app'
 
@@ -19,7 +20,8 @@ import rootReducer from '../reducers/index'
 
 // Load middleware
 let middleware = [
-  thunk, // Allows action creators to return functions (not just plain objects)
+  thunk,
+  devTools,
 ];
 
 if (__DEV__) {
@@ -32,8 +34,10 @@ if (__DEV__) {
 
 // Init redux store (using the given reducer & middleware)
 const store = compose(
-  applyMiddleware(...middleware)
+  applyMiddleware(...middleware),
 )(createStore)(rootReducer);
+ 
+devTools.updateStore(store);
 
 // Wrap App in Redux provider (makes Redux available to all sub-components)
 export default class AppContainer extends Component {

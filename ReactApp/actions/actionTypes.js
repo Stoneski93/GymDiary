@@ -8,3 +8,5 @@ export const EXERCISE_EDIT = "EXERCISE_EDIT";
 export const TRAINING_ADD = "TRAINING_ADD";
 export const TRAINING_REMOVE = "TRAINING_REMOVE";
 export const TRAINING_EDIT = "TRAINING_EDIT";
+
+export const EDIT_DATE = "EDIT_DATE";

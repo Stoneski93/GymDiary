@@ -1,9 +1,3 @@
-/**
- * Form SCREEN
- *
- * React Native Starter App
- * https://github.com/mcnamee/react-native-starter-app
- */
 'use strict';
 
 /* Setup ==================================================================== */
@@ -104,9 +98,7 @@ class UserSettings extends Component {
           <Text style={[AppStyles.baseText, AppStyles.h3, AppStyles.centered]}>
             {this.state.form_values.First_name == '' ? "Zaloz Konto" : "Zaktualizuj Profil"}
           </Text>
-          
           <View style={AppStyles.spacer_20} />
-
           <Form
             ref="form"
             type={this.state.form_fields}

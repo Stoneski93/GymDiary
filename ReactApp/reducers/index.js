@@ -10,6 +10,7 @@ import { combineReducers } from 'redux'
 import user from './user';
 import trainings from './trainings';
 import exercises from './exercises';
+import date from './date';
 
 // Our custom reducers
 // We need to import each one here and add them to the combiner at the bottom
@@ -24,6 +25,7 @@ const appReducer = combineReducers({
   user,
   trainings,
   exercises,
+  date
 });
 
 // Setup root reducer

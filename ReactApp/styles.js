@@ -41,6 +41,8 @@ module.exports = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: '#dedede',
     borderTopColor: '#dedede',
+    position: 'relative',
+    zIndex: 2,
 
   },
   detailsBar: {

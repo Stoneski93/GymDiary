@@ -34,13 +34,6 @@ class ExerciseDetails extends Component {
   render() {
     return (
       <View style={[AppStyles.container, AppStyles.containerCenteredV]}>
-        <View style={[AppStyles.navbar, styles.customNavbar]}>
-          <Text
-            onPress={Actions.listExercisesScreen}
-          >
-            Powrót
-          </Text>
-        </View>
         <View style={[AppStyles.row, AppStyles.detailsBar, AppStyles.containerCentered]}>
           <Text>Martwy Ciąg</Text>
         </View>
@@ -61,6 +54,12 @@ class ExerciseDetails extends Component {
             Nogi powinny być ustawione w niewielkim rozkroku (technika klasyczna) lub szeroko (sumo).
           </Text>
         </View>
+        <View style={[AppStyles.row, AppStyles.detailsBar, AppStyles.containerCentered, styles.customActionBar]}       
+        >
+          <Text onPress={Actions.listExercisesScreen}>
+            Powrót
+          </Text>
+        </View>
       </View>
     );
   }
@@ -69,6 +68,9 @@ class ExerciseDetails extends Component {
 ExerciseDetails.propTypes = {
  //TODO
 }
+//TODO
+//TEXT POWROT 100% OF BUTTON
+
 
 /* Styles ==================================================================== */
 const styles = StyleSheet.create({
@@ -77,8 +79,9 @@ const styles = StyleSheet.create({
     right: 20,
     top: 4,
   },
-  customNavbar: {
-    backgroundColor: "#FFF",
+  customActionBar: {
+    position: 'absolute',
+    bottom: 0,
   },
   bulbButtonContainer: {
     position: 'absolute',
@@ -93,7 +96,7 @@ const styles = StyleSheet.create({
   mainImage: {
     width: 300,
     height: 200,
-  }
+  },
 });
 
 /* Export Component ==================================================================== */
