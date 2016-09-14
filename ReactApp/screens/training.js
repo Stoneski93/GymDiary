@@ -13,7 +13,7 @@ import {
 } from 'react-native'
 import FormValidation from 'tcomb-form-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
-
+import _ from 'lodash';
 // App Globals
 import AppStyles from '../styles'
 import AppConfig from '../config'
@@ -39,15 +39,11 @@ this.state = {
     Ciezar: FormValidation.Number,
     Powtorzenia: FormValidation.Number,
   }),
-  empty_form_values: {
-    Ciezar: 0,
-    Powtorzenia: 0,
-  },
   form_values: {},
   options: {
     fields: {
-      Ciezar: { error: 'Ciezar (kg)' },
-      Powtorzenia: { error: 'Powtorzenia' },
+      Ciezar: { error: 'Ciezar (kg)', placeholder: 'kg', label: 'Cięzar (kg)' },
+      Powtorzenia: { error: 'Powtorzenia', placeholder: 'ilość', label: 'Powtorzenia (Ilosc)' },
     },
     hasError: true,
   },
@@ -55,34 +51,40 @@ this.state = {
   }
 }
 
+
   /* Render ==================================================================== */
   render() {
     var Form = FormValidation.form.Form;
+    //Form.stylesheet.fieldset.flexDirection = 'row';
+    //Form.stylesheet.textbox.width = '100';
 
     return (
       <View style={[AppStyles.container, AppStyles.containerCenteredV]}>
         <View style={[AppStyles.row, AppStyles.detailsBar, AppStyles.containerCentered]}>
           <Text>Martwy Ciąg</Text>
         </View>
-        <View style={[AppStyles.paddingHorizontal]}>
-            <Alerts
-              status={this.state.resultMsg.status}
-              success={this.state.resultMsg.success}
-              error={this.state.resultMsg.error} />
-            <View style={AppStyles.spacer_20} />
-            <View style={AppStyles.spacer_20} />
-            <Form
-              ref="form"
-              type={this.state.form_fields}
-              value={this.state.empty_form_values}
-              options={this.state.options} />
-          </View>
-          <View style={[AppStyles.row, AppStyles.containerCentered]}>
-            <Button
-              text={'Dodaj'}
-              onPress={Actions.training} />
-          </View>
-        <View style={[AppStyles.row, AppStyles.detailsBar, AppStyles.containerCentered, styles.customActionBar]}       
+        <View style={[AppStyles.container, styles.wrapperContainer, styles.margins]}>
+          <View style={[AppStyles.paddingHorizontal, styles.borderContainer]}>
+              <Alerts
+                status={this.state.resultMsg.status}
+                success={this.state.resultMsg.success}
+                error={this.state.resultMsg.error} />
+              <View style={AppStyles.spacer_20} />
+              <View style={AppStyles.spacer_20} />
+              <Form
+                ref="form"
+                type={this.state.form_fields}
+                value={this.state.empty_form_values}
+                options={this.state.options} />
+              <View style={[AppStyles.row, AppStyles.containerCentered, styles.margins, styles.addTrainingButton]}>
+                <Button
+                  text={'Dodaj'}
+                  onPress={Actions.training} />
+              </View>
+            </View>
+        </View>
+        <View style={[AppStyles.row, AppStyles.detailsBar,
+          AppStyles.containerCentered, styles.customActionBar]}       
         >
           <Text onPress={Actions.listExercisesScreen}>
             Powrót
@@ -129,7 +131,25 @@ const styles = StyleSheet.create({
     backgroundColor: 'green',
     position: 'absolute',
     bottom: 40,
-  }
+  },
+  borderContainer: {
+    borderWidth: 1,
+    alignSelf: "stretch",
+    flex: 1,
+    marginTop: 10,
+    marginRight: 10,
+    marginLeft: 10,
+  },
+  wrapperContainer: {
+    alignSelf: "stretch",
+    flex: 1,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  margins: {
+    marginTop: 20,
+    marginBottom: 80,
+  },
 });
 
 /* Export Component =================================================== */

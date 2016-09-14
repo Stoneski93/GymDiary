@@ -59,13 +59,13 @@ class AppContainer extends Component {
         <Scene key="drawer" component={SideDrawer} open={false} >
           <Scene key="first" tabs={true}>
           <Scene key="home" component={Home} initial={true} hideNavBar={true} />
-            <Scene key="training" component={Main} hideNavBar={false} title={'Trening'} />            
+            <Scene key="training" component={Main} hideNavBar={false} title={'Trening'} />
             <Scene key="userSettings" component={UserSettings} hideNavBar={false} title={'Ustawienia'} />       
             <Scene key="listExercises" component={ListExercises} hideNavBar={false} title={'Wszystkie Ćwiczenia'} />       
             <Scene key="listExercisesFav" component={ListExercisesFav} hideNavBar={false} title={'Ulubione Ćwiczenia'} />       
             <Scene key="listExercisesScreen" component={ListExercisesScreen} hideNavBar={false} title={'Lista Ćwiczeń'} />       
-            <Scene key="exerciseDetailsScreen" component={exerciseDetailsScreen} hideNavBar={true} title={'Szczegóły Ćwiczenia'} onLeft={Actions.listExercises} />
-            <Scene key="trainingScreen" component={trainingScreen} hideNavBar={true} title={'Ćwicz'} onLeft={Actions.listExercises} />         
+            <Scene key="exerciseDetailsScreen" component={exerciseDetailsScreen} hideNavBar={false} title={'Szczegóły Ćwiczenia'} onLeft={Actions.listExercises} />
+            <Scene key="trainingScreen" component={trainingScreen} hideNavBar={false} title={'Ćwicz'} onLeft={Actions.listExercises} />         
           </Scene>
         </Scene>
       </RouterWithRedux>

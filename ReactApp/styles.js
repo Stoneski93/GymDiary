@@ -47,6 +47,7 @@ module.exports = StyleSheet.create({
   },
   detailsBar: {
     height: 40,
+    marginTop: 54,
     alignSelf: "stretch",
     backgroundColor: '#fafafa',
     borderTopWidth: 1,
