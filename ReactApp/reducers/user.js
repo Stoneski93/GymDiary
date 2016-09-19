@@ -1,11 +1,6 @@
 import * as actions from '../actions/actionTypes';
 
-const initialState = {
-  nickname: '',
-  weight: 0,
-  height: 0,
-  calories: 0,
-};
+const initialState = {};
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {

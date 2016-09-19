@@ -24,27 +24,46 @@ import MainScreen from './mainScreen'
 
 /* Component ==================================================================== */
 class Home extends Component {
-  
+  constructor(props) {
+		super(props);
+		this.goToNextScreen = this.goToNextScreen.bind(this); 
+	}
+	goToNextScreen() {
+		JSON.stringify(this.props.user) === JSON.stringify({}) ? 
+		Actions.userSettings() :	Actions.training();
+
+	}
+
 	/* Render ==================================================================== */
   render() {
     return (
-      <View style={[AppStyles.container, styles.containerCover]}>
-      	<View style={[AppStyles.paddingHorizontal, AppStyles.containerStrecht]}>
-					<View style={[AppStyles.containerCentered]}>
-						<Text style={[AppStyles.baseText, styles.mainTitle, AppStyles.centered, styles.headerHeight]}>
+      <View style={[
+				AppStyles.container,
+				AppStyles.containerCentered]}>
+      	<View style={[AppStyles.containerStrecht]}>
+					<View>
+						<Text 
+							style={[
+								AppStyles.baseText, 
+								styles.mainTitle,
+								AppStyles.centered,
+								styles.headerHeight]}>
 							GymDiary
 						</Text>
 					</View>
 					<View style={[AppStyles.paddingVertical]}>
-						<Image style={[styles.imageRotate]}
+						<Image 
+							style={[styles.imageRotate]}
 							source={require('../images/2.png')}
 						/>
 					</View>
 					<View style={[AppStyles.row]}>
-						<View style={[AppStyles.flex1, AppStyles.paddingHorizontal]}>
+						<View style={[
+							AppStyles.flex1,
+							AppStyles.paddingHorizontal]}>
 							<Button
 								text={'Start'}
-								onPress={Actions.userSettings} />
+								onPress={this.goToNextScreen} />
 						</View>
 					</View>
       	</View>
@@ -59,10 +78,6 @@ Home.propTypes = {
 
 /* Styles ==================================================================== */
 const styles = StyleSheet.create({
-	containerCover: {
-		backgroundColor: "#FFF",
-		justifyContent: 'center',
-	},
 	mainTitle: {
 		fontSize: AppConfig.baseFontSize * 3,
 		fontFamily: 'Roboto',

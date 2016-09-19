@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
   Image,
   TextInput,
-   ScrollView,
+  ScrollView,
 } from 'react-native'
 import FormValidation from 'tcomb-form-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -43,7 +43,7 @@ this.state = {
   options: {
     fields: {
       Ciezar: { error: 'Ciezar (kg)', placeholder: 'kg', label: 'Cięzar (kg)' },
-      Powtorzenia: { error: 'Powtorzenia', placeholder: 'ilość', label: 'Powtorzenia (Ilosc)' },
+      Powtorzenia: { error: 'Powtorzenia', placeholder: 'szt.', label: 'Powtorzenia' },
     },
     hasError: true,
   },
@@ -60,36 +60,46 @@ this.state = {
 
     return (
       <View style={[AppStyles.container, AppStyles.containerCenteredV]}>
-        <View style={[AppStyles.row, AppStyles.detailsBar, AppStyles.containerCentered]}>
+        <View style={[AppStyles.row, AppStyles.detailsBar]}>
           <Text>Martwy Ciąg</Text>
         </View>
-        <View style={[AppStyles.container, styles.wrapperContainer, styles.margins]}>
-          <View style={[AppStyles.paddingHorizontal, styles.borderContainer]}>
+        <View style={[
+          AppStyles.containerCentered,
+          AppStyles.mainContainer,
+          styles.margins]}>
+          <View style={[
+            AppStyles.paddingHorizontal,
+            styles.borderContainer]}>
               <Alerts
                 status={this.state.resultMsg.status}
                 success={this.state.resultMsg.success}
                 error={this.state.resultMsg.error} />
-              <View style={AppStyles.spacer_20} />
-              <View style={AppStyles.spacer_20} />
               <Form
                 ref="form"
                 type={this.state.form_fields}
                 value={this.state.empty_form_values}
                 options={this.state.options} />
-              <View style={[AppStyles.row, AppStyles.containerCentered, styles.margins, styles.addTrainingButton]}>
+              <View style={[
+                AppStyles.row,
+                AppStyles.containerCentered,
+                styles.addTrainingButton]}>
                 <Button
                   text={'Dodaj'}
                   onPress={Actions.training} />
               </View>
             </View>
         </View>
-        <View style={[AppStyles.row, AppStyles.detailsBar,
-          AppStyles.containerCentered, styles.customActionBar]}       
+        <TouchableOpacity style={[
+          AppStyles.row,
+          AppStyles.detailsBar,
+          AppStyles.containerCentered,
+          styles.customActionBar]}
+          onPress={Actions.listExercisesScreen}       
         >
-          <Text onPress={Actions.listExercisesScreen}>
+          <Text>
             Powrót
           </Text>
-        </View>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -112,6 +122,9 @@ const styles = StyleSheet.create({
   customActionBar: {
     position: 'absolute',
     bottom: 0,
+  },
+  addTrainingButton: {
+    alignSelf: "stretch",
   },
   bulbButtonContainer: {
     position: 'absolute',
@@ -139,6 +152,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginRight: 10,
     marginLeft: 10,
+    padding: 20,
   },
   wrapperContainer: {
     alignSelf: "stretch",

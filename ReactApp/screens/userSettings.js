@@ -42,24 +42,24 @@ class UserSettings extends Component {
         error: '',
       },
       form_fields: FormValidation.struct({
-        Pseudonim: FormValidation.String,
-        Wzrost: FormValidation.Number,
-        Waga: FormValidation.Number,
-        Kalorie: FormValidation.Number,
+        nickname: FormValidation.String,
+        height: FormValidation.Number,
+        weight: FormValidation.Number,
+        calories: FormValidation.Number,
       }),
       empty_form_values: {
-        Pseudonim: usr.nickname,
-        Wzrost: usr.height,
-        Waga: usr.weight,
-        Kalorie: usr.calories,
+        nickname: usr.nickname,
+        height: usr.height,
+        weight: usr.weight,
+        calories: usr.calories,
       },
       form_values: {},
       options: {
         fields: {
-          Pseudonim: { error: 'Podaj pseudonim' },
-          Wzrost: { error: 'Podaj nazwisko' },
-          Waga: { error: 'Podaj wage' },
-          Kalorie: { error: 'Podaj kalorie' },
+          nickname: { label: 'Pseudonim', error: 'Podaj pseudonim' },
+          height: { label: 'Wzrost', error: 'Podaj nazwisko' },
+          weight: { label: 'Waga', error: 'Podaj wage' },
+          calories: { label: 'Kalorie', error: 'Podaj kalorie' },
         },
         hasError: true,
       },
@@ -84,32 +84,39 @@ class UserSettings extends Component {
     var Form = FormValidation.form.Form;
 
     return (
-      <ScrollView automaticallyAdjustContentInsets={false} 
+      <ScrollView
         ref={'scrollView'}
-        style={[AppStyles.container]}
-        contentContainerStyle={[AppStyles.containerCentered, styles.container]}>
-        <View style={[AppStyles.paddingHorizontal]}>
-
-          <Alerts
-            status={this.state.resultMsg.status}
-            success={this.state.resultMsg.success}
-            error={this.state.resultMsg.error} />
-
-          <Text style={[AppStyles.baseText, AppStyles.h3, AppStyles.centered]}>
-            {this.state.form_values.First_name == '' ? "Zaloz Konto" : "Zaktualizuj Profil"}
-          </Text>
-          <View style={AppStyles.spacer_20} />
-          <Form
-            ref="form"
-            type={this.state.form_fields}
-            value={this.state.empty_form_values}
-            options={this.state.options} />
-        </View>
-        <View style={AppStyles.hr} />
-        <View style={[AppStyles.paddingHorizontalLar]}>
-          <Button
-            text={'Sign In'}
-            onPress={this.saveSettings} />
+        style={[AppStyles.container]}>
+        <View style={[
+          AppStyles.globalMargin,
+          AppStyles.containerCentered,
+          ]}>
+          <View style={[AppStyles.mainContainer]}>
+            <Alerts
+              status={this.state.resultMsg.status}
+              success={this.state.resultMsg.success}
+              error={this.state.resultMsg.error} />
+            <Text style={[
+              AppStyles.baseText,
+              AppStyles.h3,
+              AppStyles.centered,
+              AppStyles.row,
+              AppStyles.paddingBottom]}>
+                {this.state.form_values.First_name == '' ? "Zaloz Konto" : "Zaktualizuj Profil"}
+            </Text>
+            <Form
+              ref="form"
+              type={this.state.form_fields}
+              value={this.state.empty_form_values}
+              options={this.state.options} />
+            <View style={[AppStyles.row]}>
+              <View style={[AppStyles.flex1]}>
+                <Button
+                  text={'Dalej'}
+                  onPress={this.saveSettings} />
+              </View>
+            </View>
+          </View>
         </View>
       </ScrollView>
     );

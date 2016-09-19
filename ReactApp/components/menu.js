@@ -36,8 +36,8 @@ class Menu extends Component {
       menu: [
         {title: 'Start', action: Actions.home, icon: 'home' },
         {title: 'Trening', action: Actions.training, icon: 'clock-o' },
-        {title: 'Ustawienia', action: Actions.userSettings, icon: 'cog' },
         {title: 'Lista Ćwiczeń', action: Actions.listExercisesScreen, props: {passProps: {noImages: true}}, icon: 'list-ul'},
+        {title: 'Ustawienia', action: Actions.userSettings, icon: 'cog' },
       ],
     };
   }
@@ -59,11 +59,18 @@ class Menu extends Component {
     return (
       <View style={[styles.menuContainer]}>
         <View style={[styles.header]}>
-          <View style={[styles.headerBoxAvatar]}>
-            <View style={[styles.headerAvatar]}>
-              <Image style={[styles.avatar]}
-							source={require('../images/10.jpg')}
-						  />
+          <View style={[styles.headerImagesContent, AppStyles.helper]}>
+            <View style={[styles.headerBoxAvatar]}>
+              <View style={[styles.headerAvatar]}>
+                <Image style={[styles.avatar]}
+                source={require('../images/10.jpg')}
+                />
+              </View>
+            </View>
+            <View style={[]}>
+              <Image style={[styles.logo]}
+                source={require('../images/3.png')}
+                />
             </View>
           </View>
           <View style={[styles.headerBoxSubtitle]}>
@@ -89,6 +96,16 @@ const styles = StyleSheet.create({
     height: 148,
     backgroundColor: 'transparent',
     paddingBottom: 8,
+  },
+  logo: {
+    width: 50,
+    height: 50,
+  },
+  headerImagesContent: {
+    flex:1,
+    flexDirection: 'column',
+    alignSelf: 'stretch',
+    justifyContent: 'space-around',
   },
   headerBoxAvatar: {
     height: 84,

@@ -10,39 +10,65 @@ import AppConfig from './config';
 
 /* Styles ==================================================================== */
 module.exports = StyleSheet.create({
+  /// GLOBAL CONTAINERS
 	appContainer: {
     backgroundColor: "#000",
 	},
-
-	/* Default */
-	container: {
+  container: {
     position: 'relative',
     flex: 1,
     flexDirection: 'column',
     backgroundColor: '#FFFFFF',
   },
+  mainContainer: {
+    position: 'relative',
+    flex: 1,
+    alignSelf: 'stretch',
+    flexDirection: 'column',
+    margin: 20,
+  },
   containerCentered: {
     justifyContent: 'center',
     alignItems: 'center',
+    flex: 1,
   },
   containerStrecht: {
     justifyContent: 'space-between',
     alignItems: 'center',
   },
+
+  //HELPERS
+  helper: {
+    backgroundColor: "red",
+  },
+  helper2: {
+    backgroundColor: "yellow",
+  },
+  helper3: {
+    backgroundColor: "green",
+  },
   containerCenteredV: {
     alignItems: 'center'
   },
-  trainingBar: {
+
+  //MAIN
+
+  globalMargin: {
+    marginTop: 54,
+    marginBottom: 54,
+  },
+   trainingBar: {
     marginTop: 54,
     height: 40,
     alignSelf: "stretch",
     backgroundColor: '#fafafa',
+    justifyContent: 'center',
+    alignItems: 'center',
     borderTopWidth: 1,
     borderBottomWidth: 1,
     borderBottomColor: '#dedede',
     borderTopColor: '#dedede',
     position: 'relative',
-    zIndex: 2,
 
   },
   detailsBar: {
@@ -50,6 +76,8 @@ module.exports = StyleSheet.create({
     marginTop: 54,
     alignSelf: "stretch",
     backgroundColor: '#fafafa',
+    justifyContent: 'center',
+    alignItems: 'center',
     borderTopWidth: 1,
     borderBottomWidth: 1,
     borderBottomColor: '#dedede',
@@ -59,6 +87,46 @@ module.exports = StyleSheet.create({
     backgroundColor: '#000000',
     width: 100,
   },
+
+  /* Forms */
+
+  formLabel: {
+    textAlign: 'left',
+    marginBottom: 10,
+  },
+  formInputText: {
+    height: 36,
+    borderColor: '#cccccc',
+    borderWidth: 0.75,
+    borderRadius: 3,
+    paddingVertical: 4,
+    paddingHorizontal: 10,
+    marginBottom: 10,
+    backgroundColor: "#fff",
+  },
+  navbar: {
+    borderBottomWidth: 1,
+    justifyContent: 'center',
+    borderColor: AppConfig.primaryColor,
+    height: 40,
+    backgroundColor: '#03A9F4',
+  },
+  //
+  //NAVIGATION
+  //
+  navigationBarStyle: {
+    backgroundColor: "#FFF",
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  barButtonIconStyle: {
+    tintColor:'#000000',
+    width: 18,
+  },
+
+	/* Default */
   windowSize: {
     height: AppConfig.windowHeight,
     width: AppConfig.windowWidth,
@@ -252,42 +320,5 @@ module.exports = StyleSheet.create({
   },
   flex6: {
     flex: 6,
-  },
- 
-  /* Forms */
-  formLabel: {
-    textAlign: 'left',
-    marginBottom: 10,
-  },
-  formInputText: {
-    height: 36,
-    borderColor: '#cccccc',
-    borderWidth: 0.75,
-    borderRadius: 3,
-    paddingVertical: 4,
-    paddingHorizontal: 10,
-    marginBottom: 10,
-    backgroundColor: "#fff",
-  },
-  navbar: {
-    borderBottomWidth: 1,
-    justifyContent: 'center',
-    borderColor: AppConfig.primaryColor,
-    height: 40,
-    backgroundColor: '#03A9F4',
-  },
-  //
-  //NAVIGATION
-  //
-  navigationBarStyle: {
-    backgroundColor: "#FFF",
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  barButtonIconStyle: {
-    tintColor:'#000000',
-    width: 18,
   },
 });

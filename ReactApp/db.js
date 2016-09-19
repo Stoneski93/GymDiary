@@ -16,8 +16,14 @@ const DB = {
     * Tables
     * - Add your DB tables here
     */
-  "settings": new RNDBModel.create_db('settings'),
+    "app": new RNDBModel.create_db('app'),
+    //"exercises": new RNDBModel.create_db('exercises'),
+
+  // "settings": new RNDBModel.create_db('settings'),
 };
+//DB.exercises.erase_db(function() {DB = {}});
+// DB.exercises.add({id: 1, name: 'Martwy Ciąg', screenshoot: 'url', descscription: 'opis ćwiczenia', fav: 1}, function(){});
+
 
 /* Export ==================================================================== */
 module.exports = DB;

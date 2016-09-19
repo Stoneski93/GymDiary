@@ -8,6 +8,7 @@ import {
   Text,
   TouchableOpacity,
   Image,
+  ScrollView
 } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -34,32 +35,37 @@ class ExerciseDetails extends Component {
   render() {
     return (
       <View style={[AppStyles.container, AppStyles.containerCenteredV]}>
-        <View style={[AppStyles.row, AppStyles.detailsBar, AppStyles.containerCentered]}>
+        <View style={[AppStyles.row, AppStyles.detailsBar]}>
           <Text>Martwy Ciąg</Text>
         </View>
-        <View style={[styles.imageContainer]}>
-          <Image style={[styles.mainImage]}
-            source={require('../images/deadlift.png')}
-					/>
-        </View>
-        <View style={[styles.imageContainer]}>
-          <Text>
-            Martwy ciąg wykonuje się
-            podnosząc sztangę z ziemi do momentu, 
-            w którym plecy i nogi ćwiczącego są całkowicie wyprostowane, 
-            barki odciągnięte do tyłu, a sztanga z 
-            ciężarami znajduje się nieco poniżej bioder. 
-            Należy stanąć jak najbliżej sztangi, tak aby oglądany z
-            góry gryf znajdował się w połowie długości stopy. 
-            Nogi powinny być ustawione w niewielkim rozkroku (technika klasyczna) lub szeroko (sumo).
-          </Text>
-        </View>
-        <View style={[AppStyles.row, AppStyles.detailsBar, AppStyles.containerCentered, styles.customActionBar]}       
-        >
+        <ScrollView>
+          <View style={[styles.imageContainer]}>
+            <Image style={[styles.mainImage]}
+              source={require('../images/deadlift.png')}
+            />
+          </View>
+          <View style={[styles.imageContainer]}>
+            <Text>
+              Martwy ciąg wykonuje się
+              podnosząc sztangę z ziemi do momentu, 
+              w którym plecy i nogi ćwiczącego są całkowicie wyprostowane, 
+              barki odciągnięte do tyłu, a sztanga z 
+              ciężarami znajduje się nieco poniżej bioder. 
+              Należy stanąć jak najbliżej sztangi, tak aby oglądany z
+              góry gryf znajdował się w połowie długości stopy. 
+              Nogi powinny być ustawione w niewielkim rozkroku (technika klasyczna) lub szeroko (sumo).
+            </Text>
+          </View>
+        </ScrollView>
+        <TouchableOpacity
+        style={[AppStyles.row,
+          AppStyles.detailsBar,
+          AppStyles.containerCentered,
+          styles.customActionBar]}>
           <Text onPress={Actions.listExercisesScreen}>
             Powrót
           </Text>
-        </View>
+        </TouchableOpacity>
       </View>
     );
   }

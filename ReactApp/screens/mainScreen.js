@@ -7,6 +7,7 @@ import {
   View,
   Text,
   TouchableOpacity,
+  ScrollView
 } from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -23,6 +24,7 @@ import { Actions } from 'react-native-router-flux';
 
 // Components
 import Button from '../components/button';
+import ListTrainingRow from '../components/listTrainingRow';
 
 const customDayHeadings = ['Nie', 'Pon', 'Wto', 'Śro', 'Czw', 'Pią', 'Sob'];
 const customMonthNames = ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj','Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'];
@@ -39,6 +41,7 @@ class MainScreen extends Component {
     }
     this.toggleCalendar = this.toggleCalendar.bind(this);
     this.changeDate = this.changeDate.bind(this);
+    this.renderFakeTraining = this.renderFakeTraining.bind(this);
   }
 
   toggleCalendar() {
@@ -52,49 +55,69 @@ class MainScreen extends Component {
     this.props.editDate(date);
     this.setState({visibleCalendar: false, selectedDate: date});
   }
+  renderFakeTraining() {
+      return (
+        <ListTrainingRow title={'Martwy Ciag'} liftWeight={50} reps={5} />
+      )
+  }
 
   /* Render ==================================================================== */
   render() {
     return (
-      <View style={[AppStyles.container]} onPress={()=>{this.setState({visibleCalendar: false})}}>
-        <View style={[AppStyles.row, AppStyles.trainingBar, AppStyles.containerCentered]}>
-          <Text>{moment(this.state.selectedDate).format('DD MM YYYY')}</Text>
+      <View style={[AppStyles.container]}>
+        <View style={[
+          AppStyles.row,
+          AppStyles.trainingBar]}>
+          <Text style={[styles.dateText]}>
+            {moment(this.state.selectedDate).format('DD.MM.YYYY r.')}
+          </Text>
           <TouchableOpacity
             onPress={this.toggleCalendar}
             activeOpacity={0.7} 
             style={styles.navbarButton}
             hitSlop={{top: 7, right: 7, bottom: 7, left: 7}}>
-            <Icon name='calendar' size={30} color={AppConfig.primaryColor} />
+              <Icon name='calendar' size={30} color={AppConfig.primaryColor} />
           </TouchableOpacity>
         </View>
           {this.state.visibleCalendar ? 
-          <View style={[styles.calendar]}>
-              <Calendar
-                  ref="calendar"
-                  //
-                  showControls
-                  dayHeadings={customDayHeadings}
-                  monthNames={customMonthNames}
-                  titleFormat={'MMMM'}
-                  prevButtonText={'Poprzedni'}
-                  nextButtonText={'Następny'}
-                  onDateSelect={(date) => this.changeDate(date)}
-              />
-              <View>
-                <TouchableOpacity
-                  onPress={this.toggleCalendar}
-                  activeOpacity={0.7} 
-                  style={styles.rest}
-                >
-                </TouchableOpacity>
-              </View>
-        </View>
+            <View style={[styles.calendar]}>
+                <Calendar
+                    ref="calendar"
+                    showControls
+                    dayHeadings={customDayHeadings}
+                    monthNames={customMonthNames}
+                    titleFormat={'MMMM'}
+                    prevButtonText={'Poprzedni'}
+                    nextButtonText={'Następny'}
+                    onDateSelect={(date) => this.changeDate(date)}
+                />
+                <View>
+                  <TouchableOpacity
+                    onPress={this.toggleCalendar}
+                    activeOpacity={0.7} 
+                    style={styles.rest}
+                  >
+                  </TouchableOpacity>
+                </View>
+            </View>
           : null }
-        {!this.state.visibleCalendar ? 
-          <View style={[AppStyles.container, AppStyles.containerCentered, styles.bulbButtonContainer]}>
-            <Button type='bulb' text="+"  onPress={Actions.listExercisesScreen} />
+          <View style={[AppStyles.container, styles.paddingBottom]}>
+            <ScrollView style={[AppStyles.container, styles.listTraining]}>
+              <ListTrainingRow title={'Martwy Ciag'} liftWeight={50} reps={5} />
+              <ListTrainingRow title={'Martwy Ciag'} liftWeight={50} reps={5} />
+              <ListTrainingRow title={'Martwy Ciag'} liftWeight={50} reps={5} />
+              <ListTrainingRow title={'Martwy Ciag'} liftWeight={50} reps={5} />
+              <ListTrainingRow title={'Martwy Ciag'} liftWeight={50} reps={5} />
+              <ListTrainingRow title={'Martwy Ciag'} liftWeight={50} reps={5} />
+              <ListTrainingRow title={'Martwy Ciag'} liftWeight={50} reps={5} />
+              <ListTrainingRow title={'Martwy Ciag'} liftWeight={50} reps={5} />
+              <ListTrainingRow title={'Martwy Ciag'} liftWeight={50} reps={5} />
+              <ListTrainingRow title={'Martwy Ciag'} liftWeight={50} reps={5} />
+            </ScrollView>
           </View>
-        : null}
+          <View style={[styles.bulbButtonContainer]}>
+            <Button type='bulb' text="+"  onPress={Actions.listExercisesScreen} />
+          </View>   
       </View>
     );
   }
@@ -113,6 +136,9 @@ MainScreen.propTypes = {
 
 /* Styles ==================================================================== */
 const styles = StyleSheet.create({
+  listTraining: {
+
+  },
   navbarButton: {
     position: 'absolute',
     right: 20,
@@ -121,20 +147,7 @@ const styles = StyleSheet.create({
   bulbButtonContainer: {
     position: 'absolute',
     right: 20,
-    bottom: 20,
-  },
-  relativeContainer: {
-    position: 'relative',
-    top:0,
-    width:100,
-    
-  },
-  calendar: {
-    display: 'block',
-    marginTop: -40,
-  },
-  hidden: {
-    display: 'none',
+    bottom: 0,
   },
   rest: {
     backgroundColor: 'transparent',
@@ -142,7 +155,18 @@ const styles = StyleSheet.create({
     flexDirection:'column',
     flex: 1,
     alignSelf: "stretch",
-    zIndex: 2,
-  }
+  },
+  calendar: {
+    marginTop: -40,
+  },
+  dateText: {
+    fontFamily: AppConfig.baseFont,
+    color: AppConfig.primaryColor,
+    fontSize: AppConfig.baseFontSize * 1.5,
+    lineHeight: parseInt((AppConfig.baseFontSize * 1.5) + (AppConfig.baseFontSize * 0.5)),
+  },
+  paddingBottom: {
+    paddingBottom: 55,
+  },
 });
 
