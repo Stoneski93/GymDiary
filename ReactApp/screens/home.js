@@ -39,7 +39,8 @@ class Home extends Component {
     return (
       <View style={[
 				AppStyles.container,
-				AppStyles.containerCentered]}>
+				AppStyles.containerCentered,
+				styles.homeContainer]}>
       	<View style={[AppStyles.containerStrecht]}>
 					<View>
 						<Text 
@@ -78,8 +79,12 @@ Home.propTypes = {
 
 /* Styles ==================================================================== */
 const styles = StyleSheet.create({
+	homeContainer: {
+		backgroundColor: AppConfig.forthColor,
+	},
 	mainTitle: {
 		fontSize: AppConfig.baseFontSize * 3,
+		color: AppConfig.thirdColor,
 		fontFamily: 'Roboto',
 		fontWeight: '300',
 	},

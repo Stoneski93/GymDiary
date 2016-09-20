@@ -37,6 +37,9 @@ exports.baseFontSize = 14;
 
 exports.primaryColor = "#000000";
 exports.secondaryColor = "#fff";
+exports.thirdColor = "#ffd400";
+exports.forthColor = "#1a1e21";
+exports.fifthColor = "#e9ebee";
 exports.textColor = "#000000";
 exports.borderColor = "#E7E7E7";
 // exports.textColor = "#555";

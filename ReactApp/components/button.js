@@ -53,15 +53,18 @@ Button.propTypes = {
 const styles = StyleSheet.create({
   // Standard
   button: {
-    backgroundColor: '#000000',
+    backgroundColor: AppConfig.forthColor,
     height: 40,
     justifyContent: 'center',
     borderRadius: 3,
     marginBottom: 10,
     paddingHorizontal: 10,
+    borderWidth: 1,
+    borderColor: AppConfig.thirdColor,
+
   },
   button_text: {
-    color: "#FFF",
+    color: AppConfig.thirdColor,
     textAlign: 'center',
     fontSize: 20,
     lineHeight: parseInt(20 + (15 * 0.5)),
@@ -73,7 +76,7 @@ const styles = StyleSheet.create({
   buttonOutline: {
     backgroundColor: "#fff",
     borderWidth: 1,
-    borderColor: AppConfig.primaryColor,
+    borderColor: AppConfig.thirdColor,
   },
   buttonOutline_text: {
     color: AppConfig.primaryColor,
@@ -84,7 +87,7 @@ const styles = StyleSheet.create({
     height: 45,
     width: 45,
     borderRadius: 100,
-    borderColor: AppConfig.primaryColor,
+    borderColor: '#ff5d00',
   },
 
   // Large

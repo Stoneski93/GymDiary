@@ -59,18 +59,13 @@ class Menu extends Component {
     return (
       <View style={[styles.menuContainer]}>
         <View style={[styles.header]}>
-          <View style={[styles.headerImagesContent, AppStyles.helper]}>
+          <View style={[styles.headerImagesContent]}>
             <View style={[styles.headerBoxAvatar]}>
               <View style={[styles.headerAvatar]}>
                 <Image style={[styles.avatar]}
                 source={require('../images/10.jpg')}
                 />
               </View>
-            </View>
-            <View style={[]}>
-              <Image style={[styles.logo]}
-                source={require('../images/3.png')}
-                />
             </View>
           </View>
           <View style={[styles.headerBoxSubtitle]}>
@@ -110,7 +105,7 @@ const styles = StyleSheet.create({
   headerBoxAvatar: {
     height: 84,
     padding: 15,
-    backgroundColor: '#000000',
+    backgroundColor: AppConfig.forthColor,
   },
   headerAvatar: {
     height: 63,
@@ -122,15 +117,15 @@ const styles = StyleSheet.create({
   headerBoxSubtitle: {
     height: 56,
     padding: 15,
-    backgroundColor: '#000000',
+    backgroundColor: AppConfig.forthColor,
   },
   mainSubtitleText: {
     fontSize: 14,
-    color: "#FFF",
+    color: AppConfig.thirdColor,
   },
   secondarySubtitleText: {
     fontSize: 13,
-    color: "#FFF",
+    color: AppConfig.thirdColor,
   },
   menu: {
     flex: 1,

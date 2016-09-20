@@ -115,14 +115,15 @@ module.exports = StyleSheet.create({
   //NAVIGATION
   //
   navigationBarStyle: {
-    backgroundColor: "#FFF",
+    backgroundColor: AppConfig.forthColor,
+    color: AppConfig.thirdColor,
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
   },
   barButtonIconStyle: {
-    tintColor:'#000000',
+    tintColor: AppConfig.thirdColor,
     width: 18,
   },
 

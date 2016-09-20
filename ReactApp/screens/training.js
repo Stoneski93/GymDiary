@@ -59,14 +59,15 @@ this.state = {
     //Form.stylesheet.textbox.width = '100';
 
     return (
-      <View style={[AppStyles.container, AppStyles.containerCenteredV]}>
+      <View style={[AppStyles.container, AppStyles.containerCenteredV, styles.mainContainer]}>
         <View style={[AppStyles.row, AppStyles.detailsBar]}>
           <Text>Martwy Ciąg</Text>
         </View>
         <View style={[
           AppStyles.containerCentered,
           AppStyles.mainContainer,
-          styles.margins]}>
+          styles.margins,
+          styles.nestedContainer]}>
           <View style={[
             AppStyles.paddingHorizontal,
             styles.borderContainer]}>
@@ -114,6 +115,12 @@ Training.propTypes = {
 
 /* Styles ==================================================================== */
 const styles = StyleSheet.create({
+  mainContainer: {
+    backgroundColor: '#e9ebee',
+  },
+  nestedContainer: {
+    backgroundColor: AppConfig.secondaryColor,
+  },
   navbarButton: {
     position: 'absolute',
     right: 20,
@@ -162,7 +169,8 @@ const styles = StyleSheet.create({
   },
   margins: {
     marginTop: 20,
-    marginBottom: 80,
+    marginBottom: 100,
+    paddingBottom: 20,
   },
 });
 

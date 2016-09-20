@@ -64,10 +64,15 @@ const styles = StyleSheet.create({
     padding: 20,
     lineHeight: 20,
     height: 60,
-    borderBottomWidth: 1,
-    borderBottomColor: AppConfig.borderColor,
+    borderBottomWidth: 2,
+    borderColor: AppConfig.thirdColor,
+    borderRadius: 2,
+    backgroundColor: AppConfig.secondaryColor,
     justifyContent: 'space-between'
   },
+  listRow: {
+    margin: 2,
+  }
 });
 
 /* Export Component ==================================================================== */

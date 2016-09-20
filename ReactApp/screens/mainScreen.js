@@ -101,7 +101,7 @@ class MainScreen extends Component {
                 </View>
             </View>
           : null }
-          <View style={[AppStyles.container, styles.paddingBottom]}>
+          <View style={[AppStyles.container, styles.paddingBottom, styles.mainContainer]}>
             <ScrollView style={[AppStyles.container, styles.listTraining]}>
               <ListTrainingRow title={'Martwy Ciag'} liftWeight={50} reps={5} />
               <ListTrainingRow title={'Martwy Ciag'} liftWeight={50} reps={5} />
@@ -137,7 +137,16 @@ MainScreen.propTypes = {
 /* Styles ==================================================================== */
 const styles = StyleSheet.create({
   listTraining: {
-
+    margin: 5,
+    // backgroundColor: AppConfig.forthColor,
+    backgroundColor: AppConfig.fifthColor,
+    borderBottomWidth: 3,
+    borderColor: AppConfig.primaryColor,
+    
+  },
+  mainContainer: {
+    backgroundColor: AppConfig.fifthColor,
+    
   },
   navbarButton: {
     position: 'absolute',
@@ -150,7 +159,7 @@ const styles = StyleSheet.create({
     bottom: 0,
   },
   rest: {
-    backgroundColor: 'transparent',
+    backgroundColor: '#e9ebee',
     height: AppConfig.windowHeight,
     flexDirection:'column',
     flex: 1,
