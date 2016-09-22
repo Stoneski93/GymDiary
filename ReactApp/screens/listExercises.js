@@ -15,6 +15,9 @@ import {
   RefreshControl,
 } from 'react-native'
 
+import { connect } from 'react-redux';
+import { exerciseToogleFavourite } from '../actions/exercises';
+
 // App Globals
 import AppStyles from '../styles'
 import AppConfig from '../config'
@@ -22,47 +25,6 @@ import AppUtil from '../util'
 
 // Components
 import ListRow from '../components/listExercisesRow';
-
-// Demo data
-const defaultData = [
-  {
-    title: 'Przysiad',
-    favourite: false,
-  },
-  {
-    title: 'Wykroki',
-    favourite: false,
-  },
-   {
-    title: 'Żołnierskie',
-    favourite: true,
-  },
-  {
-    title: 'Przysiad',
-    favourite: true,
-  },
-  {
-    title: 'Żołnierskie',
-    favourite: false,
-  },
-  {
-    title: 'Wykroki',
-    favourite: true,
-  },
-  {
-    title: 'Żołnierskie',
-    favourite: true,
-  },
-  {
-    title: 'Przysiad',
-    favourite: false,
-  },
-  {
-    title: 'Wykroki',
-    favourite: false,
-  },
-];
-
 
 /* Component ==================================================================== */
 class ListExercises extends Component {
@@ -74,49 +36,47 @@ class ListExercises extends Component {
        dataSource: new ListView.DataSource({
          rowHasChanged: (row1, row2) => row1 !== row2,
        }),
-      isRefreshing: false,
     }
+
+    this.renderRow = this.renderRow.bind(this);
+    this.toogleFavourite = this.toogleFavourite.bind(this);
   }
 
-	componentDidMount = () => {
-	  // Fetch Data
-    this._fetchData();
-	}
-
-  _fetchData = () => {
-    this.setState({ isRefreshing: true });
-
+  componentDidMount() {
     this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(defaultData),
-      isRefreshing: false,
+      dataSource: this.state.dataSource.cloneWithRows(this.props.exercises),
     });
   }
 
-  _renderRow = (data) => {
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      dataSource: this.state.dataSource.cloneWithRows(nextProps.exercises),
+    });
+  }
+
+renderRow(data){
     let { title, image, favourite, onPress } = data;
 
     return (
-      <ListRow {...data} />
+      <ListRow {...data} onStarPress={this.toogleFavourite} />
     );
   }
 
+toogleFavourite(data) {
+  this.props.exerciseToogleFavourite(data);
+}
   /* Render ==================================================================== */
-  render = () => {
+  render() {
     return (
       <View style={[AppStyles.container]}>
         <ListView
           initialListSize={3}
           automaticallyAdjustContentInsets={false}
           dataSource={this.state.dataSource}
-          renderRow={this._renderRow}
+          renderRow={this.renderRow}
           contentContainerStyle={AppStyles.paddingBottom} 
           style={[styles.listContainer]}
-          refreshControl={
-            <RefreshControl
-              refreshing={this.state.isRefreshing}
-              onRefresh={this._fetchData}
-              tintColor={AppConfig.primaryColor} />
-          } />
+          />
       </View>
     );
   }
@@ -130,5 +90,9 @@ const styles = StyleSheet.create({
 
 });
 
+function mapStateToProps(state) {
+  return { exercises: state.exercises };
+}
+
 /* Export Component ==================================================================== */
-export default ListExercises
+export default connect(mapStateToProps, { exerciseToogleFavourite })(ListExercises);

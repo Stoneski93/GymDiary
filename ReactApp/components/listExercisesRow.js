@@ -33,7 +33,20 @@ import AppConfig from '../config'
 
 /* Component ==================================================================== */
 class ListExercisesRow extends Component {
-  
+constructor(props) {
+  super(props);
+
+  this.toogleFavourite = this.toogleFavourite.bind(this);
+}
+
+toogleFavourite() {
+  const obj = {
+    'id': this.props.id,
+    'title': this.props.title,
+    'favourite': !this.props.favourite,
+  }
+  this.props.onStarPress(obj);
+}
 /* Render ==================================================================== */
   render() {
     let { title, image, onPress, favourite } = this.props;
@@ -49,6 +62,7 @@ class ListExercisesRow extends Component {
             </TouchableOpacity>
             <TouchableOpacity activeOpacity={0.7} 
               style={styles.starButton}
+              onPress={this.toogleFavourite}
               hitSlop={{top: 7, right: 7, bottom: 7, left: 7}}>
               <Icon name='star' size={20} color={favourite ? '#ffe500' : AppConfig.primaryColor} />
             </TouchableOpacity>

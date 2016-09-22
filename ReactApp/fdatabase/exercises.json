@@ -1,0 +1,19 @@
+{
+ "exercises" :[
+    { 
+      "id": 0,
+      "title":"Przysiad",
+      "favourite": false
+    },
+    {
+      "id": 1,
+      "title":"Wykroki",
+      "favourite": false
+    },
+    {
+      "id": 2,
+      "title":"Wykroki",
+      "favourite": true
+    }
+  ]
+}

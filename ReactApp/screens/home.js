@@ -11,6 +11,7 @@ import {
 
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
+import { addExercises } from '../actions/exercises';
 
 // App Globals
 import AppStyles from '../styles'
@@ -29,10 +30,12 @@ class Home extends Component {
 		this.goToNextScreen = this.goToNextScreen.bind(this); 
 	}
 	goToNextScreen() {
+		//this.props.addExercises();
 		JSON.stringify(this.props.user) === JSON.stringify({}) ? 
 		Actions.userSettings() :	Actions.training();
 
 	}
+
 
 	/* Render ==================================================================== */
   render() {
@@ -100,5 +103,6 @@ function mapStateToProps(state) {
   return { user: state.user };
 }
 
+
 /* Export Component ==================================================================== */
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps,{ addExercises })(Home);
