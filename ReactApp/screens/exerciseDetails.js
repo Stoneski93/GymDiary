@@ -17,6 +17,8 @@ import AppStyles from '../styles'
 import AppConfig from '../config'
 
 import { Actions } from 'react-native-router-flux';
+import { setCurrentExercise } from '../actions/current';
+import { connect } from 'react-redux';
 
 // Components
 import Button from '../components/button';
@@ -29,40 +31,40 @@ class ExerciseDetails extends Component {
     this.state = {
       splashScreenVisible: this.props.showSplashScreen || false,
     }
+    this.backToExercisesList = this.backToExercisesList.bind(this);
   }
 
+  backToExercisesList() {
+    //this.props.setCurrentExercise(null);
+    Actions.listExercisesScreen();
+  }
   /* Render ==================================================================== */
   render() {
+    let { title, screenshot, description } = this.props.exercises[this.props.currentExercise];
+
+    var imageSource = require(`../images/deadlift.png`);
     return (
       <View style={[AppStyles.container, AppStyles.containerCenteredV]}>
         <View style={[AppStyles.row, AppStyles.detailsBar]}>
-          <Text>Martwy Ciąg</Text>
+          <Text>{title}</Text>
         </View>
         <ScrollView>
           <View style={[styles.imageContainer]}>
             <Image style={[styles.mainImage]}
-              source={require('../images/deadlift.png')}
+              source={imageSource}
             />
           </View>
           <View style={[styles.imageContainer]}>
-            <Text>
-              Martwy ciąg wykonuje się
-              podnosząc sztangę z ziemi do momentu, 
-              w którym plecy i nogi ćwiczącego są całkowicie wyprostowane, 
-              barki odciągnięte do tyłu, a sztanga z 
-              ciężarami znajduje się nieco poniżej bioder. 
-              Należy stanąć jak najbliżej sztangi, tak aby oglądany z
-              góry gryf znajdował się w połowie długości stopy. 
-              Nogi powinny być ustawione w niewielkim rozkroku (technika klasyczna) lub szeroko (sumo).
-            </Text>
+            <Text>{description}</Text>
           </View>
         </ScrollView>
         <TouchableOpacity
         style={[AppStyles.row,
           AppStyles.detailsBar,
           AppStyles.containerCentered,
-          styles.customActionBar]}>
-          <Text onPress={Actions.listExercisesScreen}>
+          styles.customActionBar]}
+        onPress={this.backToExercisesList} >
+          <Text>
             Powrót
           </Text>
         </TouchableOpacity>
@@ -105,5 +107,11 @@ const styles = StyleSheet.create({
   },
 });
 
+function mapStateToProps(state) {
+  return { 
+    exercises: state.exercises,
+    currentExercise: state.current.currentExercise
+     };
+}
 /* Export Component ==================================================================== */
-export default ExerciseDetails
+export default connect(mapStateToProps,{ setCurrentExercise })(ExerciseDetails);

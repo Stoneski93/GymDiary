@@ -10,6 +10,7 @@ import { combineReducers } from 'redux'
 import user from './user';
 import trainings from './trainings';
 import exercises from './exercises';
+import current from './current';
 import date from './date';
 
 // Our custom reducers
@@ -25,6 +26,7 @@ const appReducer = combineReducers({
   user,
   trainings,
   exercises,
+  current,
   date
 });
 

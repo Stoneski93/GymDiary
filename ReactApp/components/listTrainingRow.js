@@ -33,18 +33,28 @@ import AppConfig from '../config'
 
 /* Component ==================================================================== */
 class ListTrainingRow extends Component {
+  constructor(props) {
+    super(props);
+
   
+    this.goToTrainingScreen = this.goToTrainingScreen.bind(this);
+  }
+  goToTrainingScreen() {
+    //this.props.setCurrentTraining(this.props.id);
+    Actions.trainingScreen();
+  } 
 /* Render ==================================================================== */
   render() {
-    let { title, liftWeight, reps, onPress } = this.props;
+    let { title, weight, reps, onPress } = this.props;
       return (
-        <TouchableOpacity style={[styles.listRow]} onPress={Actions.trainingScreen} activeOpacity={0.7}>
+        <TouchableOpacity style={[styles.listRow]} onPress={this.goToTrainingScreen}
+        activeOpacity={0.7}>
           <View style={[AppStyles.row, styles.trainingBar]}>
             <Text style={[]}>
               {title}
             </Text>
             <Text style={[]}>
-              {liftWeight}kg x {reps}
+              {weight}kg x {reps}
             </Text>
           </View>
         </TouchableOpacity>

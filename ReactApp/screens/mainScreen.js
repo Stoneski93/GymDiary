@@ -24,7 +24,7 @@ import { Actions } from 'react-native-router-flux';
 
 // Components
 import Button from '../components/button';
-import ListTrainingRow from '../components/listTrainingRow';
+import ListTrainings from '../containers/listTrainings';
 
 const customDayHeadings = ['Nie', 'Pon', 'Wto', 'Śro', 'Czw', 'Pią', 'Sob'];
 const customMonthNames = ['Styczeń', 'Luty', 'Marzec', 'Kwiecień', 'Maj','Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'];
@@ -41,7 +41,6 @@ class MainScreen extends Component {
     }
     this.toggleCalendar = this.toggleCalendar.bind(this);
     this.changeDate = this.changeDate.bind(this);
-    this.renderFakeTraining = this.renderFakeTraining.bind(this);
   }
 
   toggleCalendar() {
@@ -55,14 +54,11 @@ class MainScreen extends Component {
     this.props.editDate(date);
     this.setState({visibleCalendar: false, selectedDate: date});
   }
-  renderFakeTraining() {
-      return (
-        <ListTrainingRow title={'Martwy Ciag'} liftWeight={50} reps={5} />
-      )
-  }
 
   /* Render ==================================================================== */
   render() {
+    let dailyTrainings = this.props.trainings.filter((training) => {if(training.data === this.props.date) return training });
+
     return (
       <View style={[AppStyles.container]}>
         <View style={[
@@ -89,7 +85,7 @@ class MainScreen extends Component {
                     titleFormat={'MMMM'}
                     prevButtonText={'Poprzedni'}
                     nextButtonText={'Następny'}
-                    onDateSelect={(date) => this.changeDate(date)}
+                    onDateSelect={(date => this.changeDate(date.split('T')[0]))}
                 />
                 <View>
                   <TouchableOpacity
@@ -102,18 +98,7 @@ class MainScreen extends Component {
             </View>
           : null }
           <View style={[AppStyles.container, styles.paddingBottom, styles.mainContainer]}>
-            <ScrollView style={[AppStyles.container, styles.listTraining]}>
-              <ListTrainingRow title={'Martwy Ciag'} liftWeight={50} reps={5} />
-              <ListTrainingRow title={'Martwy Ciag'} liftWeight={50} reps={5} />
-              <ListTrainingRow title={'Martwy Ciag'} liftWeight={50} reps={5} />
-              <ListTrainingRow title={'Martwy Ciag'} liftWeight={50} reps={5} />
-              <ListTrainingRow title={'Martwy Ciag'} liftWeight={50} reps={5} />
-              <ListTrainingRow title={'Martwy Ciag'} liftWeight={50} reps={5} />
-              <ListTrainingRow title={'Martwy Ciag'} liftWeight={50} reps={5} />
-              <ListTrainingRow title={'Martwy Ciag'} liftWeight={50} reps={5} />
-              <ListTrainingRow title={'Martwy Ciag'} liftWeight={50} reps={5} />
-              <ListTrainingRow title={'Martwy Ciag'} liftWeight={50} reps={5} />
-            </ScrollView>
+              <ListTrainings trainings={dailyTrainings} />
           </View>
           <View style={[styles.bulbButtonContainer]}>
             <Button type='bulb' text="+"  onPress={Actions.listExercisesScreen} />
@@ -124,7 +109,10 @@ class MainScreen extends Component {
 }
 
 function mapStateToProps(state) {
-  return { currentDate: state.currentDate };
+  return { 
+    date: state.date,
+    trainings: state.trainings,  
+   };
 }
 
 /* Export Component ==================================================================== */

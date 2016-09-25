@@ -3,16 +3,24 @@
     { 
       "id": 0,
       "title":"Przysiad",
+      "screenshot":"deadlift.png",
+      "description": "Martwy ciąg wykonuje się podnosząc sztangę z ziemi do momentu, w którym plecy i nogi ćwiczącego są całkowicie wyprostowane",
       "favourite": false
     },
     {
       "id": 1,
       "title":"Wykroki",
+      "screenshot":"./ReactApp/images/deadlift.png",
+      "description": 
+      "Wykroki ciąg wykonuje się podnosząc sztangę z ziemi do momentu, w którym plecy i nogi ćwiczącego są całkowicie wyprostowane",
       "favourite": false
     },
     {
       "id": 2,
-      "title":"Wykroki",
+      "title":"Wyciskanie Żołnierskie",
+      "screenshot":"./ReactApp/images/deadlift.png",
+      "description": 
+      "Wyciskanie ŻołnierskieWyciskanie ŻołnierskieWyciskanie ŻołnierskieWyciskanie ŻołnierskieWyciskanie ŻołnierskieWyciskanie ŻołnierskieWyciskanie ŻołnierskieWyciskanie ŻołnierskieWyciskanie ŻołnierskieWyciskanie ŻołnierskieWyciskanie Żołnierskie",
       "favourite": true
     }
   ]

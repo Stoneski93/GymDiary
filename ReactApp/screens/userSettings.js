@@ -67,7 +67,6 @@ class UserSettings extends Component {
     this.saveSettings = this.saveSettings.bind(this);
   }
   componentWillReceiveProps(nextProps) {
-    console.log(this.props.user.nickname);
     this.setState({ 
       empty_form_values : nextProps.user,
      });

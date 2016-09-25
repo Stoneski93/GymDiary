@@ -10,7 +10,11 @@ import {
   Image,
   TextInput,
   ScrollView,
-} from 'react-native'
+} from 'react-native';
+
+import { connect } from 'react-redux';
+import { addTraining } from '../actions/trainings';
+
 import FormValidation from 'tcomb-form-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
 import _ from 'lodash';
@@ -36,27 +40,32 @@ this.state = {
     error: '',
   },
   form_fields: FormValidation.struct({
-    Ciezar: FormValidation.Number,
-    Powtorzenia: FormValidation.Number,
+    weight: FormValidation.Number,
+    reps: FormValidation.Number,
   }),
   form_values: {},
   options: {
     fields: {
-      Ciezar: { error: 'Ciezar (kg)', placeholder: 'kg', label: 'Cięzar (kg)' },
-      Powtorzenia: { error: 'Powtorzenia', placeholder: 'szt.', label: 'Powtorzenia' },
+      weight: { error: 'Ciezar (kg)', placeholder: 'kg', label: 'Cięzar (kg)' },
+      reps: { error: 'Powtorzenia', placeholder: 'szt.', label: 'Powtorzenia' },
     },
     hasError: true,
   },
   splashScreenVisible: this.props.showSplashScreen || false,
   }
+  this.addTraining = this.addTraining.bind(this);
 }
 
-
+addTraining() {
+  //let currentDate = { date: this.props.date };
+  let { weight, reps }  = this.refs.form.getValue();
+  
+  //Object.assign(formValues, currentDate);
+  //this.props.addTraining(formValues);
+}
   /* Render ==================================================================== */
   render() {
     var Form = FormValidation.form.Form;
-    //Form.stylesheet.fieldset.flexDirection = 'row';
-    //Form.stylesheet.textbox.width = '100';
 
     return (
       <View style={[AppStyles.container, AppStyles.containerCenteredV, styles.mainContainer]}>
@@ -86,7 +95,7 @@ this.state = {
                 styles.addTrainingButton]}>
                 <Button
                   text={'Dodaj'}
-                  onPress={Actions.training} />
+                  onPress={this.addTraining} />
               </View>
             </View>
         </View>
@@ -175,4 +184,4 @@ const styles = StyleSheet.create({
 });
 
 /* Export Component =================================================== */
-export default Training
+export default connect(null, { addTraining })(Training);
