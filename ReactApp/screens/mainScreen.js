@@ -57,7 +57,7 @@ class MainScreen extends Component {
 
   /* Render ==================================================================== */
   render() {
-    let dailyTrainings = this.props.trainings.filter((training) => {if(training.data === this.props.date) return training });
+    let dailyTrainings = this.props.trainings.filter((training) => training.data === this.props.date );
 
     return (
       <View style={[AppStyles.container]}>

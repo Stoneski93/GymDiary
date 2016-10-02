@@ -10,7 +10,7 @@ export const GET_TRAININGS = "GET_TRAININGS";
 export const GET_TARINING = "GET_TRAINING";
 export const ADD_TRAINING = "ADD_TRAINING";
 export const EDIT_TRAINING = "EDIT_TRAINING";
-export const DELETE_TARINING = "DELETE_TARINING";
+export const DELETE_TRAINING = "DELETE_TRAINING";
 
 export const EDIT_DATE = "EDIT_DATE";
 
