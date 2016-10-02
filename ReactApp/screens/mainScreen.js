@@ -41,6 +41,7 @@ class MainScreen extends Component {
     }
     this.toggleCalendar = this.toggleCalendar.bind(this);
     this.changeDate = this.changeDate.bind(this);
+    this.filterTrainings = this.filterTrainings.bind(this);
   }
 
   toggleCalendar() {
@@ -50,14 +51,28 @@ class MainScreen extends Component {
       this.setState({visibleCalendar: true});
     }
   }
+  
   changeDate(date) {
     this.props.editDate(date);
     this.setState({visibleCalendar: false, selectedDate: date});
   }
 
+  filterTrainings() {
+    let allTrainings = this.props.trainings.entities.trainings;
+    let dailyTrainings = [];
+    
+    Object.keys(allTrainings).forEach(function (key) {
+      let obj = allTrainings[key];
+      dailyTrainings.push(obj)  // do something with obj
+    });
+
+    return dailyTrainings;
+  }
+
+
   /* Render ==================================================================== */
   render() {
-    let dailyTrainings = this.props.trainings.filter((training) => training.data === this.props.date );
+    let dailyTrainings = this.filterTrainings();
 
     return (
       <View style={[AppStyles.container]}>

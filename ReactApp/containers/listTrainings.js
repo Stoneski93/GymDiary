@@ -55,14 +55,12 @@ class ListTrainings extends Component {
   }
 
 renderRow(data){
-  let {id, id_exe, reps, weight} = data;
+  let {id, id_exe, sets} = data;
 
     return (
       <ListTrainingRow 
-        id={id}
         title={this.props.exercises[id_exe].title}
-        reps={reps}
-        weight={weight}
+        trainings={data}
         onPress={this.goToTrainingScreen} />
     );
   }

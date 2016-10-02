@@ -3,23 +3,71 @@
     { 
       "id": 0,
       "id_exe": 0,
-      "reps": 12,
-      "weight": 100,
-      "data": "2016-09-25"
+      "sets": [
+        {
+          "id": 0,
+          "id_t": 0,
+          "weight": 100,
+          "reps": 10
+        },
+        {
+          "id": 1,
+          "id_t": 0,
+          "weight": 120,
+          "reps": 12
+        },
+         {
+          "id": 2,
+          "id_t": 0,
+          "weight": 120,
+          "reps": 12
+        },
+         {
+          "id": 3,
+          "id_t": 0,
+          "weight": 120,
+          "reps": 12
+        }
+      ],
+      "data": "2016-10-02"
     },
     {
        "id": 1,
-      "id_exe": 0,
-      "reps": 10,
-      "weight": 120,
-      "data": "2016-09-25"
+      "id_exe": 2,
+       "sets": [
+        {
+          "id": 4,
+          "id_t": 1,
+          "weight": 100,
+          "reps": 10
+        },
+        {
+          "id": 5,
+          "id_t": 1,
+          "weight": 120,
+          "reps": 12
+        }
+      ],
+      "data": "2016-10-02"
     },
     {
        "id": 2,
       "id_exe": 1,
-      "reps": 5,
-      "weight": 88,
-      "data": "2016-09-23"
+      "sets": [
+        {
+          "id": 6,
+          "id_t": 2,
+          "weight": 100,
+          "reps": 10
+        },
+        {
+          "id": 1,
+          "id_t": 2,
+          "weight": 120,
+          "reps": 12
+        }
+      ],
+      "data": "2016-10-02"
     }
   ]
 }
