@@ -42,7 +42,7 @@ class SetsRow extends Component {
         activeOpacity={0.7}>
           <View style={[AppStyles.row, styles.trainingBar]}>
             <Text style={[styles.label]}>
-              Seria: {reps} x {weight} kg
+              Seria: {reps}  x {weight} kg
             </Text>
           </View>
         </TouchableOpacity>

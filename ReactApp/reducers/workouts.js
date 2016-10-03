@@ -1,7 +1,7 @@
 import * as actions from '../actions/actionTypes';
-import * as setsDatabase from '../fdatabase/sets';
+import * as workoutsDatabase from '../fdatabase/workouts';
 
-var initialState = setsDatabase;
+const initialState = workoutsDatabase;
 delete initialState.default;
 
 export default function reducer(state = initialState, action = {}) {

@@ -55,7 +55,7 @@ goToDetails() {
             <Text style={[AppStyles.baseText, styles.listRow_text]}>{title.toUpperCase()}</Text>
             <TouchableOpacity activeOpacity={0.7} 
               style={styles.infoButton}
-              onPress={this.props.goToDetails}
+              onPress={this.goToDetails}
               hitSlop={{top: 7, right: 7, bottom: 7, left: 7}}>
               <Icon name='info-circle' size={20} color={AppConfig.primaryColor} />
             </TouchableOpacity>

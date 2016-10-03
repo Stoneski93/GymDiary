@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   ScrollView
 } from 'react-native'
+import _ from 'lodash';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import Calendar from 'react-native-calendar';
@@ -41,7 +42,7 @@ class MainScreen extends Component {
     }
     this.toggleCalendar = this.toggleCalendar.bind(this);
     this.changeDate = this.changeDate.bind(this);
-    this.filterTrainings = this.filterTrainings.bind(this);
+    this.filterWorkouts = this.filterWorkouts.bind(this);
   }
 
   toggleCalendar() {
@@ -57,22 +58,18 @@ class MainScreen extends Component {
     this.setState({visibleCalendar: false, selectedDate: date});
   }
 
-  filterTrainings() {
-    let allTrainings = this.props.trainings.entities.trainings;
-    let dailyTrainings = [];
+  filterWorkouts() {
+    let allTrainings = this.props.workouts;
+    let workout = allTrainings.filter(training => training.data === this.props.date)
     
-    Object.keys(allTrainings).forEach(function (key) {
-      let obj = allTrainings[key];
-      dailyTrainings.push(obj)  // do something with obj
-    });
-
-    return dailyTrainings;
+    return workout.length ? workout[0].trainings : null;    
+    //return workout.equals({}) ? null : workout[0].trainings;
   }
 
 
   /* Render ==================================================================== */
   render() {
-    let dailyTrainings = this.filterTrainings();
+    let dailyTrainings = this.filterWorkouts();
 
     return (
       <View style={[AppStyles.container]}>
@@ -113,7 +110,10 @@ class MainScreen extends Component {
             </View>
           : null }
           <View style={[AppStyles.container, styles.paddingBottom, styles.mainContainer]}>
-              <ListTrainings trainings={dailyTrainings} />
+            {dailyTrainings ? 
+              <ListTrainings dailyTrainings={dailyTrainings} /> 
+                : 
+              null }
           </View>
           <View style={[styles.bulbButtonContainer]}>
             <Button type='bulb' text="+"  onPress={Actions.listExercisesScreen} />
@@ -124,9 +124,10 @@ class MainScreen extends Component {
 }
 
 function mapStateToProps(state) {
+  const workouts = Object.keys(state.workouts).map(function (key) { return state.workouts[key]; });
   return { 
     date: state.date,
-    trainings: state.trainings,  
+    workouts: workouts,  
    };
 }
 

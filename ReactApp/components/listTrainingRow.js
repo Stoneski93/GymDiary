@@ -51,13 +51,15 @@ class ListTrainingRow extends Component {
   }
 
   componentDidMount() {
+    let daily = this.props.dailySets.map(set => this.props.sets[set]);
     this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(this.props.sets.filter(set => set.id_t === this.props.trainings.id)),
+      dataSource: this.state.dataSource.cloneWithRows(daily),
     });
   }
   componentWillReceiveProps(nextProps) {
+    let daily = nextProps.dailySets.map(set => nextProps.sets[set]);
     this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(nextProps.sets.filter(set => set.id_t === nextProps.trainings.id)),
+      dataSource: this.state.dataSource.cloneWithRows(daily),
     });
   }
 
@@ -129,17 +131,9 @@ const styles = StyleSheet.create({
   },
 });
 
-function mapStateToProps(state) {
-  let allSets = state.trainings.entities.sets;
-  let oneSet = [];
-    
-    Object.keys(allSets).forEach(function (key) {
-      let obj = allSets[key];
-      oneSet.push(obj)  // do something with obj
-    });
-  
+function mapStateToProps(state) {  
   return {
-     sets: oneSet,
+     sets: state.sets,
   };
 }
 

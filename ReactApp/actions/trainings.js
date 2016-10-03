@@ -34,3 +34,10 @@ export function deleteTraining (data) {
   } 
 }
 
+export function addSet (data) {
+  return {
+    type: actions.ADD_SET,
+    payload: data,
+  }
+}
+

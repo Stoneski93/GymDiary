@@ -39,29 +39,31 @@ class ListTrainings extends Component {
          rowHasChanged: (row1, row2) => row1 !== row2,
        }),
     }
-
+    
     this.renderRow = this.renderRow.bind(this);
 
   }
   componentDidMount() {
+   let daily = this.props.dailyTrainings.map(trening => this.props.trainings[trening]);
+
     this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(this.props.trainings),
+      dataSource: this.state.dataSource.cloneWithRows(daily),
     });
   }
   componentWillReceiveProps(nextProps) {
+    let daily = nextProps.dailyTrainings.map(trening => nextProps.trainings[trening]);
     this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(nextProps.trainings),
+      dataSource: this.state.dataSource.cloneWithRows(daily),
     });
   }
 
 renderRow(data){
-  let {id, id_exe, sets} = data;
-
+    let {id, id_exe, sets} = data;
     return (
-      <ListTrainingRow 
+      <ListTrainingRow
         title={this.props.exercises[id_exe].title}
-        trainings={data}
-        onPress={this.goToTrainingScreen} />
+        dailySets={sets}
+      />
     );
   }
 
@@ -69,7 +71,7 @@ renderRow(data){
   render() {
     return (
        <ScrollView style={[AppStyles.container, styles.listTraining]}>
-          <ListView
+         <ListView
             initialListSize={3}
             automaticallyAdjustContentInsets={false}
             dataSource={this.state.dataSource}
@@ -97,10 +99,14 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state) {
+  //const trainings = Object.keys(state.trainings).map(function (key) { return state.trainings[key]; });
   return {
      exercises: state.exercises,
+     trainings: state.trainings,
   };
 }
 
 /* Export Component ==================================================================== */
 export default connect(mapStateToProps)(ListTrainings);
+
+//  

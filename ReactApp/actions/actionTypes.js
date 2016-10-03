@@ -12,6 +12,8 @@ export const ADD_TRAINING = "ADD_TRAINING";
 export const EDIT_TRAINING = "EDIT_TRAINING";
 export const DELETE_TRAINING = "DELETE_TRAINING";
 
+export const ADD_SET = "ADD_SET";
+
 export const EDIT_DATE = "EDIT_DATE";
 
 export const SET_CURRENT_EXERCISE = "SET_CURRENT_EXERCISE";
