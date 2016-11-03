@@ -1,16 +1,19 @@
 import * as actions from './actionTypes';
+import database from '../db';
 
-export function addExercises (data) { 
+function addExercises (data) { 
   return {
     type: actions.ADD_EXERCISES,
     payload: data,
   } 
 }
 
-export function getExercises () { 
-  return {
-    type: actions.GET_EXERCISES,
-  } 
+export function fetchExercises() { 
+  return dispatch => {
+       database.ref().child('/exercises').on('value', snapshot => {
+         snapshot.val().map(item => dispatch(addExercises(item)))
+       });
+  }
 }
 
 export function exerciseToogleFavourite (data) { 
@@ -19,3 +22,4 @@ export function exerciseToogleFavourite (data) {
     payload: data,
   } 
 }
+

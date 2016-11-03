@@ -29,6 +29,7 @@ constructor(props) {
 
   this.toogleFavourite = this.toogleFavourite.bind(this);
   this.goToDetails = this.goToDetails.bind(this);
+  this.goToTraining = this.goToTraining.bind(this);
 }
 
 toogleFavourite() {
@@ -41,7 +42,10 @@ toogleFavourite() {
   }
   this.props.onStarPress(obj);
 }
-
+goToTraining() {
+  this.props.setCurrentExercise(this.props.id);
+  Actions.trainingScreen();
+}
 goToDetails() {
   this.props.setCurrentExercise(this.props.id);
   Actions.exerciseDetailsScreen();
@@ -50,7 +54,7 @@ goToDetails() {
   render() {
     let { title, image, onPress, favourite } = this.props; 
       return (
-        <TouchableOpacity style={[styles.listRow]} onPress={Actions.trainingScreen} activeOpacity={0.7}>
+        <TouchableOpacity style={[styles.listRow]} onPress={this.goToTraining} activeOpacity={0.7}>
           <View style={styles.listRowInner}>
             <Text style={[AppStyles.baseText, styles.listRow_text]}>{title.toUpperCase()}</Text>
             <TouchableOpacity activeOpacity={0.7} 

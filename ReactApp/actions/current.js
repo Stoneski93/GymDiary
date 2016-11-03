@@ -13,3 +13,10 @@ export function setCurrentTraining (id) {
     payload: id,
   }
 }
+
+export function setCurrentWorkout (id) {
+  return {
+    type: actions.SET_CURRENT_WORKOUT,
+    payload: id,
+  }
+}

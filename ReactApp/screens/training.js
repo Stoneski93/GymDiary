@@ -14,6 +14,7 @@ import {
 
 import { connect } from 'react-redux';
 import { addTraining } from '../actions/trainings';
+import { addSetFb } from '../actions/sets';
 
 import FormValidation from 'tcomb-form-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -33,35 +34,58 @@ class Training extends Component {
   constructor(props) {
     super(props);
 
-this.state = {
-  resultMsg: {
-    status: '',
-    success: '',
-    error: '',
-  },
-  form_fields: FormValidation.struct({
-    weight: FormValidation.Number,
-    reps: FormValidation.Number,
-  }),
-  form_values: {},
-  options: {
-    fields: {
-      weight: { error: 'Ciezar (kg)', placeholder: 'kg', label: 'Cięzar (kg)' },
-      reps: { error: 'Powtorzenia', placeholder: 'szt.', label: 'Powtorzenia' },
+  this.state = {
+    resultMsg: {
+      status: '',
+      success: '',
+      error: '',
     },
-    hasError: true,
-  },
-  splashScreenVisible: this.props.showSplashScreen || false,
-  }
-  this.addTraining = this.addTraining.bind(this);
+    form_fields: FormValidation.struct({
+      weight: FormValidation.Number,
+      reps: FormValidation.Number,
+    }),
+    form_values: {},
+    options: {
+      fields: {
+        weight: { error: 'Ciezar (kg)', placeholder: 'kg', label: 'Cięzar (kg)' },
+        reps: { error: 'Powtorzenia', placeholder: 'szt.', label: 'Powtorzenia' },
+      },
+      hasError: true,
+    },
+    splashScreenVisible: this.props.showSplashScreen || false,
+    }
+    this.addTraining = this.addTraining.bind(this);
 }
 
 addTraining() {
-  //let currentDate = { date: this.props.date };
   let { weight, reps }  = this.refs.form.getValue();
-  
-  //Object.assign(formValues, currentDate);
-  //this.props.addTraining(formValues);
+  let isWorkout = false;
+  let isTraining = false;
+
+  let set = {
+    weight: weight,
+    reps: reps,
+  }
+
+  this.props.workouts.filter(workout => {
+    if(this.props.date === workout.data) {
+      isWorkout = true;
+      workout.trainings.map(training => {
+        if(this.props.trainings[training].id_exe === this.props.currentExercise){
+          isTraining = true;
+          this.props.addSetFb(set,this.props.trainings[training].id_exe);
+        } 
+      });
+      if(!isTraining) {
+        console.log('dodaje trening');
+      }
+    }
+  });
+
+if(!isWorkout) {
+  console.log('dodaje workout');
+}
+ 
 }
   /* Render ==================================================================== */
   render() {
@@ -118,8 +142,17 @@ addTraining() {
 Training.propTypes = {
  //TODO
 }
-//TODO
-//TEXT POWROT 100% OF BUTTON
+
+function mapStateToProps(state) {
+  //const workouts = Object.keys(state.workouts).map(function (key) { return state.workouts[key]; });
+  return { 
+    date: state.date,
+    workouts: state.workouts,
+    trainings: state.trainings,
+    sets: state.sets,
+    currentExercise: state.current.currentExercise  
+   };
+}
 
 
 /* Styles ==================================================================== */
@@ -183,5 +216,7 @@ const styles = StyleSheet.create({
   },
 });
 
+
+
 /* Export Component =================================================== */
-export default connect(null, { addTraining })(Training);
+export default connect(mapStateToProps, { addTraining, addSetFb })(Training);

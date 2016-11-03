@@ -52,6 +52,7 @@ class ListTrainings extends Component {
   }
   componentWillReceiveProps(nextProps) {
     let daily = nextProps.dailyTrainings.map(trening => nextProps.trainings[trening]);
+    
     this.setState({
       dataSource: this.state.dataSource.cloneWithRows(daily),
     });

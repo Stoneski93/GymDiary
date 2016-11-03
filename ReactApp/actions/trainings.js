@@ -1,11 +1,5 @@
 import * as actions from './actionTypes';
-
-
-export function getTrainings () { 
-  return {
-    type: actions.GET_TRAININGS,
-  } 
-}
+import database from '../db';
 
 export function getTraining () { 
   return {
@@ -13,9 +7,16 @@ export function getTraining () {
   } 
 }
 
-export function addTraining (data) { 
+
+function addTraining (data) { 
   return {
     type: actions.ADD_TRAINING,
+    payload: data,
+  } 
+}
+function addTrainings (data) { 
+  return {
+    type: actions.ADD_TRAININGS,
     payload: data,
   } 
 }
@@ -34,10 +35,10 @@ export function deleteTraining (data) {
   } 
 }
 
-export function addSet (data) {
-  return {
-    type: actions.ADD_SET,
-    payload: data,
+export function fetchTrainings() { 
+  return dispatch => {
+       database.ref().child('/trainings').on('value', snapshot => {
+         dispatch(addTrainings(snapshot.val()))
+       });
   }
 }
-

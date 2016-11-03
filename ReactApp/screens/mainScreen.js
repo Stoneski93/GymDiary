@@ -16,6 +16,10 @@ import Calendar from 'react-native-calendar';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import { editDate } from '../actions/date';
+import { fetchTrainings } from '../actions/trainings';
+import { fetchSets } from '../actions/sets';
+import { fetchWorkouts } from '../actions/workouts';
+import { fetchExercises } from '../actions/exercises';
 
 // App Globals
 import AppStyles from '../styles'
@@ -43,6 +47,10 @@ class MainScreen extends Component {
     this.toggleCalendar = this.toggleCalendar.bind(this);
     this.changeDate = this.changeDate.bind(this);
     this.filterWorkouts = this.filterWorkouts.bind(this);
+    this.props.fetchSets();
+    this.props.fetchWorkouts();
+    this.props.fetchTrainings();
+    this.props.fetchExercises();
   }
 
   toggleCalendar() {
@@ -63,7 +71,6 @@ class MainScreen extends Component {
     let workout = allTrainings.filter(training => training.data === this.props.date)
     
     return workout.length ? workout[0].trainings : null;    
-    //return workout.equals({}) ? null : workout[0].trainings;
   }
 
 
@@ -132,7 +139,7 @@ function mapStateToProps(state) {
 }
 
 /* Export Component ==================================================================== */
-export default connect(mapStateToProps, { editDate })(MainScreen);
+export default connect(mapStateToProps, { editDate, fetchWorkouts, fetchSets, fetchTrainings, fetchExercises })(MainScreen);
 
 MainScreen.propTypes = {
  //TODO

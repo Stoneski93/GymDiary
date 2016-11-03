@@ -8,7 +8,8 @@ import {
   ListView,
   RefreshControl,
 } from 'react-native'
-
+import { connect } from 'react-redux';
+import database from '../db';
 // App Globals
 import AppStyles from '../styles'
 import AppConfig from '../config'
@@ -28,6 +29,8 @@ import ListExercisesFav from './listExercisesFav'
 class ListExercisesScreen extends Component {
   constructor(props) {
     super(props);
+
+    
   }
   /* Render ==================================================================== */
   render() {
@@ -51,5 +54,11 @@ const styles = StyleSheet.create({
   
 });
 
+function mapStateToProps(state) {
+  return {
+    exercises: state.exercises,
+  };
+}
+
 /* Export Component ==================================================================== */
-export default ListExercisesScreen
+export default connect(mapStateToProps, null)(ListExercisesScreen);

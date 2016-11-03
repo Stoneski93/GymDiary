@@ -1,11 +1,16 @@
 import * as actions from '../actions/actionTypes';
-import * as setsDatabase from '../fdatabase/sets';
+import update from 'react-addons-update';
 
-var initialState = setsDatabase;
-delete initialState.default;
-
-export default function reducer(state = initialState, action = {}) {
+export default function reducer(state = {}, action = {}) {
   switch (action.type) {
+    case actions.ADD_SET:
+      return [...state, action.payload];
+      // let objdata = {};
+      // let id = action.payload.id;
+      // objdata[id] = action.payload;
+      // return update(state, {$push: { objdata }});
+    case actions.ADD_SETS:
+      return action.payload;
     default:
       return state;
   }
