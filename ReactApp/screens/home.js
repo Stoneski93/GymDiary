@@ -32,12 +32,10 @@ class Home extends Component {
 		super(props);
 		this.goToNextScreen = this.goToNextScreen.bind(this);
 		this.props.fetchExercises();
-		this.props.fetchSets();
 		this.props.fetchWorkouts(this.props.date);
 	}
 
 	goToNextScreen() {
-		//this.props.addExercises();
 		JSON.stringify(this.props.user) === JSON.stringify({}) ? 
 		Actions.userSettings() :	Actions.training();
 	}

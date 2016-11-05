@@ -1,6 +1,7 @@
 import * as actions from './actionTypes';
 import database from '../db';
 import { addSetFb, fetchSet } from './sets';
+import { updateWorkout } from './workouts';
 
 export function getTraining () { 
   return {
@@ -45,16 +46,27 @@ export function addTrainingFb(workout_id, id_exe, set) {
     sets: [],
   }
   
-  database.ref(`/workouts/${workout_id}/trainings`).on('value', snap => listTrainings = snap.val());
-
-  listTrainings.push(newTrainingKey);
-
-  database.ref(`/trainings/${newTrainingKey}`).update(finallyObject);
-  database.ref(`/workouts/${workout_id}/trainings`).set(listTrainings);
-
-  return dispatch => dispatch(addSetFb(set, newTrainingKey));
-}
-
+  return dispatch => {
+    database.ref(`/workouts/${workout_id}/trainings`)
+      .once('value', snap => listTrainings = snap.val())
+        .then(() => {
+          listTrainings = listTrainings ? listTrainings : [];
+            listTrainings.push(newTrainingKey);
+            dispatch(addSetFb(set, newTrainingKey)); 
+            database.ref(`/trainings/${newTrainingKey}`).update(finallyObject)
+              .then(() => {
+                dispatch(updateTraining(newTrainingKey));
+                database.ref(`/workouts/${workout_id}/trainings`).set(listTrainings).then(
+                  () => {
+                    database.ref(`/trainings`).limitToLast(1).on('child_added', () => { 
+                      dispatch(updateWorkout(workout_id));
+                    });
+                  }
+                )
+              })
+      });
+    }
+  }
 export function fetchTrainings() { 
   return dispatch => {
        database.ref().child('/trainings').on('value', snapshot => {
@@ -65,10 +77,19 @@ export function fetchTrainings() {
 
 export function fetchTraining(training) { 
   return dispatch => {
-       database.ref().child(`/trainings/${training}`).on('value', snapshot => {
+       database.ref().child(`/trainings/${training}`).once('value', snapshot => {
           dispatch(addTraining(snapshot.val()));
-          snapshot.val().sets
-            .map(set => dispatch(fetchSet(set)));
-       });
+      }).then(
+        (snapshot) => { snapshot.val().sets
+            .map(set => dispatch(fetchSet(set))); }
+      );
+  }
+}
+
+export function updateTraining(training) { 
+  return dispatch => {
+       database.ref().child(`/trainings/${training}`).once('value', snapshot => {
+          dispatch(addTraining(snapshot.val()));
+      });
   }
 }

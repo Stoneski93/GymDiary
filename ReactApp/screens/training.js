@@ -13,9 +13,10 @@ import {
 } from 'react-native';
 
 import { connect } from 'react-redux';
+import { addWorkoutFb } from '../actions/workouts';
 import { addTraining } from '../actions/trainings';
 import { addTrainingFb } from '../actions/trainings';
-import { addSetFb, addSet } from '../actions/sets';
+import { addSetFb, addSet, fetchSets } from '../actions/sets';
 
 import FormValidation from 'tcomb-form-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -74,18 +75,17 @@ addTraining() {
       workout.trainings.map(training => {
         if(this.props.trainings[training].id_exe === this.props.currentExercise){
           isTraining = true;
-          //console.log(set);
           this.props.addSetFb(set, this.props.trainings[training].id);
         } 
       });
       if(!isTraining) {
-        //this.props.addTrainingFb(workout.id, this.props.currentExercise, set);
+        this.props.addTrainingFb(workout.id, this.props.currentExercise, set);
       }
     }
   });
 
 if(!isWorkout) {
-  console.log('dodaje workout');
+  this.props.addWorkoutFb(this.props.date, this.props.currentExercise, set );
 }
 Actions.training();
 }
@@ -146,10 +146,10 @@ Training.propTypes = {
 }
 
 function mapStateToProps(state) {
-  //const workouts = Object.keys(state.workouts).map(function (key) { return state.workouts[key]; });
+  const workouts = Object.keys(state.workouts).map(function (key) { return state.workouts[key]; });
   return { 
     date: state.date,
-    workouts: state.workouts,
+    workouts: workouts,
     trainings: state.trainings,
     sets: state.sets,
     currentExercise: state.current.currentExercise  
@@ -221,4 +221,4 @@ const styles = StyleSheet.create({
 
 
 /* Export Component =================================================== */
-export default connect(mapStateToProps, { addTraining, addSetFb, addSet, addTrainingFb })(Training);
+export default connect(mapStateToProps, { addTraining, addSetFb, addSet, addTrainingFb, fetchSets, addWorkoutFb })(Training);

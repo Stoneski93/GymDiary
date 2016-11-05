@@ -1,6 +1,6 @@
 import * as actions from './actionTypes';
 import database from '../db';
-import { fetchTrainings } from './trainings';
+import { fetchTraining, updateTraining } from './trainings';
 
 function fetchingSet() {
   return {
@@ -32,16 +32,25 @@ export function addSetFb (set, id_tren) {
     reps: reps,
   }
 
-  database.ref(`/trainings/${id_tren}/sets`).on('value', snap => listSets = snap.val());
-  
-  
-  listSets = listSets ? listSets : [];
-  listSets.push(newSetKey); 
-
-  database.ref(`/sets/${newSetKey}`).update(finallyObject);
-  database.ref(`/trainings/${id_tren}/sets`).set(listSets);
- 
-  return dispatch => dispatch(fetchingSet());
+  return dispatch => {
+    database.ref(`/trainings/${id_tren}/sets`).once('value', (snap) => { listSets = snap.val() })
+      .then(
+        () => {
+          listSets = listSets ? listSets : [];
+            listSets.push(newSetKey);
+              database.ref(`/sets/${newSetKey}`).update(finallyObject).then(() => {
+              dispatch(fetchSet(newSetKey));
+              database.ref(`/trainings/${id_tren}/sets`).set(listSets).then(
+              () => {
+                  database.ref(`/sets`).limitToLast(1).on('child_added', () => { 
+                    dispatch(updateTraining(id_tren)); 
+                  });
+              }
+            );
+          });
+        }
+      );
+    }
 }
 
 export function fetchSets() { 
