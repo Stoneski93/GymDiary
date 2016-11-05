@@ -39,12 +39,13 @@ class ListTrainings extends Component {
          rowHasChanged: (row1, row2) => row1 !== row2,
        }),
     }
-    
-    this.renderRow = this.renderRow.bind(this);
+    // console.log(this.props);
+     this.renderRow = this.renderRow.bind(this);
 
   }
   componentDidMount() {
    let daily = this.props.dailyTrainings.map(trening => this.props.trainings[trening]);
+  console.log(daily);
 
     this.setState({
       dataSource: this.state.dataSource.cloneWithRows(daily),
@@ -71,15 +72,15 @@ renderRow(data){
   /* Render ==================================================================== */
   render() {
     return (
-       <ScrollView style={[AppStyles.container, styles.listTraining]}>
-         <ListView
+      <ScrollView style={[AppStyles.container, styles.listTraining]}>
+          <ListView
             initialListSize={3}
             automaticallyAdjustContentInsets={false}
             dataSource={this.state.dataSource}
             renderRow={this.renderRow}
             contentContainerStyle={AppStyles.paddingBottom} 
             style={[styles.listContainer]}
-          />
+          />  
       </ScrollView>
     );
   }
@@ -109,5 +110,3 @@ function mapStateToProps(state) {
 
 /* Export Component ==================================================================== */
 export default connect(mapStateToProps)(ListTrainings);
-
-//  

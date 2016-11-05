@@ -16,7 +16,7 @@ import Calendar from 'react-native-calendar';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import { editDate } from '../actions/date';
-import { fetchTrainings } from '../actions/trainings';
+import { fetchTrainings, fetchTraining } from '../actions/trainings';
 import { fetchSets } from '../actions/sets';
 import { fetchWorkouts } from '../actions/workouts';
 import { fetchExercises } from '../actions/exercises';
@@ -47,10 +47,6 @@ class MainScreen extends Component {
     this.toggleCalendar = this.toggleCalendar.bind(this);
     this.changeDate = this.changeDate.bind(this);
     this.filterWorkouts = this.filterWorkouts.bind(this);
-    this.props.fetchSets();
-    this.props.fetchWorkouts();
-    this.props.fetchTrainings();
-    this.props.fetchExercises();
   }
 
   toggleCalendar() {
@@ -68,7 +64,7 @@ class MainScreen extends Component {
 
   filterWorkouts() {
     let allTrainings = this.props.workouts;
-    let workout = allTrainings.filter(training => training.data === this.props.date)
+    let workout = allTrainings.filter(training => training.data === this.props.date);
     
     return workout.length ? workout[0].trainings : null;    
   }
@@ -77,7 +73,6 @@ class MainScreen extends Component {
   /* Render ==================================================================== */
   render() {
     let dailyTrainings = this.filterWorkouts();
-
     return (
       <View style={[AppStyles.container]}>
         <View style={[
@@ -134,12 +129,14 @@ function mapStateToProps(state) {
   const workouts = Object.keys(state.workouts).map(function (key) { return state.workouts[key]; });
   return { 
     date: state.date,
-    workouts: workouts,  
+    workouts: workouts,
+    sets: state.sets,
+    trainings: state.trainings  
    };
 }
 
 /* Export Component ==================================================================== */
-export default connect(mapStateToProps, { editDate, fetchWorkouts, fetchSets, fetchTrainings, fetchExercises })(MainScreen);
+export default connect(mapStateToProps, { editDate, fetchWorkouts, fetchSets, fetchTraining, fetchExercises })(MainScreen);
 
 MainScreen.propTypes = {
  //TODO

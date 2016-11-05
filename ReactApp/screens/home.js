@@ -11,7 +11,10 @@ import {
 
 import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
-import { addExercises } from '../actions/exercises';
+import { addExercises, fetchExercises } from '../actions/exercises';
+import { fetchSets } from '../actions/sets';
+import { fetchTrainings } from '../actions/trainings';
+import { fetchWorkouts } from '../actions/workouts';
 
 // App Globals
 import AppStyles from '../styles'
@@ -27,15 +30,17 @@ import MainScreen from './mainScreen'
 class Home extends Component {
   constructor(props) {
 		super(props);
-		this.goToNextScreen = this.goToNextScreen.bind(this); 
+		this.goToNextScreen = this.goToNextScreen.bind(this);
+		this.props.fetchExercises();
+		this.props.fetchSets();
+		this.props.fetchWorkouts(this.props.date);
 	}
+
 	goToNextScreen() {
 		//this.props.addExercises();
 		JSON.stringify(this.props.user) === JSON.stringify({}) ? 
 		Actions.userSettings() :	Actions.training();
-
 	}
-
 
 	/* Render ==================================================================== */
   render() {
@@ -100,9 +105,13 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state) {
-  return { user: state.user };
+  return { 
+		user: state.user,
+		date: state.date,
+		workouts: state.workouts,
+		 };
 }
 
 
 /* Export Component ==================================================================== */
-export default connect(mapStateToProps,{ addExercises })(Home);
+export default connect(mapStateToProps,{ addExercises, fetchExercises, fetchSets, fetchWorkouts, fetchTrainings })(Home);

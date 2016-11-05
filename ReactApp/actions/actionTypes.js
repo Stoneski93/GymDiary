@@ -15,6 +15,7 @@ export const EDIT_TRAINING = "EDIT_TRAINING";
 export const DELETE_TRAINING = "DELETE_TRAINING";
 
 export const FETCH_SET = "FETCH_SET";
+export const FETCHING_SET = "FETCHING_SET";
 export const ADD_SET = "ADD_SET";
 export const ADD_SETS= "ADD_SETS";
 

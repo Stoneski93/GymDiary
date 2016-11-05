@@ -14,7 +14,8 @@ import {
 
 import { connect } from 'react-redux';
 import { addTraining } from '../actions/trainings';
-import { addSetFb } from '../actions/sets';
+import { addTrainingFb } from '../actions/trainings';
+import { addSetFb, addSet } from '../actions/sets';
 
 import FormValidation from 'tcomb-form-native'
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -73,11 +74,12 @@ addTraining() {
       workout.trainings.map(training => {
         if(this.props.trainings[training].id_exe === this.props.currentExercise){
           isTraining = true;
-          this.props.addSetFb(set,this.props.trainings[training].id_exe);
+          //console.log(set);
+          this.props.addSetFb(set, this.props.trainings[training].id);
         } 
       });
       if(!isTraining) {
-        console.log('dodaje trening');
+        //this.props.addTrainingFb(workout.id, this.props.currentExercise, set);
       }
     }
   });
@@ -85,7 +87,7 @@ addTraining() {
 if(!isWorkout) {
   console.log('dodaje workout');
 }
- 
+Actions.training();
 }
   /* Render ==================================================================== */
   render() {
@@ -219,4 +221,4 @@ const styles = StyleSheet.create({
 
 
 /* Export Component =================================================== */
-export default connect(mapStateToProps, { addTraining, addSetFb })(Training);
+export default connect(mapStateToProps, { addTraining, addSetFb, addSet, addTrainingFb })(Training);
