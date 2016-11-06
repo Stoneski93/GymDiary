@@ -15,7 +15,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Calendar from 'react-native-calendar';
 import moment from 'moment';
 import { connect } from 'react-redux';
-import { changeDate } from '../actions/date';
+import { changeDateWithFetch, changeDate } from '../actions/date';
 import { fetchTrainings, fetchTraining } from '../actions/trainings';
 import { fetchSets } from '../actions/sets';
 import { fetchWorkouts } from '../actions/workouts';
@@ -58,7 +58,13 @@ class MainScreen extends Component {
   }
   
   changeDate(date) {
-    this.props.changeDate(date);
+    if(this.props.workouts.filter(workout => workout.id === date).length > 0){
+      this.props.changeDate(date);
+    } else {
+      this.props.changeDateWithFetch(date);
+    }
+     
+    
     this.setState({visibleCalendar: false, selectedDate: date});
   }
 
@@ -136,7 +142,7 @@ function mapStateToProps(state) {
 }
 
 /* Export Component ==================================================================== */
-export default connect(mapStateToProps, { changeDate, fetchWorkouts, fetchSets, fetchTraining, fetchExercises })(MainScreen);
+export default connect(mapStateToProps, { changeDate, fetchWorkouts, fetchSets, fetchTraining, fetchExercises, changeDateWithFetch })(MainScreen);
 
 MainScreen.propTypes = {
  //TODO

@@ -6,7 +6,8 @@ import {
   StyleSheet,
   View,
   Text,
-	Image
+	Image,
+	ActivityIndicator
 } from 'react-native'
 
 import { connect } from 'react-redux';
@@ -26,6 +27,8 @@ import Button from '../components/button'
 // Screens
 import MainScreen from './mainScreen'
 
+import Spinner from 'react-native-loading-spinner-overlay';
+
 /* Component ==================================================================== */
 class Home extends Component {
   constructor(props) {
@@ -33,6 +36,11 @@ class Home extends Component {
 		this.goToNextScreen = this.goToNextScreen.bind(this);
 		this.props.fetchExercises();
 		this.props.fetchWorkouts(this.props.date);
+
+		this.state = {
+      visible: true
+    };
+
 	}
 
 	goToNextScreen() {
@@ -47,6 +55,12 @@ class Home extends Component {
 				AppStyles.container,
 				AppStyles.containerCentered,
 				styles.homeContainer]}>
+				<View style={[styles.centering]}>
+					<ActivityIndicator
+        		animating={this.state.visible}
+        		size={75}
+      		/>
+				</View>
       	<View style={[AppStyles.containerStrecht]}>
 					<View>
 						<Text 
@@ -99,7 +113,18 @@ const styles = StyleSheet.create({
 	},
 	imageRotate: {
 		transform: [{rotate: '-30deg'}],
-	}
+	},
+	centering: {
+		position: 'absolute',
+		left: 0,
+		right: 0,
+		top: 0,
+		bottom: 0,
+		opacity: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+		zIndex: -1,
+  },
 });
 
 function mapStateToProps(state) {
