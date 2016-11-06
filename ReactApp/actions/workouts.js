@@ -1,6 +1,7 @@
 import * as actions from './actionTypes';
 import database from '../db';
 import { fetchTraining, addTrainingFb } from './trainings';
+import { setLoading } from './current';
 
 function addWorkout (data) { 
   return {
@@ -11,13 +12,16 @@ function addWorkout (data) {
 
 export function fetchWorkouts(date) { 
   return dispatch => {
-       database.ref().child(`/workouts/${date}`).once('value', snapshoot => {
+      dispatch(setLoading(true));
+      database.ref().child(`/workouts/${date}`).once('value', snapshoot => {
          if(snapshoot.val()) {
           dispatch(addWorkout(snapshoot.val()));
           snapshoot.val().trainings
-             .map(training => dispatch(fetchTraining(training)));
+            .map(training => dispatch(fetchTraining(training)))
           }
-       });
+       }).then(
+            () => { dispatch(setLoading(false)) }
+        );
   }
 }
 

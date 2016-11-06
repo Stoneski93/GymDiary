@@ -20,3 +20,20 @@ export function setCurrentWorkout (id) {
     payload: id,
   }
 }
+
+export function setLoading (state) {
+  return dispatch => { 
+    if(state) {
+      dispatch({
+        type: actions.SET_LOADING,
+        payload: state,
+      })
+    } else {
+      setTimeout(
+      () => dispatch({
+        type: actions.SET_LOADING,
+        payload: state,
+      }), 1000);
+    }
+  }
+}

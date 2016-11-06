@@ -31,7 +31,7 @@
    * on the same Wi-Fi network.
    */
 
-  // jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle"];
+  jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle?platform=ios&dev=true"];
 
   /**
    * OPTION 2
@@ -41,22 +41,12 @@
    * simulator in the "Release" build configuration.
    */
 
-  // jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
-
-  /**
-   * OPTION 3
-   * Autoload which one, depending on environment type
-   */
-  #ifdef DEBUG
-    jsCodeLocation = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle"];
-  #else
-    jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
-  #endif
+//   jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
-                                               moduleName:@"StarterKit"
+                                                      moduleName:@"StarterKit"
                                                initialProperties:nil
-                                               launchOptions:launchOptions];
+                                                   launchOptions:launchOptions];
   rootView.backgroundColor = [[UIColor alloc] initWithRed:1.0f green:1.0f blue:1.0f alpha:1];
 
   self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -64,16 +54,6 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
-
-  /**
-   * Custom
-   * Get launch image - saves annoying white flash
-   */
-  UIImageView *launchScreenView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Launch"]]; // Image named "Launch"
-  launchScreenView.frame = self.window.bounds;
-  launchScreenView.contentMode = UIViewContentModeScaleAspectFill;
-  rootView.loadingView = launchScreenView;
-
   return YES;
 }
 

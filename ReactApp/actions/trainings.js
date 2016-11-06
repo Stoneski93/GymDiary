@@ -2,6 +2,7 @@ import * as actions from './actionTypes';
 import database from '../db';
 import { addSetFb, fetchSet } from './sets';
 import { updateWorkout } from './workouts';
+import { setLoading } from './current';
 
 export function getTraining () { 
   return {
@@ -47,24 +48,27 @@ export function addTrainingFb(workout_id, id_exe, set) {
   }
   
   return dispatch => {
+    dispatch(setLoading(true));
     database.ref(`/workouts/${workout_id}/trainings`)
       .once('value', snap => listTrainings = snap.val())
         .then(() => {
           listTrainings = listTrainings ? listTrainings : [];
-            listTrainings.push(newTrainingKey);
-            dispatch(addSetFb(set, newTrainingKey)); 
-            database.ref(`/trainings/${newTrainingKey}`).update(finallyObject)
-              .then(() => {
-                dispatch(updateTraining(newTrainingKey));
-                database.ref(`/workouts/${workout_id}/trainings`).set(listTrainings).then(
+          listTrainings.push(newTrainingKey);
+          dispatch(addSetFb(set, newTrainingKey)); 
+          database.ref(`/trainings/${newTrainingKey}`).update(finallyObject)
+            .then(() => {
+              dispatch(updateTraining(newTrainingKey));
+              database.ref(`/workouts/${workout_id}/trainings`).set(listTrainings)
+                .then(
                   () => {
                     database.ref(`/trainings`).limitToLast(1).on('child_added', () => { 
                       dispatch(updateWorkout(workout_id));
+                      dispatch(setLoading(false));
                     });
                   }
                 )
-              })
-      });
+            })
+        });
     }
   }
 export function fetchTrainings() { 

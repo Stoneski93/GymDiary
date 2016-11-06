@@ -7,10 +7,12 @@ import {
   View,
   Text,
   TouchableOpacity,
-  ScrollView
+  ScrollView,
+  ActivityIndicator
 } from 'react-native'
 import _ from 'lodash';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Spinner from 'react-native-loading-spinner-overlay';
 
 import Calendar from 'react-native-calendar';
 import moment from 'moment';
@@ -20,6 +22,7 @@ import { fetchTrainings, fetchTraining } from '../actions/trainings';
 import { fetchSets } from '../actions/sets';
 import { fetchWorkouts } from '../actions/workouts';
 import { fetchExercises } from '../actions/exercises';
+import { setLoading } from '../actions/current';
 
 // App Globals
 import AppStyles from '../styles'
@@ -80,7 +83,10 @@ class MainScreen extends Component {
   render() {
     let dailyTrainings = this.filterWorkouts();
     return (
-      <View style={[AppStyles.container]}>
+      <View style={[AppStyles.container, styles.back]}>
+        <View style={[styles.centering]}>
+					<Spinner visible={this.props.loading} />
+				</View>
         <View style={[
           AppStyles.row,
           AppStyles.trainingBar]}>
@@ -118,7 +124,7 @@ class MainScreen extends Component {
             </View>
           : null }
           <View style={[AppStyles.container, styles.paddingBottom, styles.mainContainer]}>
-            {dailyTrainings ? 
+            {dailyTrainings && !this.props.loading ? 
               <ListTrainings dailyTrainings={dailyTrainings} /> 
                 : 
               null }
@@ -137,12 +143,13 @@ function mapStateToProps(state) {
     date: state.date,
     workouts: workouts,
     sets: state.sets,
-    trainings: state.trainings  
+    trainings: state.trainings,
+    loading: state.current.loading,
    };
 }
 
 /* Export Component ==================================================================== */
-export default connect(mapStateToProps, { changeDate, fetchWorkouts, fetchSets, fetchTraining, fetchExercises, changeDateWithFetch })(MainScreen);
+export default connect(mapStateToProps, { changeDate, fetchWorkouts, fetchSets, fetchTraining, fetchExercises, changeDateWithFetch, setLoading })(MainScreen);
 
 MainScreen.propTypes = {
  //TODO
@@ -157,6 +164,9 @@ const styles = StyleSheet.create({
     borderBottomWidth: 3,
     borderColor: AppConfig.primaryColor,
     
+  },
+  back: {
+    position: 'relative',
   },
   mainContainer: {
     backgroundColor: AppConfig.fifthColor,
@@ -190,6 +200,18 @@ const styles = StyleSheet.create({
   },
   paddingBottom: {
     paddingBottom: 55,
+  },
+  centering: {
+		position: 'absolute',
+		backgroundColor: 'black',
+		left: 0,
+		right: 0,
+		top: 0,
+		bottom: 0,
+		opacity: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+		zIndex: 55,
   },
 });
 
