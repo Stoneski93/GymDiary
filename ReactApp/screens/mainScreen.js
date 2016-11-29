@@ -159,7 +159,6 @@ MainScreen.propTypes = {
 const styles = StyleSheet.create({
   listTraining: {
     margin: 5,
-    // backgroundColor: AppConfig.forthColor,
     backgroundColor: AppConfig.fifthColor,
     borderBottomWidth: 3,
     borderColor: AppConfig.primaryColor,

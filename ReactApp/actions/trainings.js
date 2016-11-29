@@ -1,5 +1,5 @@
 import * as actions from './actionTypes';
-import database from '../db';
+import { database } from '../db';
 import { addSetFb, fetchSet } from './sets';
 import { updateWorkout } from './workouts';
 import { setLoading } from './current';

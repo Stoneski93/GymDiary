@@ -19,6 +19,7 @@ import AppConfig from '../config'
 import { Actions } from 'react-native-router-flux';
 import { setCurrentExercise } from '../actions/current';
 import { connect } from 'react-redux';
+import { storageImagesRef, storageRef } from '../db.js';
 
 // Components
 import Button from '../components/button';
@@ -32,15 +33,31 @@ class ExerciseDetails extends Component {
       splashScreenVisible: this.props.showSplashScreen || false,
     }
     this.backToExercisesList = this.backToExercisesList.bind(this);
+    this.getImage = this.getImage.bind(this);
   }
 
   backToExercisesList() {
     //this.props.setCurrentExercise(null);
     Actions.listExercisesScreen();
   }
+  getImage() {
+    let ref = storageRef.ref('images/deadlift.png');
+
+    ref.getDownloadURL()
+        .then((url) => {
+          console.log(url);
+        })
+        .catch(function(error) {
+          // Handle any errors
+          console.log(error);
+    });
+  }
+
   /* Render ==================================================================== */
   render() {
     let { title, screenshot, description } = this.props.exercises[this.props.currentExercise];
+    //let media = 'https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/images%2Fdeadlift.png?alt=media&token=5ffd72aa-a04a-4981-8fa6-996b78a994b1';
+    let temp = this.getImage();
 
     var imageSource = require(`../images/deadlift.png`);
     return (
@@ -51,7 +68,7 @@ class ExerciseDetails extends Component {
         <ScrollView>
           <View style={[styles.imageContainer]}>
             <Image style={[styles.mainImage]}
-              source={imageSource}
+              source={{ uri: screenshot }}
             />
           </View>
           <View style={[styles.imageContainer]}>

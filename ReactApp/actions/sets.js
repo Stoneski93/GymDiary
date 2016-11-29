@@ -1,5 +1,5 @@
 import * as actions from './actionTypes';
-import database from '../db';
+import { database } from '../db';
 import { fetchTraining, updateTraining } from './trainings';
 
 function fetchingSet() {

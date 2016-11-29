@@ -7,6 +7,7 @@
 'use strict';
 
 import { combineReducers } from 'redux'
+import auth from './auth';
 import user from './user';
 import workouts from './workouts';
 import trainings from './trainings';
@@ -23,6 +24,7 @@ import routes from './routes';
 
 // Combine all
 const appReducer = combineReducers({
+  auth,
   sideMenu,
   routes,
   user,

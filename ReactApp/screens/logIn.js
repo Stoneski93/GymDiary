@@ -3,7 +3,7 @@
 /* Setup ==================================================================== */
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { addUser, editUser } from '../actions/user';
+import { loginUser, authError } from '../actions/auth';
 import {
   StyleSheet,
   View,
@@ -27,14 +27,12 @@ import Button from '../components/button'
 import Alerts from '../components/alerts'
 
 /* Component ==================================================================== */
-class UserSettings extends Component {
+class LogIn extends Component {
 
   constructor(props) {
     super(props);
 
     // Initial state
-    const usr = this.props.user;
-
     this.state = {
       resultMsg: {
         status: '',
@@ -42,43 +40,38 @@ class UserSettings extends Component {
         error: '',
       },
       form_fields: FormValidation.struct({
-        height: FormValidation.Number,
-        weight: FormValidation.Number,
-        calories: FormValidation.Number,
+        login: FormValidation.String,
+        password: FormValidation.String,
       }),
-      empty_form_values: {
-        height: usr.height,
-        weight: usr.weight,
-        calories: usr.calories,
-      },
       form_values: {},
       options: {
         fields: {
-          height: { label: 'Wzrost', error: 'Podaj nazwisko' },
-          weight: { label: 'Waga', error: 'Podaj wage' },
-          calories: { label: 'Kalorie', error: 'Podaj kalorie' },
+          login: { label: 'E-mail', error: 'Podaj login' },
+          password: { label: 'Hasło', password: true, secureTextEntry: true, error: 'Podaj hasło' },
         },
         hasError: true,
       },
     }
-    this.saveSettings = this.saveSettings.bind(this);
-  }
-  componentWillReceiveProps(nextProps) {
-    this.setState({ 
-      empty_form_values : nextProps.user,
-     });
+    this.sendLogin = this.sendLogin.bind(this);
+    this.goSignIn = this.goSignIn.bind(this);
   }
 
-  saveSettings() {
-    // TODO check validation
+  sendLogin() {
+    this.props.authError(false);
     const formValues = this.refs.form.getValue();
-
-    Actions.training();
-    this.props.editUser(formValues);
+    if(formValues) {
+      const {login, password} = formValues;
+      this.props.loginUser(login, password);
+    }
   }
+
+  goSignIn() {
+    this.props.authError(false);
+    Actions.signIn();
+  }
+
   render() {
     var Form = FormValidation.form.Form;
-
     return (
       <ScrollView
         ref={'scrollView'}
@@ -98,7 +91,7 @@ class UserSettings extends Component {
               AppStyles.centered,
               AppStyles.row,
               AppStyles.paddingBottom]}>
-                {this.state.form_values.First_name == '' ? "Zaloz Konto" : "Zaktualizuj Profil"}
+                Zaloguj się
             </Text>
             <Form
               ref="form"
@@ -106,10 +99,28 @@ class UserSettings extends Component {
               value={this.state.empty_form_values}
               options={this.state.options} />
             <View style={[AppStyles.row]}>
+              {this.props.errorAuth ?
+                  <Text style={[
+                    AppStyles.error,
+                    AppStyles.centered,
+                    AppStyles.row,
+                    AppStyles.paddingBottom]}>
+                    Nieprawidłowy login lub hasło.
+                  </Text>
+                  : null}
+            </View>
+            <View style={[AppStyles.row]}>
               <View style={[AppStyles.flex1]}>
                 <Button
-                  text={'Dalej'}
-                  onPress={this.saveSettings} />
+                  text={'Zaloguj się'}
+                  onPress={this.sendLogin} />
+              </View>
+            </View>
+            <View style={[AppStyles.row]}>
+              <View style={[AppStyles.flex1]}>
+                <Button
+                  text={'Nie posiadam konta'}
+                  onPress={this.goSignIn} />
               </View>
             </View>
           </View>
@@ -130,8 +141,11 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state) {
-  return { user: state.user };
+  return {
+    user: state.user,
+    errorAuth: state.auth.errorAuth
+  };
 }
 
 /* Export Component ==================================================================== */
-export default connect(mapStateToProps, { addUser, editUser })(UserSettings);
+export default connect(mapStateToProps, { loginUser, authError })(LogIn);

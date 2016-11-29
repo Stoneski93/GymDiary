@@ -38,11 +38,16 @@ import SideMenu from 'react-native-side-menu'
 import Home from '../screens/home';
 import Main from '../screens/mainScreen.js';
 import UserSettings from '../screens/userSettings.js';
+import SignIn from '../screens/signIn.js';
+import LogIn from '../screens/logIn.js';
+import LogoutScreen from '../screens/logoutScreen.js';
 import ListExercises from '../screens/listExercises.js';
 import ListExercisesFav from '../screens/listExercisesFav.js';
 import ListExercisesScreen from '../screens/listExercisesScreen.js';
 import exerciseDetailsScreen from '../screens/exerciseDetails.js';
 import trainingScreen from '../screens/training.js';
+import recordsScreen from '../screens/recordsScreen.js';
+import RPMScreen from '../screens/RPMScreen.js';
 
 const RouterWithRedux = connect()(Router);
 import reducers from '../reducers';
@@ -60,11 +65,16 @@ class AppContainer extends Component {
           <Scene key="first" tabs={true}>
           <Scene key="home" component={Home} initial={true} hideNavBar={true} />
             <Scene key="training" component={Main} hideNavBar={false} title={'Trening'} />
-            <Scene key="userSettings" component={UserSettings} hideNavBar={false} title={'Ustawienia'} />       
-            <Scene key="listExercises" component={ListExercises} hideNavBar={false} title={'Wszystkie Ćwiczenia'} />       
+            <Scene key="logIn" component={LogIn} hideNavBar={true} title={'Zaloguj się'} />       
+            <Scene key="signIn" component={SignIn} hideNavBar={true} title={'Zarejestruj się'} />       
+            <Scene key="logoutScreen" component={LogoutScreen} hideNavBar={false} title={'Wyloguj się'} />
+            <Scene key="userSettings" component={UserSettings} hideNavBar={true} title={'Ustawienia'} />
+            <Scene key="listExercises" component={ListExercises} hideNavBar={false} title={'Wszystkie Ćwiczenia'} /> 
             <Scene key="listExercisesFav" component={ListExercisesFav} hideNavBar={false} title={'Ulubione Ćwiczenia'} />       
             <Scene key="listExercisesScreen" component={ListExercisesScreen} hideNavBar={false} title={'Lista Ćwiczeń'} />       
             <Scene key="exerciseDetailsScreen" component={exerciseDetailsScreen} hideNavBar={false} title={'Szczegóły Ćwiczenia'} onLeft={Actions.listExercises} />
+            <Scene key="recordsScreen" component={recordsScreen} hideNavBar={false} title={'Rekordy'} onLeft={Actions.Main} />         
+            <Scene key="RPMScreen" component={RPMScreen} hideNavBar={false} title={'RPM'} onLeft={Actions.Main} />         
             <Scene key="trainingScreen" component={trainingScreen} hideNavBar={false} title={'Ćwicz'} onLeft={Actions.listExercises} />         
           </Scene>
         </Scene>

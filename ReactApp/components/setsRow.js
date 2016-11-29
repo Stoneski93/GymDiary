@@ -12,7 +12,6 @@ import {
 } from 'react-native'
 
 import { Actions } from 'react-native-router-flux';
-
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 // App Globals
@@ -41,8 +40,15 @@ class SetsRow extends Component {
         <TouchableOpacity style={[styles.listRow]} onPress={this.goToTrainingScreen}
         activeOpacity={0.7}>
           <View style={[AppStyles.row, styles.trainingBar]}>
+             <TouchableOpacity
+              onPress={this.toggleCalendar}
+              activeOpacity={0.7} 
+              style={styles.navbarButton}
+              hitSlop={{top: 7, right: 7, bottom: 7, left: 7}}>
+              <Icon name='trash-o' size={25} color={'#ff2600'} />
+            </TouchableOpacity>
             <Text style={[styles.label]}>
-              Seria: {reps}  x {weight} kg
+              Seria: {reps} powt.  x {weight} kg
             </Text>
           </View>
         </TouchableOpacity>
@@ -59,6 +65,7 @@ class SetsRow extends Component {
 /* Styles ==================================================================== */
 const styles = StyleSheet.create({
   trainingBar: {
+    position: 'relative',
     padding: 10,
     height: 40,
     borderWidth: 1,
@@ -74,7 +81,12 @@ const styles = StyleSheet.create({
   label: {
     textAlign: 'right',
     color: AppConfig.thirdColor,
-  }
+  },
+  navbarButton: {
+    position: 'absolute',
+    left: 10,
+    top: 6,
+  },
 });
 
 /* Export Component ==================================================================== */

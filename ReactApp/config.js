@@ -42,4 +42,5 @@ exports.forthColor = "#1a1e21";
 exports.fifthColor = "#e9ebee";
 exports.textColor = "#000000";
 exports.borderColor = "#E7E7E7";
+exports.errorColor = "#a94442"
 // exports.textColor = "#555";

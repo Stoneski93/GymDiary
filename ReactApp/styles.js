@@ -216,6 +216,12 @@ module.exports = StyleSheet.create({
   textRightAligned: {
     textAlign: 'right',
   },
+  error: {
+    textAlign: 'center',
+    color: AppConfig.errorColor,
+    fontSize: 17
+  },
+
 
   /* Give me padding */
   paddingHorizontal: {

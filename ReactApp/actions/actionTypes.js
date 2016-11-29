@@ -29,4 +29,9 @@ export const SET_CURRENT_TRAINING = "SET_CURRENT_TRAINING";
 export const SET_CURRENT_WORKOUT = "SET_CURRENT_WORKOUT";
 export const SET_LOADING = "SET_LOADING";
 
+export const AUTH_PLAIN = "AUTH_PLAIN";
+export const AUTH_ERROR = "AUTH_ERROR";
+export const USER_LOGIN = "USER_LOGIN";
+export const USER_LOGOUT = "USER_LOGOUT";
+export const USER_SIGNIN = "USER_SIGNIN";
 

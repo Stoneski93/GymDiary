@@ -10,7 +10,9 @@ import {
   Image
 } from 'react-native'
 
+import { connect } from 'react-redux';
 import { Actions } from 'react-native-router-flux';
+import { logoutUser } from '../actions/auth';
 
 // App Globals
 import AppStyles from '../styles'
@@ -24,20 +26,25 @@ import ListExercisesScreen from '../screens/listExercisesScreen'
 import Home from '../screens/home'
 import MainScreen from '../screens/mainScreen'
 import UserSettings from '../screens/userSettings'
+import recordsScreen from '../screens/recordsScreen'
+import RPMScreen from '../screens/RPMScreen'
 
 
 /* Component ==================================================================== */
 class Menu extends Component {
   constructor() {
     super();
-
     // Initial state
     this.state = {
       menu: [
         {title: 'Start', action: Actions.home, icon: 'home' },
         {title: 'Trening', action: Actions.training, icon: 'clock-o' },
         {title: 'Lista Ćwiczeń', action: Actions.listExercisesScreen, props: {passProps: {noImages: true}}, icon: 'list-ul'},
+        {title: 'Statystyki', action: Actions.userSettings, icon: 'area-chart' },
+        {title: 'Rekordy', action: Actions.recordsScreen, icon: 'trophy' },
+        {title: 'RPM', action: Actions.RPMScreen, icon: 'tachometer' },
         {title: 'Ustawienia', action: Actions.userSettings, icon: 'cog' },
+        {title: 'Wyloguj', action: Actions.logoutScreen, icon: 'cog' },
       ],
     };
   }
@@ -69,14 +76,21 @@ class Menu extends Component {
             </View>
           </View>
           <View style={[styles.headerBoxSubtitle]}>
-            <Text style={[styles.mainSubtitleText]}>Jan Kowalski</Text>
-            <Text style={[styles.secondarySubtitleText]}>jan@kowalski.pl</Text>
+            <Text style={[styles.mainSubtitleText]}>Użytkownik:</Text>
+            <Text style={[styles.secondarySubtitleText]}>{this.props.user}</Text>
           </View>
         </View>
         <View style={[styles.menu]}>{menuItems}</View>
       </View>
     );
   }
+}
+
+function mapStateToProps(state) {
+  return {
+    user: state.auth.userLogin,
+
+  };
 }
 
 /* Styles ==================================================================== */
@@ -145,4 +159,5 @@ const styles = StyleSheet.create({
 });
 
 /* Export Component ==================================================================== */
-export default Menu
+
+export default connect(mapStateToProps, { logoutUser })(Menu);

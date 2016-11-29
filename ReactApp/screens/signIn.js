@@ -3,7 +3,7 @@
 /* Setup ==================================================================== */
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { addUser, editUser } from '../actions/user';
+import { createUser, authError } from '../actions/auth';
 import {
   StyleSheet,
   View,
@@ -18,7 +18,6 @@ import FormValidation from 'tcomb-form-native'
 // App Globals
 import AppStyles from '../styles'
 import AppUtil from '../util'
-import AppDB from '../db'
 
 import { Actions } from 'react-native-router-flux';
 
@@ -27,7 +26,7 @@ import Button from '../components/button'
 import Alerts from '../components/alerts'
 
 /* Component ==================================================================== */
-class UserSettings extends Component {
+class SignIn extends Component {
 
   constructor(props) {
     super(props);
@@ -42,40 +41,38 @@ class UserSettings extends Component {
         error: '',
       },
       form_fields: FormValidation.struct({
-        height: FormValidation.Number,
-        weight: FormValidation.Number,
-        calories: FormValidation.Number,
+        email: FormValidation.String,
+        password: FormValidation.String,
       }),
-      empty_form_values: {
-        height: usr.height,
-        weight: usr.weight,
-        calories: usr.calories,
-      },
       form_values: {},
       options: {
         fields: {
-          height: { label: 'Wzrost', error: 'Podaj nazwisko' },
-          weight: { label: 'Waga', error: 'Podaj wage' },
-          calories: { label: 'Kalorie', error: 'Podaj kalorie' },
+          email: { label: 'E-mail', error: 'Podaj email' },
+          password: { label: 'Hasło', password: true, secureTextEntry: true, error: 'Podaj hasło' },
         },
         hasError: true,
       },
     }
-    this.saveSettings = this.saveSettings.bind(this);
-  }
-  componentWillReceiveProps(nextProps) {
-    this.setState({ 
-      empty_form_values : nextProps.user,
-     });
+    this.registerUser = this.registerUser.bind(this);
+    this.goLogIn = this.goLogIn.bind(this);
   }
 
-  saveSettings() {
-    // TODO check validation
+  registerUser() {
+    this.props.authError(false);
     const formValues = this.refs.form.getValue();
 
-    Actions.training();
-    this.props.editUser(formValues);
+    if(formValues) {
+      const { email, password } = formValues;
+      this.props.createUser(email, password);
+    }
+
   }
+
+  goLogIn() {
+    this.props.authError(false);
+    Actions.logIn();
+  }
+
   render() {
     var Form = FormValidation.form.Form;
 
@@ -98,7 +95,7 @@ class UserSettings extends Component {
               AppStyles.centered,
               AppStyles.row,
               AppStyles.paddingBottom]}>
-                {this.state.form_values.First_name == '' ? "Zaloz Konto" : "Zaktualizuj Profil"}
+                Rejestracja
             </Text>
             <Form
               ref="form"
@@ -106,10 +103,28 @@ class UserSettings extends Component {
               value={this.state.empty_form_values}
               options={this.state.options} />
             <View style={[AppStyles.row]}>
+              {this.props.errorAuth ?
+                  <Text style={[
+                    AppStyles.error,
+                    AppStyles.centered,
+                    AppStyles.row,
+                    AppStyles.paddingBottom]}>
+                    Nieprawidłowy e-mail lub zbyt krótkie hasło.
+                  </Text>
+                  : null}
+            </View>
+            <View style={[AppStyles.row]}>
               <View style={[AppStyles.flex1]}>
                 <Button
-                  text={'Dalej'}
-                  onPress={this.saveSettings} />
+                  text={'Zarejestruj się'}
+                  onPress={this.registerUser} />
+              </View>
+            </View>
+            <View style={[AppStyles.row]}>
+              <View style={[AppStyles.flex1]}>
+                <Button
+                    text={'Powrót'}
+                    onPress={this.goLogIn} />
               </View>
             </View>
           </View>
@@ -130,8 +145,11 @@ const styles = StyleSheet.create({
 });
 
 function mapStateToProps(state) {
-  return { user: state.user };
+  return {
+    user: state.user,
+    errorAuth: state.auth.errorAuth,
+  };
 }
 
 /* Export Component ==================================================================== */
-export default connect(mapStateToProps, { addUser, editUser })(UserSettings);
+export default connect(mapStateToProps, { createUser, authError })(SignIn);

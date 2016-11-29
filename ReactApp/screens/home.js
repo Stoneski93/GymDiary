@@ -16,7 +16,7 @@ import { addExercises, fetchExercises } from '../actions/exercises';
 import { fetchSets } from '../actions/sets';
 import { fetchTrainings } from '../actions/trainings';
 import { fetchWorkouts } from '../actions/workouts';
-
+import { getAsyncUser } from '../actions/auth';
 // App Globals
 import AppStyles from '../styles'
 import AppConfig from '../config'
@@ -36,11 +36,12 @@ class Home extends Component {
 		this.goToNextScreen = this.goToNextScreen.bind(this);
 		this.props.fetchExercises();
 		this.props.fetchWorkouts(this.props.date);
+	  	this.props.getAsyncUser();
 	}
 
 	goToNextScreen() {
-		JSON.stringify(this.props.user) === JSON.stringify({}) ? 
-		Actions.userSettings() :	Actions.training();
+		(!this.props.user) ?
+		Actions.logIn() :	Actions.training();
 	}
 
 	/* Render ==================================================================== */
@@ -111,7 +112,7 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
   return { 
-		user: state.user,
+		user: state.auth.userLogin,
 		date: state.date,
 		workouts: state.workouts,
 		 };
@@ -119,4 +120,4 @@ function mapStateToProps(state) {
 
 
 /* Export Component ==================================================================== */
-export default connect(mapStateToProps,{ addExercises, fetchExercises, fetchSets, fetchWorkouts, fetchTrainings })(Home);
+export default connect(mapStateToProps,{ addExercises, fetchExercises, fetchSets, fetchWorkouts, fetchTrainings, getAsyncUser })(Home);
