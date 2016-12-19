@@ -50,6 +50,7 @@ class MainScreen extends Component {
     this.toggleCalendar = this.toggleCalendar.bind(this);
     this.changeDate = this.changeDate.bind(this);
     this.filterWorkouts = this.filterWorkouts.bind(this);
+    this.getCurrentWorkout = this.getCurrentWorkout.bind(this);
   }
 
   toggleCalendar() {
@@ -64,7 +65,7 @@ class MainScreen extends Component {
     if(this.props.workouts.filter(workout => workout.id === date).length > 0){
       this.props.changeDate(date);
     } else {
-      this.props.changeDateWithFetch(date);
+      this.props.changeDateWithFetch(date, this.props.uid);
     }
      
     
@@ -73,12 +74,18 @@ class MainScreen extends Component {
 
   filterWorkouts() {
     let allTrainings = this.props.workouts;
+
     let workout = allTrainings.filter(training => training.data === this.props.date);
-    
-    return workout.length ? workout[0].trainings : null;    
+
+    return workout.length ? workout[0] : null;
   }
 
+  getCurrentWorkout() {
+    let allTrainings = this.props.workouts;
 
+    let workout = allTrainings.filter(training => training.data === this.props.date);
+    //return workout[0].id;
+  }
   /* Render ==================================================================== */
   render() {
     let dailyTrainings = this.filterWorkouts();
@@ -125,7 +132,7 @@ class MainScreen extends Component {
           : null }
           <View style={[AppStyles.container, styles.paddingBottom, styles.mainContainer]}>
             {dailyTrainings && !this.props.loading ? 
-              <ListTrainings dailyTrainings={dailyTrainings} /> 
+              <ListTrainings dailyTrainings={dailyTrainings.trainings} dailyWorkout={dailyTrainings} />
                 : 
               null }
           </View>
@@ -141,6 +148,7 @@ function mapStateToProps(state) {
   const workouts = Object.keys(state.workouts).map(function (key) { return state.workouts[key]; });
   return { 
     date: state.date,
+    uid: state.auth.userId,
     workouts: workouts,
     sets: state.sets,
     trainings: state.trainings,

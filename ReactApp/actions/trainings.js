@@ -31,43 +31,49 @@ export function editTraining (data) {
   } 
 }
 
-export function deleteTraining (data) { 
+export function deleteTraining (id) {
   return {
     type: actions.DELETE_TRAINING,
-    payload: data,
+    payload: id,
   } 
 }
 
-export function addTrainingFb(workout_id, id_exe, set) {
+export function deleteTrainingSet (trainingId, setId) {
+    return {
+        type: actions.DELETE_TRAINING_SET,
+        trainingId: trainingId,
+        setId: setId
+    }
+}
+
+export function addTrainingFb(workout, id_exe, set, exist = false) {
   let listTrainings = [];
-  let newTrainingKey = database.ref().child('/trainings').push().key;
-  let finallyObject = {
-    id: newTrainingKey,
+  let newTrainingKey;
+  let training = {
+    id: exist,
     id_exe: id_exe,
     sets: [],
   }
+  let newWorkout = workout;
   
   return dispatch => {
-    dispatch(setLoading(true));
-    database.ref(`/workouts/${workout_id}/trainings`)
+    database.ref(`/workouts/${workout.id}/trainings`)
       .once('value', snap => listTrainings = snap.val())
         .then(() => {
           listTrainings = listTrainings ? listTrainings : [];
-          listTrainings.push(newTrainingKey);
-          dispatch(addSetFb(set, newTrainingKey)); 
-          database.ref(`/trainings/${newTrainingKey}`).update(finallyObject)
-            .then(() => {
-              dispatch(updateTraining(newTrainingKey));
-              database.ref(`/workouts/${workout_id}/trainings`).set(listTrainings)
-                .then(
-                  () => {
-                    database.ref(`/trainings`).limitToLast(1).on('child_added', () => { 
-                      dispatch(updateWorkout(workout_id));
-                      dispatch(setLoading(false));
+            if(!exist) {
+                newTrainingKey = database.ref().child('/trainings').push().key;
+                listTrainings.push(newTrainingKey);
+                training.id = newTrainingKey;
+                database.ref(`/trainings/${newTrainingKey}`).update(training);
+                database.ref(`/workouts/${workout.id}/trainings`).set(listTrainings)
+                    .then(() => {
+                        newWorkout.trainings = listTrainings;
+                        dispatch(addSetFb(newWorkout, training, set));
                     });
-                  }
-                )
-            })
+            } else {
+                dispatch(addSetFb(newWorkout, training, set));
+            }
         });
     }
   }

@@ -45,22 +45,23 @@ class ListTrainingRow extends Component {
          rowHasChanged: (row1, row2) => row1 !== row2,
        }),
     }
-  
+
     this.goToTrainingScreen = this.goToTrainingScreen.bind(this);
     this.renderSets = this.renderSets.bind(this);
+
   }
 
   componentDidMount() {
     let daily = this.props.dailySets.map(set => this.props.sets[set]);
-    this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(daily),
-    });
+      this.setState({
+        dataSource: this.state.dataSource.cloneWithRows(daily),
+      });
   }
   componentWillReceiveProps(nextProps) {
     let daily = nextProps.dailySets.map(set => nextProps.sets[set]);
-    this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(daily),
-    });
+      this.setState({
+        dataSource: this.state.dataSource.cloneWithRows(daily),
+      });
   }
 
   goToTrainingScreen() {
@@ -69,15 +70,18 @@ class ListTrainingRow extends Component {
   }
   renderSets(data) {
      return (
-      <SetsRow 
-        sets={data}
+      <SetsRow
+        set={data}
+        idTraining={this.props.idTraining}
+        idWorkout={this.props.idWorkout}
         onPress={this.goToTrainingScreen}
          />
     );
   }
 /* Render ==================================================================== */
   render() {
-    let { title, onPress } = this.props;
+    console.log('przerenderowalem');
+    let { idTraining, title, onPress } = this.props;
       return (
         <TouchableOpacity style={[styles.listRow]}
         activeOpacity={1}>
@@ -89,12 +93,12 @@ class ListTrainingRow extends Component {
             </View>
             <View>
               <ListView
-                initialListSize={3}
-                automaticallyAdjustContentInsets={false}
-                dataSource={this.state.dataSource}
-                renderRow={this.renderSets}
-                contentContainerStyle={AppStyles.paddingBottom} 
-                style={[styles.listContainer]}
+              initialListSize={3}
+              automaticallyAdjustContentInsets={false}
+              dataSource={this.state.dataSource}
+              renderRow={this.renderSets}
+              contentContainerStyle={AppStyles.paddingBottom}
+              style={[styles.listContainer]}
               />
             </View>
           </View>
@@ -139,3 +143,4 @@ function mapStateToProps(state) {
 
 /* Export Component ==================================================================== */
 export default connect(mapStateToProps)(ListTrainingRow);
+

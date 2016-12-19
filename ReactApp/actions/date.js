@@ -12,9 +12,9 @@ function editDate (data) {
   }
 }
 
-export function changeDateWithFetch (data) {
+export function changeDateWithFetch (data, uid) {
   return dispatch => {
-    dispatch(fetchWorkouts(data));
+    dispatch(fetchWorkouts(data, uid));
       return delay(1000).then(
         () => {
           dispatch(editDate(data));

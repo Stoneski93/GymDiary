@@ -2,11 +2,13 @@ import * as actions from './actionTypes';
 import { database, firebaseAuth } from '../db';
 import { Actions } from 'react-native-router-flux';
 import { AsyncStorage } from 'react-native';
+import { fetchWorkouts } from './workouts';
 
-function userLogin (email) {
+function userLogin (email, uid) {
     return {
         type: actions.USER_LOGIN,
         payload: email,
+        uid: uid
     }
 }
 
@@ -43,10 +45,11 @@ export function createUser (email, password) {
               email: response.email,
               uid: response.uid,
           }
-       //AsyncStorage.setItem('user_data', JSON.stringify(user_data));
-          Actions.logIn();
-        dispatch(saveUser(user));
+          dispatch(saveUser(user));
       })
+        .then(() => {
+            dispatch(loginUser(email, password));
+        })
       .catch((error) => {
           dispatch(authError(true));
       });
@@ -67,13 +70,27 @@ export function logoutUser () {
   }
 }
 
+export function resetPassword (email) {
+    return  dispatch => {
+        firebaseAuth.sendPasswordResetEmail(email)
+            .then((response) => {
+                Actions.logIn();
+                dispatch(authPlain());
+            })
+            .catch((error) => {
+                dispatch(authError(true));
+            });
+    }
+}
+
 export function loginUser (email, password) {
   return dispatch => {
     firebaseAuth.signInWithEmailAndPassword(email, password)
       .then((response) => {
+          let uid = response.uid;
+          AsyncStorage.setItem('user_data', JSON.stringify({email, password, uid}));
+          dispatch(userLogin(email, response.uid));
           Actions.training();
-          AsyncStorage.setItem('user_data', JSON.stringify({email, password}));
-          dispatch(userLogin(email));
       })
       .catch((error) => {
           dispatch(authError(true));
@@ -96,12 +113,14 @@ export function saveUser (user) {
   }
 }
 
-export function getAsyncUser () {
+export function getAsyncUser (date) {
     return dispatch => {
         AsyncStorage.getItem('user_data').then((user_data_json) => {
             let user_data = JSON.parse(user_data_json);
             dispatch(loginUser(user_data.email, user_data.password));
-        });
+            dispatch(fetchWorkouts(date, user_data.uid));
+        })
+            .then(() => Actions.training());
     }
 }
 

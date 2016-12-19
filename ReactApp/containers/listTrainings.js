@@ -14,6 +14,7 @@ import {
   ListView,
   ScrollView,
   RefreshControl,
+    Text
 } from 'react-native';
 
 import { Actions } from 'react-native-router-flux';
@@ -39,13 +40,10 @@ class ListTrainings extends Component {
          rowHasChanged: (row1, row2) => row1 !== row2,
        }),
     }
-    // console.log(this.props);
      this.renderRow = this.renderRow.bind(this);
-
   }
   componentDidMount() {
    let daily = this.props.dailyTrainings.map(trening => this.props.trainings[trening]);
-  console.log(daily);
 
     this.setState({
       dataSource: this.state.dataSource.cloneWithRows(daily),
@@ -65,6 +63,8 @@ renderRow(data){
       <ListTrainingRow
         title={this.props.exercises[id_exe].title}
         dailySets={sets}
+        idTraining={id}
+        idWorkout={this.props.dailyWorkout.id}
       />
     );
   }

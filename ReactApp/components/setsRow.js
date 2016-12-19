@@ -14,6 +14,9 @@ import {
 import { Actions } from 'react-native-router-flux';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+import { deleteSetFb } from '../actions/sets';
+import { connect } from 'react-redux';
+
 // App Globals
 import AppStyles from '../styles'
 import AppConfig from '../config'
@@ -24,28 +27,34 @@ import AppConfig from '../config'
 class SetsRow extends Component {
   constructor(props) {
     super(props);  
+
     this.goToTrainingScreen = this.goToTrainingScreen.bind(this);
+    this.removeSet = this.removeSet.bind(this);
 
   }
 
   goToTrainingScreen() {
     //this.props.setCurrentTraining(this.props.id);
-    Actions.trainingScreen();
+    //Actions.trainingScreen();
+  }
+
+  removeSet() {
+    this.props.deleteSetFb(this.props.set, this.props.idTraining, this.props.idWorkout);
   }
 
 /* Render ==================================================================== */
   render() {
-    let { reps, weight } = this.props.sets;
+    let { reps, weight } = this.props.set;
       return (
         <TouchableOpacity style={[styles.listRow]} onPress={this.goToTrainingScreen}
         activeOpacity={0.7}>
           <View style={[AppStyles.row, styles.trainingBar]}>
-             <TouchableOpacity
-              onPress={this.toggleCalendar}
-              activeOpacity={0.7} 
+            <TouchableOpacity
+              onPress={this.removeSet}
+              activeOpacity={0.7}
               style={styles.navbarButton}
               hitSlop={{top: 7, right: 7, bottom: 7, left: 7}}>
-              <Icon name='trash-o' size={25} color={'#ff2600'} />
+            <Icon name='trash-o' size={25} color={'#ff2600'} />
             </TouchableOpacity>
             <Text style={[styles.label]}>
               Seria: {reps} powt.  x {weight} kg
@@ -90,4 +99,5 @@ const styles = StyleSheet.create({
 });
 
 /* Export Component ==================================================================== */
-export default SetsRow
+export default connect(null, { deleteSetFb })(SetsRow);
+

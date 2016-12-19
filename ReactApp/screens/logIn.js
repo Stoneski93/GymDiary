@@ -54,6 +54,7 @@ class LogIn extends Component {
     }
     this.sendLogin = this.sendLogin.bind(this);
     this.goSignIn = this.goSignIn.bind(this);
+    this.goRemindPassword = this.goRemindPassword.bind(this);
   }
 
   sendLogin() {
@@ -68,6 +69,11 @@ class LogIn extends Component {
   goSignIn() {
     this.props.authError(false);
     Actions.signIn();
+  }
+
+  goRemindPassword() {
+    this.props.authError(false);
+    Actions.remindPassword();
   }
 
   render() {
@@ -116,11 +122,18 @@ class LogIn extends Component {
                   onPress={this.sendLogin} />
               </View>
             </View>
-            <View style={[AppStyles.row]}>
+            <View style={[AppStyles.row, AppStyles.paddingTopHig]}>
               <View style={[AppStyles.flex1]}>
                 <Button
                   text={'Nie posiadam konta'}
                   onPress={this.goSignIn} />
+              </View>
+            </View>
+            <View style={[AppStyles.row]}>
+              <View style={[AppStyles.flex1]}>
+                <Button
+                    text={'Zapomniałem hasła'}
+                    onPress={this.goRemindPassword} />
               </View>
             </View>
           </View>

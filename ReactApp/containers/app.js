@@ -40,6 +40,7 @@ import Main from '../screens/mainScreen.js';
 import UserSettings from '../screens/userSettings.js';
 import SignIn from '../screens/signIn.js';
 import LogIn from '../screens/logIn.js';
+import RemindPassword from '../screens/remindPassword.js';
 import LogoutScreen from '../screens/logoutScreen.js';
 import ListExercises from '../screens/listExercises.js';
 import ListExercisesFav from '../screens/listExercisesFav.js';
@@ -67,6 +68,7 @@ class AppContainer extends Component {
             <Scene key="training" component={Main} hideNavBar={false} title={'Trening'} />
             <Scene key="logIn" component={LogIn} hideNavBar={true} title={'Zaloguj się'} />       
             <Scene key="signIn" component={SignIn} hideNavBar={true} title={'Zarejestruj się'} />       
+            <Scene key="remindPassword" component={RemindPassword} hideNavBar={true} title={'Przypomnij hasło'} />
             <Scene key="logoutScreen" component={LogoutScreen} hideNavBar={false} title={'Wyloguj się'} />
             <Scene key="userSettings" component={UserSettings} hideNavBar={true} title={'Ustawienia'} />
             <Scene key="listExercises" component={ListExercises} hideNavBar={false} title={'Wszystkie Ćwiczenia'} /> 

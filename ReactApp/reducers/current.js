@@ -10,7 +10,6 @@ var initialState = {
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case actions.SET_CURRENT_EXERCISE:
-    console.log(action.payload);
       return Object.assign({}, state, {
         currentExercise: action.payload
       });

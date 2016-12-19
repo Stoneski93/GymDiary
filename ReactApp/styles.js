@@ -239,6 +239,9 @@ module.exports = StyleSheet.create({
   paddingTop: {
     paddingTop: 20,
   },
+  paddingTopHig: {
+    paddingTop: 20,
+  },
   paddingBottom: {
     paddingBottom: 20,
   },

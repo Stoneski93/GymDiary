@@ -35,13 +35,12 @@ class Home extends Component {
 		super(props);
 		this.goToNextScreen = this.goToNextScreen.bind(this);
 		this.props.fetchExercises();
-		this.props.fetchWorkouts(this.props.date);
-	  	this.props.getAsyncUser();
+	  	this.props.getAsyncUser(this.props.date);
 	}
 
 	goToNextScreen() {
 		(!this.props.user) ?
-		Actions.logIn() :	Actions.training();
+			Actions.logIn() :	Actions.training();
 	}
 
 	/* Render ==================================================================== */
@@ -113,6 +112,7 @@ const styles = StyleSheet.create({
 function mapStateToProps(state) {
   return { 
 		user: state.auth.userLogin,
+	  	uid: state.auth.userId,
 		date: state.date,
 		workouts: state.workouts,
 		 };

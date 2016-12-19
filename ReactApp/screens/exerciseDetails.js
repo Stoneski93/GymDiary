@@ -45,11 +45,9 @@ class ExerciseDetails extends Component {
 
     ref.getDownloadURL()
         .then((url) => {
-          console.log(url);
         })
         .catch(function(error) {
           // Handle any errors
-          console.log(error);
     });
   }
 

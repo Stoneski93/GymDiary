@@ -75,17 +75,17 @@ addTraining() {
       workout.trainings.map(training => {
         if(this.props.trainings[training].id_exe === this.props.currentExercise){
           isTraining = true;
-          this.props.addSetFb(set, this.props.trainings[training].id);
-        } 
+          this.props.addTrainingFb(workout, this.props.trainings[training].id_exe, set, this.props.trainings[training].id);
+        }
       });
       if(!isTraining) {
-        this.props.addTrainingFb(workout.id, this.props.currentExercise, set);
+        this.props.addTrainingFb(workout, this.props.currentExercise, set);
       }
     }
   });
 
 if(!isWorkout) {
-  this.props.addWorkoutFb(this.props.date, this.props.currentExercise, set );
+  this.props.addWorkoutFb(this.props.date, this.props.uid, this.props.currentExercise, set );
 }
 Actions.training();
 }
@@ -149,6 +149,7 @@ function mapStateToProps(state) {
   const workouts = Object.keys(state.workouts).map(function (key) { return state.workouts[key]; });
   return { 
     date: state.date,
+    uid: state.auth.userId,
     workouts: workouts,
     trainings: state.trainings,
     sets: state.sets,
