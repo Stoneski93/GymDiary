@@ -4,7 +4,7 @@ export default function reducer(state = {}, action = {}) {
   switch (action.type) {
     case actions.ADD_WORKOUT:
        return {...state, [action.payload.id]: {...action.payload}};
-    case actions.ADD_WORKOUT_TRAINING_SET:
+    case actions.ADD_WORKOUT_TRAINING:
       return {...state, [action.workout.id]: {...action.workout}};
     case actions.DELETE_WORKOUT_TRAINING:
       let copyState = Object.assign({}, state[action.workoutId]);

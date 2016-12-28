@@ -13,20 +13,18 @@ import {
 import _ from 'lodash';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Spinner from 'react-native-loading-spinner-overlay';
-
 import Calendar from 'react-native-calendar';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import { changeDateWithFetch, changeDate } from '../actions/date';
-import { fetchTrainings, fetchTraining } from '../actions/trainings';
-import { fetchSets } from '../actions/sets';
-import { fetchWorkouts } from '../actions/workouts';
-import { fetchExercises } from '../actions/exercises';
+//import { fetchSets } from '../actions/sets';
+
 import { setLoading } from '../actions/current';
 
 // App Globals
 import AppStyles from '../styles'
 import AppConfig from '../config'
+import ScrollableTabView, { ScrollableTabBar, } from 'react-native-scrollable-tab-view';
 
 import { Actions } from 'react-native-router-flux';
 
@@ -47,10 +45,10 @@ class MainScreen extends Component {
       selectedDate: this.props.currentDate,
       visibleCalendar: false,
     }
+
     this.toggleCalendar = this.toggleCalendar.bind(this);
     this.changeDate = this.changeDate.bind(this);
     this.filterWorkouts = this.filterWorkouts.bind(this);
-    this.getCurrentWorkout = this.getCurrentWorkout.bind(this);
   }
 
   toggleCalendar() {
@@ -62,30 +60,21 @@ class MainScreen extends Component {
   }
   
   changeDate(date) {
-    if(this.props.workouts.filter(workout => workout.id === date).length > 0){
+    if(this.props.workouts.filter(workout => workout.id === date).length > 0) {
       this.props.changeDate(date);
     } else {
       this.props.changeDateWithFetch(date, this.props.uid);
     }
-     
-    
     this.setState({visibleCalendar: false, selectedDate: date});
   }
 
   filterWorkouts() {
     let allTrainings = this.props.workouts;
-
     let workout = allTrainings.filter(training => training.data === this.props.date);
 
     return workout.length ? workout[0] : null;
   }
 
-  getCurrentWorkout() {
-    let allTrainings = this.props.workouts;
-
-    let workout = allTrainings.filter(training => training.data === this.props.date);
-    //return workout[0].id;
-  }
   /* Render ==================================================================== */
   render() {
     let dailyTrainings = this.filterWorkouts();
@@ -120,6 +109,7 @@ class MainScreen extends Component {
                     nextButtonText={'Następny'}
                     onDateSelect={(date => this.changeDate(date.split('T')[0]))}
                 />
+
                 <View>
                   <TouchableOpacity
                     onPress={this.toggleCalendar}
@@ -130,11 +120,18 @@ class MainScreen extends Component {
                 </View>
             </View>
           : null }
-          <View style={[AppStyles.container, styles.paddingBottom, styles.mainContainer]}>
-            {dailyTrainings && !this.props.loading ? 
-              <ListTrainings dailyTrainings={dailyTrainings.trainings} dailyWorkout={dailyTrainings} />
-                : 
-              null }
+          <View style={[AppStyles.container]}>
+            <ScrollableTabView renderTabBar={() => <ScrollableTabBar />} >
+              <View tabLabel="Dziennik" style={[AppStyles.container, styles.paddingBottom, styles.mainContainer]}>
+                {dailyTrainings && !this.props.loading ? 
+                <ListTrainings trainings={this.props.trainings} dailyTrainings={dailyTrainings.trainings} dailyWorkout={dailyTrainings} />
+                  : 
+                null }
+              </View>
+              <View tabLabel="Timer">
+                
+              </View>
+            </ScrollableTabView>
           </View>
           <View style={[styles.bulbButtonContainer]}>
             <Button type='bulb' text="+"  onPress={Actions.listExercisesScreen} />
@@ -157,7 +154,7 @@ function mapStateToProps(state) {
 }
 
 /* Export Component ==================================================================== */
-export default connect(mapStateToProps, { changeDate, fetchWorkouts, fetchSets, fetchTraining, fetchExercises, changeDateWithFetch, setLoading })(MainScreen);
+export default connect(mapStateToProps, { changeDateWithFetch, changeDate })(MainScreen);
 
 MainScreen.propTypes = {
  //TODO
@@ -221,4 +218,3 @@ const styles = StyleSheet.create({
 		zIndex: 55,
   },
 });
-

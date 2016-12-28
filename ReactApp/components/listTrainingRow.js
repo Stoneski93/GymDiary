@@ -58,6 +58,8 @@ class ListTrainingRow extends Component {
       });
   }
   componentWillReceiveProps(nextProps) {
+    //TODO
+    //mimo iz trening dostaje sety, sety nie aktualizuja sie, zwraca stara ilosc
     let daily = nextProps.dailySets.map(set => nextProps.sets[set]);
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(daily),
@@ -75,12 +77,11 @@ class ListTrainingRow extends Component {
         idTraining={this.props.idTraining}
         idWorkout={this.props.idWorkout}
         onPress={this.goToTrainingScreen}
-         />
+      />
     );
   }
 /* Render ==================================================================== */
   render() {
-    console.log('przerenderowalem');
     let { idTraining, title, onPress } = this.props;
       return (
         <TouchableOpacity style={[styles.listRow]}
@@ -135,9 +136,10 @@ const styles = StyleSheet.create({
   },
 });
 
-function mapStateToProps(state) {  
+function mapStateToProps(state) {
   return {
-     sets: state.sets,
+    trainings: state.trainings,
+    sets: state.sets,
   };
 }
 

@@ -33,7 +33,6 @@ import ListTrainingRow from '../components/listTrainingRow';
 class ListTrainings extends Component {
   constructor(props) {
     super(props);
-
     // Initial state
     this.state = {
        dataSource: new ListView.DataSource({
@@ -51,7 +50,6 @@ class ListTrainings extends Component {
   }
   componentWillReceiveProps(nextProps) {
     let daily = nextProps.dailyTrainings.map(trening => nextProps.trainings[trening]);
-    
     this.setState({
       dataSource: this.state.dataSource.cloneWithRows(daily),
     });
@@ -63,6 +61,7 @@ renderRow(data){
       <ListTrainingRow
         title={this.props.exercises[id_exe].title}
         dailySets={sets}
+        //sets={this.props.sets}
         idTraining={id}
         idWorkout={this.props.dailyWorkout.id}
       />
@@ -104,7 +103,6 @@ function mapStateToProps(state) {
   //const trainings = Object.keys(state.trainings).map(function (key) { return state.trainings[key]; });
   return {
      exercises: state.exercises,
-     trainings: state.trainings,
   };
 }
 

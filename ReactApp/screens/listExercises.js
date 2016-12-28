@@ -13,7 +13,10 @@ import {
   View,
   ListView,
   RefreshControl,
+  TextInput
 } from 'react-native'
+
+import FormSearch from 'tcomb-form-native'
 
 import { connect } from 'react-redux';
 import { exerciseToogleFavourite } from '../actions/exercises';
@@ -30,15 +33,15 @@ import ListRow from '../components/listExercisesRow';
 class ListExercises extends Component {
   constructor(props) {
     super(props);
-
-    // Initial state
     this.state = {
        dataSource: new ListView.DataSource({
          rowHasChanged: (row1, row2) => row1 !== row2,
        }),
+       searchText: '',
     }
-
+    
     this.renderRow = this.renderRow.bind(this);
+    this.setSearchText = this.setSearchText.bind(this);
     this.toogleFavourite = this.toogleFavourite.bind(this);
   }
 
@@ -54,12 +57,25 @@ class ListExercises extends Component {
     });
   }
 
-renderRow(data){
-    let { title, image, favourite, onPress } = data;
+  renderRow(data){
+    let { title, image, onPress } = data;
 
     return (
       <ListRow {...data} onStarPress={this.toogleFavourite} />
     );
+  }
+
+  setSearchText(text) {
+    const searchText = text.toLowerCase();
+    const filteredExercises = this.props.exercises
+      .filter((exercise) => {
+        var searched = exercise.title.toLowerCase();
+        return searched.search(searchText) !== -1;
+      });
+    this.setState({
+        searchText,
+        dataSource: this.state.dataSource.cloneWithRows(filteredExercises)
+    });
   }
 
 toogleFavourite(data) {
@@ -67,8 +83,17 @@ toogleFavourite(data) {
 }
   /* Render ==================================================================== */
   render() {
+    
     return (
       <View style={[AppStyles.container]}>
+        <View>
+          <TextInput
+            placeholder="Wyszukaj..."
+            style={styles.searchInput}
+            value={this.state.searchText}
+            onChangeText={this.setSearchText}
+            />
+        </View>
         <ListView
           initialListSize={3}
           automaticallyAdjustContentInsets={false}
@@ -87,7 +112,10 @@ ListExercises.propTypes = {
 
 /* Styles ==================================================================== */
 const styles = StyleSheet.create({
-
+  searchInput: {
+    paddingLeft: 20,
+    paddingRight: 20
+  }
 });
 
 function mapStateToProps(state) {

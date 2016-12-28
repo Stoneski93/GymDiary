@@ -98,7 +98,7 @@ countRPM() {
                   text={'Oblicz'}
                   onPress={this.countRPM} />
               </View>
-            </View>
+          </View>
         </View>
         <TouchableOpacity style={[
           AppStyles.row,
@@ -189,3 +189,5 @@ const styles = StyleSheet.create({
 
 /* Export Component =================================================== */
 export default connect(mapStateToProps, { addTraining, addSetFb, addSet, addTrainingFb, fetchSets, addWorkoutFb })(RPMScreen);
+
+// 

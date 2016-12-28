@@ -6,7 +6,8 @@ export default function reducer(state = {}, action = {}) {
   switch (action.type) {
     case actions.ADD_TRAINING:
       return {...state, [action.payload.id]: {...action.payload}};
-    case actions.ADD_WORKOUT_TRAINING_SET:
+    case actions.ADD_WORKOUT_TRAINING:
+      console.log(action.training);
       return {...state, [action.training.id]: {...action.training}};
     case actions.ADD_TRAININGS:
       return action.payload;

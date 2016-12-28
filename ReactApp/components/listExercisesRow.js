@@ -56,7 +56,11 @@ goToDetails() {
       return (
         <TouchableOpacity style={[styles.listRow]} onPress={this.goToTraining} activeOpacity={0.7}>
           <View style={styles.listRowInner}>
-            <Text style={[AppStyles.baseText, styles.listRow_text]}>{title.toUpperCase()}</Text>
+            <View style={styles.descWrapper}>
+              <Text
+              ellipsizeMode='tail' 
+              style={[AppStyles.baseText, styles.listRow_text]}>{title.toUpperCase()}</Text>
+            </View>
             <TouchableOpacity activeOpacity={0.7} 
               style={styles.infoButton}
               onPress={this.goToDetails}
@@ -118,8 +122,6 @@ const styles = StyleSheet.create({
   listRowImage_text: {
     color: "#FFF",
   },
-
-  // With Image
   imageBackground: {
     backgroundColor: "#333",
   },
@@ -131,6 +133,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 1,
   },
+  descWrapper: {
+    paddingRight: 100,
+  }
 });
 
 /* Export Component ==================================================================== */

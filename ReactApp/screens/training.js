@@ -75,11 +75,11 @@ addTraining() {
       workout.trainings.map(training => {
         if(this.props.trainings[training].id_exe === this.props.currentExercise){
           isTraining = true;
-          this.props.addTrainingFb(workout, this.props.trainings[training].id_exe, set, this.props.trainings[training].id);
+          this.props.addTrainingFb(workout, this.props.trainings[training].id_exe, set, this.props.uid, this.props.trainings[training].id);
         }
       });
       if(!isTraining) {
-        this.props.addTrainingFb(workout, this.props.currentExercise, set);
+        this.props.addTrainingFb(workout, this.props.currentExercise, set, this.props.uid);
       }
     }
   });

@@ -11,7 +11,7 @@ export function getTraining () {
 }
 
 
-function addTraining (data) { 
+export function addTraining (data) {
   return {
     type: actions.ADD_TRAINING,
     payload: data,
@@ -46,7 +46,7 @@ export function deleteTrainingSet (trainingId, setId) {
     }
 }
 
-export function addTrainingFb(workout, id_exe, set, exist = false) {
+export function addTrainingFb(workout, id_exe, set, uid, exist = false) {
   let listTrainings = [];
   let newTrainingKey;
   let training = {
@@ -69,10 +69,10 @@ export function addTrainingFb(workout, id_exe, set, exist = false) {
                 database.ref(`/workouts/${workout.id}/trainings`).set(listTrainings)
                     .then(() => {
                         newWorkout.trainings = listTrainings;
-                        dispatch(addSetFb(newWorkout, training, set));
+                        dispatch(addSetFb(newWorkout, training, set, uid));
                     });
             } else {
-                dispatch(addSetFb(newWorkout, training, set));
+                dispatch(addSetFb(newWorkout, training, set, uid));
             }
         });
     }

@@ -28,16 +28,9 @@ class SetsRow extends Component {
   constructor(props) {
     super(props);  
 
-    this.goToTrainingScreen = this.goToTrainingScreen.bind(this);
     this.removeSet = this.removeSet.bind(this);
 
   }
-
-  goToTrainingScreen() {
-    //this.props.setCurrentTraining(this.props.id);
-    //Actions.trainingScreen();
-  }
-
   removeSet() {
     this.props.deleteSetFb(this.props.set, this.props.idTraining, this.props.idWorkout);
   }
@@ -98,6 +91,13 @@ const styles = StyleSheet.create({
   },
 });
 
+function mapStateToProps(state) {
+  return {
+    workouts: state.workouts,
+    trainings: state.trainings,
+  };
+}
+
 /* Export Component ==================================================================== */
-export default connect(null, { deleteSetFb })(SetsRow);
+export default connect(mapStateToProps, { deleteSetFb })(SetsRow);
 

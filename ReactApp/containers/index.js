@@ -6,6 +6,8 @@ import { Schema, arrayOf, normalize } from 'normalizr'
 import logger from 'redux-logger'
 import thunk from 'redux-thunk'
 import devTools from 'remote-redux-devtools';
+// import {batchActions, enableBatching} from 'redux-batched-actions';
+import { batchedSubscribe } from 'redux-batched-subscribe';
 
 import App from './app'
 
@@ -26,6 +28,9 @@ if (__DEV__) {
 const enhancer = compose(
     applyMiddleware(thunk),
     global.reduxNativeDevTools ? global.reduxNativeDevTools(/*options*/) : nope => nope,
+    // batchedSubscribe((notify) => {
+    //   notify();
+    // }),
   );
 
 const store = createStore(rootReducer, enhancer);

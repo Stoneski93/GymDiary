@@ -1,123 +1,260 @@
-{
- "exercises" : [
+[
     { 
       "id": 0,
-      "title":"Przysiad",
-      "screenshot":"deadlift.png",
-      "description": "Martwy ciąg wykonuje się podnosząc sztangę z ziemi do momentu, w którym plecy i nogi ćwiczącego są całkowicie wyprostowane",
-      "favourite": false
+      "title":"Wyciskanie żołnierskie sprzed głowy",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F1.png?alt=media&token=f0dc580c-6da8-4be0-979d-4a1f81e2ff48",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
     },
-    {
-      "id": 1,
-      "title":"Wykroki",
-      "screenshot":"./ReactApp/images/deadlift.png",
-      "description": 
-      "Wykroki ciąg wykonuje się podnosząc sztangę z ziemi do momentu, w którym plecy i nogi ćwiczącego są całkowicie wyprostowane",
-      "favourite": false
-    },
-    {
-      "id": 2,
-      "title":"Wyciskanie Żołnierskie",
-      "screenshot":"./ReactApp/images/deadlift.png",
-      "description": 
-      "Wyciskanie ŻołnierskieWyciskanie ŻołnierskieWyciskanie ŻołnierskieWyciskanie ŻołnierskieWyciskanie ŻołnierskieWyciskanie ŻołnierskieWyciskanie ŻołnierskieWyciskanie ŻołnierskieWyciskanie ŻołnierskieWyciskanie ŻołnierskieWyciskanie Żołnierskie",
-      "favourite": true
-    }
-  ],
- "trainings" : [
     { 
       "id": 1,
-      "id_exe": 0,
-      "sets": [1,2,3]
+      "title": "Wyciskanie sztangielek",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F2.png?alt=media&token=9330940c-11ec-4a02-b493-9c7e2b86842c",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
     },
     { 
       "id": 2,
-      "id_exe": 1,
-      "sets": [4,5]
+      "title": "Unoszenie sztangielek bokiem w górę",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F2.png?alt=media&token=9330940c-11ec-4a02-b493-9c7e2b86842c",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
     },
     { 
       "id": 3,
-      "id_exe": 2,
-      "sets": [6]
+      "title": "Podciąganie sztangi wzdłuż tułowia",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F4.png?alt=media&token=5bb50f25-3754-4f08-8a99-8134e8862472",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
     },
     { 
       "id": 4,
-      "id_exe": 2,
-      "sets": [7]
+      "title": "Unoszenie sztangielek w opadzie tułowia",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F5.png?alt=media&token=0563cd3d-212f-4b9a-804d-17b7c3bb42d0",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
     },
     { 
       "id": 5,
-      "id_exe": 2,
-      "sets": [8]
+      "title": "Wyciskanie sztangi w leżeniu poziomo",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F6.png?alt=media&token=ead54c3e-d555-47d3-8de8-1eb845edf8de",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
     },
     { 
       "id": 6,
-      "id_exe": 2,
-      "sets": [9]
-    }
-  ],
-  "sets" : [
-    { 
-      "id": 1,
-      "weight": 1000,
-      "reps": 10
-    },
-    { 
-      "id": 2,
-      "weight": 1000,
-      "reps": 10
-    },
-    { 
-      "id": 3,
-      "weight": 1000,
-      "reps": 10
-    },
-    { 
-      "id": 4,
-      "weight": 1000,
-      "reps": 10
-    },
-    { 
-      "id": 5,
-      "weight": 1000,
-      "reps": 10
-    },
-    { 
-      "id": 6,
-      "weight": 1000,
-      "reps": 10
+      "title": "Wyciskanie sztangielek w leżeniu poziomo",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F7.png?alt=media&token=a227da17-5dd0-4817-902b-20ab5516a5e7",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
     },
     { 
       "id": 7,
-      "weight": 1000,
-      "reps": 10
+      "title": "Wyciskanie sztangi w leżeniu skos górny",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F8.png?alt=media&token=3ff60bbc-311b-4d4c-90be-20ea1f1dbe22",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
     },
     { 
       "id": 8,
-      "weight": 1000,
-      "reps": 10
+      "title": "Wyciskanie sztangielek w leżeniu skos górny",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F9.png?alt=media&token=3540488f-75b4-47ae-ae1f-6a76f80c7498",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
     },
     { 
       "id": 9,
-      "weight": 1000,
-      "reps": 10
-    }
-  ],
-  "workouts" : [
-    { 
-      "id": 1,
-      "trainings": [1,2,3],
-      "data": "2016-10-01"
+      "title": "Wyciskanie sztangi w leżeniu skos dolny",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F10.png?alt=media&token=6e8e8cff-15dd-4457-86a7-bbafb077473c",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
     },
     { 
-      "id": 2,
-      "trainings": [4,5],
-      "data": "2016-10-02"
+      "id": 10,
+      "title": "Wyciskanie sztangielek w leżeniu skos dolny",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F11.png?alt=media&token=f19a80c7-906c-4bfc-89d3-25bcc7e481b1",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
     },
     { 
-      "id": 3,
-      "trainings": [6],
-      "data": "2016-10-03"
+      "id": 11,
+      "title": "Rozpiętki",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F12.png?alt=media&token=60098f48-1b4a-4a46-b43b-2d6e4b449c61",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    { 
+      "id": 12,
+      "title": "Podciąganie na drążku nachwytem",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F13.png?alt=media&token=e054fcac-d919-44cc-bd1a-02665378e674",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    { 
+      "id": 13,
+      "title": "Podciąganie na drążku podchwytem",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F14.png?alt=media&token=1b39474b-ef9d-43dd-b723-901cf4fc07ae",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    { 
+      "id": 14,
+      "title": "Wiosłowanie w opadzie sztanga",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F15.png?alt=media&token=96b3573e-32b8-4c9c-90f4-6a83e400b6dd",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    { 
+      "id": 15,
+      "title": "Wiosłowanie w opadzie sztangielki",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F16.png?alt=media&token=7115d67f-2c3d-4eca-9ee8-e9b2a05ab98a",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    { 
+      "id": 16,
+      "title": "Przyciąganie linki wyciągu górnego",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F17.png?alt=media&token=eb6ef50c-8deb-4f52-aab9-d04b077a2a06",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    { 
+      "id": 17,
+      "title": "Wiosłowanie w leżeniu",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F18.png?alt=media&token=2e93245c-5cc1-4873-8fe7-f261c0c269e1",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    { 
+      "id": 18,
+      "title": "'Dzień dobry'",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F19.png?alt=media&token=92430a51-60c9-47f0-9c0a-583e9f1e92af",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    { 
+      "id": 19,
+      "title": "Martwy ciąg",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F20.png?alt=media&token=309fbd80-1818-4c73-8d31-8563d96a9d11",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    { 
+      "id": 20,
+      "title": "Szrugsy",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F21.png?alt=media&token=a2ac7f0b-a986-4b27-ba55-723df362f05b",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    { 
+      "id": 21,
+      "title": "Hiptrust",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F2.png?alt=media&token=9330940c-11ec-4a02-b493-9c7e2b86842c",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    { 
+      "id": 22,
+      "title": "Przysiady ze sztangą",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F22.png?alt=media&token=7c3f11a3-4123-4edd-b1e2-25cba87273f2",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    { 
+      "id": 23,
+      "title": "Przysiady frontalny ze sztangą",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F24.png?alt=media&token=617463e9-1d0d-4a7b-99c2-764b7e3ec719",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    { 
+      "id": 24,
+      "title": "Przysiady na suwnicy",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F25.png?alt=media&token=7d9afaa1-93ae-40cb-8257-c01c07de11fb",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    { 
+      "id": 25,
+      "title": "Przysiady wykroczne",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F26.png?alt=media&token=f29e4fe4-ed02-482a-bef2-9a61004a5f03",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    { 
+      "id": 26,
+      "title": "Martwy ciąg na prostych nogach",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F27.png?alt=media&token=e8ae5a15-e361-4dbc-b008-e8cbeb8e56fd",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    { 
+      "id": 27,
+      "title": "Wspięcia na palce w staniu",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F28.png?alt=media&token=4581941f-e190-4696-a572-1b037910922d",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    { 
+      "id": 28,
+      "title": "Wspięcia na palce w siadzie",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F29.png?alt=media&token=9baaddf2-711d-41b3-ab51-45c4786e9612",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    { 
+      "id": 29,
+      "title": "Brzuszki w leżeniu",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F30.png?alt=media&token=e917c7eb-f82a-4957-97aa-4dab4c5538d1",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    { 
+      "id": 30,
+      "title": "Unoszenie nóg w zwisie na drążku",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F31.png?alt=media&token=790a69bb-d607-4d65-87ac-c1e4a94aa549",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    { 
+      "id": 31,
+      "title": "Skręty tułowia",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F32.png?alt=media&token=c3ad280e-7056-4264-a664-34bca1086dc2",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    { 
+      "id": 32,
+      "title": "Allahy",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F33.png?alt=media&token=e08ea5fa-7aaa-4759-8654-442a283190a1",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    { 
+      "id": 33,
+      "title": "Podpora",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F34.png?alt=media&token=89c63c68-08c9-46ad-84ba-53b6f4ba093f",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    { 
+      "id": 34,
+      "title": "Uginanie ramion ze sztangą",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F35.png?alt=media&token=45a98142-409a-461f-9c14-0fd4a20766f7",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    { 
+      "id": 35,
+      "title": "Uginanie ramion na wyciagu",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F36.png?alt=media&token=ecf363bb-1466-4dfd-9385-2990673d9cba",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    { 
+      "id": 36,
+      "title": "Uginanie ramion ze sztangielkami",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F37.png?alt=media&token=b1998049-1ed6-456a-987f-c28eb22ae7fb",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    { 
+      "id": 37,
+      "title": "Uginanie ramienia ze sztangielką o kolano",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F38.png?alt=media&token=40ff7180-8779-4f8a-a1cb-a906945e9564",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    { 
+      "id": 38,
+      "title": "Wyciskanie francuskie",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F39.png?alt=media&token=3d19b579-c544-46b9-86f6-6354018ab5b9",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    { 
+      "id": 39,
+      "title": "Prostowanie ramienia w opadzie tułowia",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F40.png?alt=media&token=3098338b-03c0-4cca-a950-12a996a894f8",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    { 
+      "id": 40,
+      "title": "Prostowanie ramion na wyciągu",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F41.png?alt=media&token=defa50af-d76c-49f1-8bb3-1db480c33ae8",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+    { 
+      "id": 41,
+      "title": "Pompki na poręczach",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F42.png?alt=media&token=edb4508e-b8c0-45ce-bb91-96281158658a",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    },
+     { 
+      "id": 42,
+      "title": "Wyciskanie w leżeniu na ławce poziomej wąskim uchwytem",
+      "screenshot": "hhttps://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F43.png?alt=media&token=49a10186-be34-4bb6-a339-2217cb8df485",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
     }
   ]
-}

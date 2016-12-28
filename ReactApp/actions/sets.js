@@ -1,22 +1,36 @@
 import * as actions from './actionTypes';
 import { database } from '../db';
-import { fetchTraining, updateTraining, deleteTrainingSet, deleteTraining } from './trainings';
-import { deleteWorkoutTraining, deleteWorkout } from './workouts';
+import { fetchTraining, updateTraining, addTraining, deleteTrainingSet, deleteTraining } from './trainings';
+import { deleteWorkoutTraining, addWorkout, deleteWorkout, fetchWorkouts } from './workouts';
 
-export function addSet (data) {
+export function addSet (set) {
   return {
     type: actions.ADD_SET,
-    payload: data,
+    set
   }
 }
 
-export function addWorkoutTrainingSet (workout, training, set) {
+export function addWorkoutTraining (workout, training) {
     return {
-        type: actions.ADD_WORKOUT_TRAINING_SET,
+        type: actions.ADD_WORKOUT_TRAINING,
         workout,
-        training,
-        set
+        training
     }
+}
+
+export function addWorkoutTrainingSet (workout, training, set) {
+    console.log(workout);
+    console.log(training);
+    console.log(set);
+    return dispatch => {
+        Promise.resolve(dispatch(addSet(set)))
+            .then(() => {
+                console.log('jestem');
+                dispatch(addWorkoutTraining(workout, training))});
+        // Promise.all([dispatch(addWorkoutTraining(workout, training)), dispatch(addSet(set))])
+        //     .then(console.log('hehe'));
+    }
+    //TODO
 }
 
 export function deleteSet (data) {
@@ -34,7 +48,7 @@ function deleteTrainingAndSet (id_tren, id_set) {
     }
 }
 
-export function addSetFb (workout, training, set) {
+export function addSetFb (workout, training, set, uid) {
     let {weight, reps} = set;
     let listSets = [];
     let newSetKey = database.ref().child('/sets').push().key;
@@ -55,19 +69,22 @@ export function addSetFb (workout, training, set) {
                 database.ref(`/sets/${newSetKey}`).update(newSet)
                     .then(() => {
                         newTraining.sets = listSets;
+                        console.log(newTraining.sets);
                         database.ref(`/trainings/${training.id}/sets`).set(listSets)
                             .then(() => {
                                 dispatch(addWorkoutTrainingSet(workout, newTraining, newSet));
                             });
                     });
+
+                //Promise.resolve(dispatch(addWorkoutTrainingSet(workout, newTraining, newSet)))
+                // Promise.resolve([
+                //     dispatch(addWorkout(workout)),
+                //         dispatch(addTraining(training))
+                //     ])
+                //     .then(() => dispatch(addSet(newSet)));
             });
     }
 }
-
-function deleteSetAction(set) {
-    return dispatch => dispatch(deleteSet(set));
-}
-
 export function deleteSetFb(set, id_tren, id_workout) {
     let listSets = [];
     let listTrainings = [];
@@ -100,7 +117,7 @@ export function deleteSetFb(set, id_tren, id_workout) {
                                     .then(() => database.ref(`/sets`).child(`/${id_set}`).remove())
                             })
                         Promise.resolve(dispatch(deleteWorkoutTraining(id_workout, id_tren)))
-                            .then(() => dispatch(deleteTrainingAndSet(id_tren, id_set)));
+                             .then(() => dispatch(deleteTrainingAndSet(id_tren, id_set)));
                     }
                 });
             } else {
@@ -132,4 +149,5 @@ export function deleteWorkoutTrainingSet(id_workout, id_tren, id_set) {
         trenId: id_tren,
         workoutId: id_workout,
     }
+
 }

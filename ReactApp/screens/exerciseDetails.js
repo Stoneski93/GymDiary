@@ -33,31 +33,16 @@ class ExerciseDetails extends Component {
       splashScreenVisible: this.props.showSplashScreen || false,
     }
     this.backToExercisesList = this.backToExercisesList.bind(this);
-    this.getImage = this.getImage.bind(this);
+  
   }
 
   backToExercisesList() {
     //this.props.setCurrentExercise(null);
     Actions.listExercisesScreen();
   }
-  getImage() {
-    let ref = storageRef.ref('images/deadlift.png');
-
-    ref.getDownloadURL()
-        .then((url) => {
-        })
-        .catch(function(error) {
-          // Handle any errors
-    });
-  }
-
   /* Render ==================================================================== */
   render() {
     let { title, screenshot, description } = this.props.exercises[this.props.currentExercise];
-    //let media = 'https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/images%2Fdeadlift.png?alt=media&token=5ffd72aa-a04a-4981-8fa6-996b78a994b1';
-    let temp = this.getImage();
-
-    var imageSource = require(`../images/deadlift.png`);
     return (
       <View style={[AppStyles.container, AppStyles.containerCenteredV]}>
         <View style={[AppStyles.row, AppStyles.detailsBar]}>
@@ -112,13 +97,14 @@ const styles = StyleSheet.create({
     bottom: 20,
   },
   imageContainer: {
-    width: 300,
-    height: 200,
+    width: 320,
+    height: 132,
     marginTop: 20,
+    alignItems: 'center'
   },
   mainImage: {
-    width: 300,
-    height: 200,
+    width: 200,
+    height: 130,
   },
 });
 

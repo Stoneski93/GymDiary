@@ -3,7 +3,7 @@ import { database } from '../db';
 import { fetchTraining, addTrainingFb } from './trainings';
 import { setLoading } from './current';
 
-function addWorkout (data) { 
+export function addWorkout (data) {
   return {
     type: actions.ADD_WORKOUT,
     payload: data,
@@ -52,8 +52,8 @@ export function updateWorkout(date) {
 export function addWorkoutFb(date, uid, id_exe, set) {
   let newWorkoutKey = `${date}-${uid}`;
   let workout = {
-    id: newWorkoutKey,
     data: date,
+    id: newWorkoutKey,
     trainings: [],
   }
   let oldWorkout = {};
@@ -62,12 +62,12 @@ export function addWorkoutFb(date, uid, id_exe, set) {
             .once('value', snapshoot => {
                 if (snapshoot.val()) {
                     oldWorkout = snapshoot.val();
-                    dispatch(addTrainingFb(oldWorkout, id_exe, set));
+                    dispatch(addTrainingFb(oldWorkout, id_exe, set, uid));
                 } else {
                     database.ref().child(`/workouts/${newWorkoutKey}`).set(date);
                     database.ref(`/workouts/${newWorkoutKey}`).update(workout)
                         .then(() => {
-                            dispatch(addTrainingFb(workout, id_exe, set));
+                            dispatch(addTrainingFb(workout, id_exe, set, uid));
                         })
                 }
             });
