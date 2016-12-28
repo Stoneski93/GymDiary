@@ -49,25 +49,22 @@ class RPMScreen extends Component {
     form_values: {},
     options: {
       fields: {
-        weight: { error: 'Ciezar (kg)', placeholder: 'ciezar (kg)'},
-        reps: { error: 'Powtorzenia', placeholder: 'szt.' },
+        weight: { label: 'Ciezar', placeholder: 'kg'},
+        reps: { label: 'Powtorzenia', placeholder: 'szt.' },
       },
-      hasError: true,
     },
     splashScreenVisible: this.props.showSplashScreen || false,
-    }
+    rpm: '',
+    rpmVisible: false, 
+  }
     this.countRPM = this.countRPM.bind(this);
 }
 
 countRPM() {
   let { weight, reps }  = this.refs.form.getValue();
-  let isWorkout = false;
-  let isTraining = false;
-
-  let set = {
-    weight: weight,
-    reps: reps,
-  }
+  let rpm = 0;
+  rpm = weight * reps * 0.0333 + weight;
+  this.setState({rpm: rpm, rpmVisible: true});
 }
   /* Render ==================================================================== */
   render() {
@@ -75,17 +72,13 @@ countRPM() {
     Form.stylesheet.fieldset.flexDirection = 'row';
     Form.stylesheet.formGroup.normal.flex = 1;
     Form.stylesheet.formGroup.error.flex = 1;
-    Form.stylesheet.controlLabel.normal.fontSize = 0;
+   // Form.stylesheet.controlLabel.normal.fontSize = 0;
 
     return (
       <View style={[AppStyles.container, AppStyles.containerCenteredV, styles.mainContainer]}>
         <View style={[
           AppStyles.mainContainer]}>
           <View style={[AppStyles.paddingHorizontal, styles.kontener]}>
-              <Alerts
-                status={this.state.resultMsg.status}
-                success={this.state.resultMsg.success}
-                error={this.state.resultMsg.error} />
               <Form
                 ref="form"
                 type={this.state.form_fields}
@@ -98,6 +91,16 @@ countRPM() {
                   text={'Oblicz'}
                   onPress={this.countRPM} />
               </View>
+              {this.state.rpmVisible && 
+            <View>
+            <View>
+              <Text>Twoje maksymalne powtórzenie to:</Text>
+            </View>
+            <View>
+              <Text style={[styles.rpm]}>{this.state.rpm} kg</Text>
+            </View>
+            </View>
+              }
           </View>
         </View>
         <TouchableOpacity style={[
@@ -130,6 +133,9 @@ function mapStateToProps(state) {
 const styles = StyleSheet.create({
   mainContainer: {
     backgroundColor: '#e9ebee',
+  },
+  rpm: {
+    color: 'red'
   },
   nestedContainer: {
     backgroundColor: AppConfig.secondaryColor,

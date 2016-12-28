@@ -30,6 +30,7 @@ import { Actions } from 'react-native-router-flux';
 
 // Components
 import Button from '../components/button';
+import Timer from '../components/timer';
 import ListTrainings from '../containers/listTrainings';
 
 const customDayHeadings = ['Nie', 'Pon', 'Wto', 'Śro', 'Czw', 'Pią', 'Sob'];
@@ -128,8 +129,8 @@ class MainScreen extends Component {
                   : 
                 null }
               </View>
-              <View tabLabel="Timer">
-                
+              <View tabLabel="Timer" style={[AppStyles.container, styles.paddingBottom, styles.mainContainer]}>
+                <Timer secondsRemaining={60} />
               </View>
             </ScrollableTabView>
           </View>
