@@ -70,7 +70,7 @@ class AppContainer extends Component {
             <Scene key="signIn" component={SignIn} hideNavBar={true} title={'Zarejestruj się'} />       
             <Scene key="remindPassword" component={RemindPassword} hideNavBar={true} title={'Przypomnij hasło'} />
             <Scene key="logoutScreen" component={LogoutScreen} hideNavBar={false} title={'Wyloguj się'} />
-            <Scene key="userSettings" component={UserSettings} hideNavBar={true} title={'Ustawienia'} />
+            <Scene key="userSettings" component={UserSettings} hideNavBar={false} title={'Ustawienia'} />
             <Scene key="listExercises" component={ListExercises} hideNavBar={false} title={'Wszystkie Ćwiczenia'} /> 
             <Scene key="listExercisesFav" component={ListExercisesFav} hideNavBar={false} title={'Ulubione Ćwiczenia'} />       
             <Scene key="listExercisesScreen" component={ListExercisesScreen} hideNavBar={false} title={'Lista Ćwiczeń'} />       

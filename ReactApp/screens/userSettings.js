@@ -13,12 +13,14 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native'
-import FormValidation from 'tcomb-form-native'
+import FormValidate from 'tcomb-form-native'
+import FormCalories from 'tcomb-form-native'
 
 // App Globals
 import AppStyles from '../styles'
 import AppUtil from '../util'
 import AppDB from '../db'
+import ScrollableTabView, { ScrollableTabBar, } from 'react-native-scrollable-tab-view';
 
 import { Actions } from 'react-native-router-flux';
 
@@ -41,20 +43,19 @@ class UserSettings extends Component {
         success: '',
         error: '',
       },
-      form_fields: FormValidation.struct({
-        height: FormValidation.Number,
-        weight: FormValidation.Number,
-        calories: FormValidation.Number,
+      form_fields_weight: FormValidate.struct({
+        weight: FormValidate .Number,
+      }),
+      form_fields_calories: FormValidate.struct({
+        calories: FormValidate.Number,
       }),
       empty_form_values: {
-        height: usr.height,
         weight: usr.weight,
         calories: usr.calories,
       },
       form_values: {},
       options: {
         fields: {
-          height: { label: 'Wzrost', error: 'Podaj nazwisko' },
           weight: { label: 'Waga', error: 'Podaj wage' },
           calories: { label: 'Kalorie', error: 'Podaj kalorie' },
         },
@@ -71,50 +72,67 @@ class UserSettings extends Component {
 
   saveSettings() {
     // TODO check validation
-    const formValues = this.refs.form.getValue();
+    //const formValues = this.refs.form.getValue();
 
     Actions.training();
     this.props.editUser(formValues);
   }
   render() {
-    var Form = FormValidation.form.Form;
+    var FormWeight = FormValidate.form.Form;
+    var FormCalories = FormValidate.form.Form
 
     return (
-      <ScrollView
+      <View
         ref={'scrollView'}
         style={[AppStyles.container]}>
-        <View style={[
-          AppStyles.globalMargin,
-          AppStyles.containerCentered,
-          ]}>
-          <View style={[AppStyles.mainContainer]}>
-            <Alerts
-              status={this.state.resultMsg.status}
-              success={this.state.resultMsg.success}
-              error={this.state.resultMsg.error} />
-            <Text style={[
-              AppStyles.baseText,
-              AppStyles.h3,
-              AppStyles.centered,
-              AppStyles.row,
-              AppStyles.paddingBottom]}>
-                {this.state.form_values.First_name == '' ? "Zaloz Konto" : "Zaktualizuj Profil"}
-            </Text>
-            <Form
-              ref="form"
-              type={this.state.form_fields}
-              value={this.state.empty_form_values}
-              options={this.state.options} />
-            <View style={[AppStyles.row]}>
-              <View style={[AppStyles.flex1]}>
-                <Button
-                  text={'Dalej'}
-                  onPress={this.saveSettings} />
+        <ScrollableTabView style={{marginTop: 52}} renderTabBar={() => <ScrollableTabBar />} >
+          <View tabLabel="Waga" style={[AppStyles.mainContainer]}>
+              <View>
+                <Text>Aktualna waga: {this.state.empty_form_values.weight}</Text>
               </View>
-            </View>
+              <Alerts
+                status={this.state.resultMsg.status}
+                success={this.state.resultMsg.success}
+                error={this.state.resultMsg.error} />
+              <FormWeight
+                ref="formWeight"
+                type={this.state.form_fields_weight}
+                value={this.state.empty_form_values}
+                options={this.state.options} />
+              <View style={[AppStyles.row]}>
+                <View style={[AppStyles.flex1]}>
+                  <Button
+                    text={'Dalej'}
+                    onPress={this.saveSettings} />
+                </View>
+              </View>
           </View>
-        </View>
-      </ScrollView>
+           <View tabLabel="Kalorie" style={[
+            AppStyles.globalMargin,
+            AppStyles.containerCentered,
+            ]}>
+            <View>
+                <Text>Aktualna waga: {this.state.empty_form_values.weight}</Text>
+              </View>
+              <Alerts
+                status={this.state.resultMsg.status}
+                success={this.state.resultMsg.success}
+                error={this.state.resultMsg.error} />
+              <FormCalories
+                ref="formCalories"
+                type={this.state.form_fields_calories}
+                value={this.state.empty_form_values}
+                options={this.state.options} />
+              <View style={[AppStyles.row]}>
+                <View style={[AppStyles.flex1]}>
+                  <Button
+                    text={'Dalej'}
+                    onPress={this.saveSettings} />
+                </View>
+              </View>
+          </View>
+        </ScrollableTabView>
+      </View>
     );
   }
 }

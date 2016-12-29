@@ -35,10 +35,12 @@ constructor(props) {
       return (
         <TouchableOpacity style={[styles.listRow]} activeOpacity={0.7}>
           <View style={styles.listRowInner}>
-            <Text style={[AppStyles.baseText, styles.listRow_text]}>{title.toUpperCase()}</Text>
+            <View style={styles.descWrapper}>
+              <Text style={[AppStyles.baseText, styles.listRow_text]}>{title.toUpperCase()}</Text>
+            </View>
               <Text style={[AppStyles.baseText, styles.listRow_text, styles.highlightText, styles.record]}>
-                <Icon name='trophy' size={20} style={[styles.trophy]} color={'green'} />
-                100kg
+              <Icon name='trophy' size={20} style={[styles.trophy]} color={AppConfig.thirdColor} />
+                  50.5kg
               </Text>
           </View>
         </TouchableOpacity>
@@ -65,10 +67,11 @@ const styles = StyleSheet.create({
     top: 10,
   },
   trophy: {
-    position: 'relative',
-    right: 30,
+    position: 'absolute',
+    right: 100,
     top: 10,
     paddingRight: 10,
+    
   },
   record: {
     position: 'absolute',
@@ -110,6 +113,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 1,
   },
+  descWrapper: {
+     paddingRight: 100,
+  }
 });
 
 /* Export Component ==================================================================== */

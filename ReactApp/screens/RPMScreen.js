@@ -30,6 +30,7 @@ import { Actions } from 'react-native-router-flux';
 // Components
 import Button from '../components/button';
 import Alerts from '../components/alerts'
+import RPMTable from '../components/rpmTable'
 
 /* Component ==================================================================== */
 class RPMScreen extends Component {
@@ -55,16 +56,63 @@ class RPMScreen extends Component {
     },
     splashScreenVisible: this.props.showSplashScreen || false,
     rpm: '',
-    rpmVisible: false, 
+    rpmVisible: false,
+    tables: [] 
   }
     this.countRPM = this.countRPM.bind(this);
+    this.countProgression = this.countProgression.bind(this);
 }
 
 countRPM() {
   let { weight, reps }  = this.refs.form.getValue();
   let rpm = 0;
-  rpm = weight * reps * 0.0333 + weight;
+  rpm = (weight * reps * 0.0333 + weight).toFixed(1);
   this.setState({rpm: rpm, rpmVisible: true});
+  this.countProgression(rpm);
+}
+
+countProgression(rpm) {
+  let newRPM = 0.9 * rpm;
+  
+  let firstWeek = {
+    header: 'Pierwszy tydzień',
+    first:  0.7,
+    second: 0.75,
+    third:  0.8,
+    rpm: newRPM,
+  }
+  let secondWeek = {
+    header: 'Drugi tydzień',
+    first:  0.75,
+    second: 0.8,
+    third:  0.85,
+    rpm: newRPM,
+  }
+  let thirdWeek = {
+    header: 'Trzeci tydzień',
+    first:  0.8,
+    second: 0.85,
+    third:  0.9,
+    rpm: newRPM,
+  }
+  let forthWeek = {
+    header: 'Czwarty tydzień (deload)',
+    first:  0.5,
+    second: 0.5,
+    third:  0.5,
+    rpm: newRPM,
+  }
+
+  let tab = [];
+  tab.push(<RPMTable week={firstWeek} />);
+  tab.push(<RPMTable week={secondWeek} />);
+  tab.push(<RPMTable week={thirdWeek} />);
+  tab.push(<RPMTable week={forthWeek} />);
+
+  this.setState({
+    tables: tab,
+  })
+
 }
   /* Render ==================================================================== */
   render() {
@@ -72,8 +120,7 @@ countRPM() {
     Form.stylesheet.fieldset.flexDirection = 'row';
     Form.stylesheet.formGroup.normal.flex = 1;
     Form.stylesheet.formGroup.error.flex = 1;
-   // Form.stylesheet.controlLabel.normal.fontSize = 0;
-
+    
     return (
       <View style={[AppStyles.container, AppStyles.containerCenteredV, styles.mainContainer]}>
         <View style={[
@@ -92,15 +139,25 @@ countRPM() {
                   onPress={this.countRPM} />
               </View>
               {this.state.rpmVisible && 
-            <View>
-            <View>
-              <Text>Twoje maksymalne powtórzenie to:</Text>
-            </View>
-            <View>
-              <Text style={[styles.rpm]}>{this.state.rpm} kg</Text>
-            </View>
+            <View style={[styles.head]}>
+              <View >
+                <Text>Twoj 1 RPM:</Text>
+              </View>
+              <View>
+                <Text style={[styles.rpm]}>{this.state.rpm} kg</Text>
+              </View>
+              <View >
+                <Text>Miesięczna rozpiska progresji:</Text>
+              </View>
+               <View >
+                <Text>Nowy RPM (90%): {(this.state.rpm * 0.9).toFixed(1)} </Text>
+              </View>
             </View>
               }
+            <ScrollView>
+               
+              {this.state.tables}
+            </ScrollView>
           </View>
         </View>
         <TouchableOpacity style={[
@@ -134,8 +191,14 @@ const styles = StyleSheet.create({
   mainContainer: {
     backgroundColor: '#e9ebee',
   },
+  head: {
+    justifyContent: 'center',
+    alignSelf: 'stretch',
+    textAlign: 'center'
+  },
   rpm: {
-    color: 'red'
+    color: 'red',
+    fontSize: 30,
   },
   nestedContainer: {
     backgroundColor: AppConfig.secondaryColor,
