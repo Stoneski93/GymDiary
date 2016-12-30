@@ -124,3 +124,23 @@ export function getAsyncUser (date) {
     }
 }
 
+export function updateWeight(weight, user_id, currentDate) {
+    let user = {};
+
+    return dispatch => {
+        database.ref().child(`/users/${user_id}`)
+            .once('value', snap => user = snap.val())
+                .then(() => {
+                    let newKey = `${user_id}_${currentDate}`;
+                    let historyWeight = {
+                        date: currentDate,
+                        weight: weight
+                    }
+                    user.weight = weight;
+
+                    database.ref().child(`/users/${user_id}`).update(user);
+                    database.ref().child(`/weight_history/${user_id}/${currentDate}`).set(historyWeight);
+                    dispatch(authPlain());
+                })
+    }
+}

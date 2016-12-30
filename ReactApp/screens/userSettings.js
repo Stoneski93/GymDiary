@@ -3,7 +3,7 @@
 /* Setup ==================================================================== */
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { addUser, editUser } from '../actions/user';
+// import { addUser, editUser } from '../actions/user';
 import {
   StyleSheet,
   View,
@@ -13,14 +13,18 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native'
+
+import { updateWeight } from '../actions/auth';
+
+import ScrollableTabView, { ScrollableTabBar, } from 'react-native-scrollable-tab-view';
+
 import FormValidate from 'tcomb-form-native'
 import FormCalories from 'tcomb-form-native'
 
 // App Globals
 import AppStyles from '../styles'
+import AppConfig from '../config'
 import AppUtil from '../util'
-import AppDB from '../db'
-import ScrollableTabView, { ScrollableTabBar, } from 'react-native-scrollable-tab-view';
 
 import { Actions } from 'react-native-router-flux';
 
@@ -50,46 +54,76 @@ class UserSettings extends Component {
         calories: FormValidate.Number,
       }),
       empty_form_values: {
-        weight: usr.weight,
-        calories: usr.calories,
+        weight: '',
+        calories: '',
       },
       form_values: {},
       options: {
         fields: {
-          weight: { label: 'Waga', error: 'Podaj wage' },
-          calories: { label: 'Kalorie', error: 'Podaj kalorie' },
+          weight: { label: 'Aktualizuj wagę:', error: 'Niedozwolony format' },
+          calories: { label: 'Aktualizuj kalorie:', error: 'Niedozwolony format' },
         },
         hasError: true,
       },
     }
-    this.saveSettings = this.saveSettings.bind(this);
+    this.updateCalories = this.updateCalories.bind(this);
+    this.updateWeight = this.updateWeight.bind(this);
   }
+  
   componentWillReceiveProps(nextProps) {
-    this.setState({ 
-      empty_form_values : nextProps.user,
-     });
+    
   }
 
-  saveSettings() {
-    // TODO check validation
-    //const formValues = this.refs.form.getValue();
-
-    Actions.training();
-    this.props.editUser(formValues);
+  updateWeight() {
+     let formValues  = this.refs.formWeight.getValue();
+  
+    if(formValues) {
+      this.props.updateWeight(formValues.weight, this.props.user.userId, this.props.currentDate);
+    }
   }
+
+  updateCalories() {
+    let formValues  = this.refs.formCalories.getValue();
+
+    if(formValues) {
+      //this.props.updateCalories(formValues.calories);
+    }
+  }
+
   render() {
     var FormWeight = FormValidate.form.Form;
     var FormCalories = FormValidate.form.Form
 
     return (
-      <View
-        ref={'scrollView'}
-        style={[AppStyles.container]}>
+      <View ref={'scrollView'} style={[AppStyles.container]}>
         <ScrollableTabView style={{marginTop: 52}} renderTabBar={() => <ScrollableTabBar />} >
-          <View tabLabel="Waga" style={[AppStyles.mainContainer]}>
-              <View>
-                <Text>Aktualna waga: {this.state.empty_form_values.weight}</Text>
+           <View tabLabel="Informacje" style={[AppStyles.innerContainer]}>
+              <View style={[styles.rowAvatar]}>
+                <Image style={[styles.avatar]}
+                source={require('../images/user.png')}
+                />
               </View>
+              <View style={[styles.row]}>
+                <Text style={[styles.header]}>Użytkownik:</Text>
+              </View>
+              <View style={[styles.row]}>
+                <Text style={styles.info}>{this.props.user.userLogin}</Text>
+              </View>
+              <View style={[styles.row]}>
+                <Text style={[styles.header]}>Aktualna waga: </Text>
+              </View>
+              <View style={[styles.row]}>
+                <Text style={styles.info}> 88 KG </Text>
+              </View>
+              <View style={[styles.row]}>
+                <Text style={[styles.header]}>Aktualne Kalorie: </Text>
+              </View>
+              <View style={[styles.row]}>
+                <Text style={styles.info}> 2500 KCAL </Text>
+              </View>
+          </View>
+          <View tabLabel="Aktualizacja" style={[AppStyles.mainContainer]}>
+            <View>
               <Alerts
                 status={this.state.resultMsg.status}
                 success={this.state.resultMsg.success}
@@ -102,18 +136,12 @@ class UserSettings extends Component {
               <View style={[AppStyles.row]}>
                 <View style={[AppStyles.flex1]}>
                   <Button
-                    text={'Dalej'}
-                    onPress={this.saveSettings} />
+                    text={'Aktualizuj'}
+                    onPress={this.updateWeight} />
                 </View>
               </View>
-          </View>
-           <View tabLabel="Kalorie" style={[
-            AppStyles.globalMargin,
-            AppStyles.containerCentered,
-            ]}>
-            <View>
-                <Text>Aktualna waga: {this.state.empty_form_values.weight}</Text>
-              </View>
+            </View>
+            <View style={[styles.bottomContainer]}>
               <Alerts
                 status={this.state.resultMsg.status}
                 success={this.state.resultMsg.success}
@@ -126,10 +154,11 @@ class UserSettings extends Component {
               <View style={[AppStyles.row]}>
                 <View style={[AppStyles.flex1]}>
                   <Button
-                    text={'Dalej'}
-                    onPress={this.saveSettings} />
+                    text={'Aktualizuj'}
+                    onPress={this.updateCalories} />
                 </View>
               </View>
+            </View>
           </View>
         </ScrollableTabView>
       </View>
@@ -140,16 +169,52 @@ class UserSettings extends Component {
 /* Styles ==================================================================== */
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    flexDirection: 'column',
     paddingTop: 15,
     paddingBottom: 20,
     justifyContent: 'center',
-    alignItems: 'stretch',
+    //alignItems: 'center',
   },
+  innerContainer: {
+    flex: 1
+  },
+  bottomContainer: {
+    marginTop: 30,
+  },
+  row: {
+    flex: 1,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    height: 35
+  },
+  rowAvatar: {
+    flex: 1,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    height: 100,
+    borderWidth: 1
+  },
+  avatar: {
+    width: 100,
+    height: 100,   
+  },
+  info: {
+    fontSize: 20,
+    color: AppConfig.primaryColor,
+  }
 });
 
 function mapStateToProps(state) {
-  return { user: state.user };
+  return { 
+    user: state.auth,
+    currentDate: state.date
+ };
 }
 
 /* Export Component ==================================================================== */
-export default connect(mapStateToProps, { addUser, editUser })(UserSettings);
+export default connect(mapStateToProps, {updateWeight })(UserSettings);

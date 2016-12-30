@@ -8,7 +8,6 @@
 
 import { combineReducers } from 'redux'
 import auth from './auth';
-import user from './user';
 import workouts from './workouts';
 import trainings from './trainings';
 import exercises from './exercises';
@@ -27,7 +26,6 @@ const appReducer = combineReducers({
   auth,
   sideMenu,
   routes,
-  user,
   workouts,
   trainings,
   exercises,
@@ -41,7 +39,6 @@ const rootReducer = (state, action) => {
   if (action.type === 'RESET') {
     state = undefined;
   }
-
   return appReducer(state, action);
 };
 
