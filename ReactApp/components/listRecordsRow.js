@@ -31,17 +31,21 @@ constructor(props) {
 
 /* Render ==================================================================== */
   render() {
-    let { title } = this.props; 
+    let { weight, id_exe, date } = this.props.record;
+    
       return (
         <TouchableOpacity style={[styles.listRow]} activeOpacity={0.7}>
           <View style={styles.listRowInner}>
             <View style={styles.descWrapper}>
-              <Text style={[AppStyles.baseText, styles.listRow_text]}>{title.toUpperCase()}</Text>
+              <Text style={[AppStyles.baseText, styles.listRow_text]}>{this.props.exercises[id_exe].title}</Text>
             </View>
               <Text style={[AppStyles.baseText, styles.listRow_text, styles.highlightText, styles.record]}>
-              <Icon name='trophy' size={20} style={[styles.trophy]} color={AppConfig.thirdColor} />
-                  50.5kg
+                  { weight } kg
+                <Icon name='trophy' size={20} style={[styles.trophy]} color={AppConfig.thirdColor} />
               </Text>
+              <View style={styles.descWrapper}>
+                <Text style={[styles.listRow_text, styles.dateText]}>Data ustanowienia: {date}</Text>
+              </View>
           </View>
         </TouchableOpacity>
       )
@@ -94,6 +98,10 @@ const styles = StyleSheet.create({
     marginLeft: 20,
     fontWeight: '400',
     backgroundColor: 'transparent',
+  },
+  dateText: {
+    fontSize: 10,
+    color: AppConfig.forthColor
   },
   listRowImage_text: {
     color: "#FFF",

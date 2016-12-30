@@ -11,6 +11,7 @@ import auth from './auth';
 import workouts from './workouts';
 import trainings from './trainings';
 import exercises from './exercises';
+import records from './records';
 import sets from './sets';
 import current from './current';
 import date from './date';
@@ -30,6 +31,7 @@ const appReducer = combineReducers({
   trainings,
   exercises,
   sets,
+  records,
   current,
   date
 });

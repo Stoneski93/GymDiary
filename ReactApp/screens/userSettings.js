@@ -14,7 +14,7 @@ import {
   TouchableOpacity,
 } from 'react-native'
 
-import { updateWeight } from '../actions/auth';
+import { updateWeight, updateCalories } from '../actions/auth';
 
 import ScrollableTabView, { ScrollableTabBar, } from 'react-native-scrollable-tab-view';
 
@@ -78,15 +78,16 @@ class UserSettings extends Component {
      let formValues  = this.refs.formWeight.getValue();
   
     if(formValues) {
-      this.props.updateWeight(formValues.weight, this.props.user.userId, this.props.currentDate);
+      this.props.updateWeight(formValues.weight);
     }
   }
 
   updateCalories() {
     let formValues  = this.refs.formCalories.getValue();
+    console.log(formValues);
 
     if(formValues) {
-      //this.props.updateCalories(formValues.calories);
+      this.props.updateCalories(formValues.calories);
     }
   }
 
@@ -113,13 +114,13 @@ class UserSettings extends Component {
                 <Text style={[styles.header]}>Aktualna waga: </Text>
               </View>
               <View style={[styles.row]}>
-                <Text style={styles.info}> 88 KG </Text>
+                <Text style={styles.info}> {this.props.user.weight} KG </Text>
               </View>
               <View style={[styles.row]}>
                 <Text style={[styles.header]}>Aktualne Kalorie: </Text>
               </View>
               <View style={[styles.row]}>
-                <Text style={styles.info}> 2500 KCAL </Text>
+                <Text style={styles.info}> {this.props.user.calories} KCAL </Text>
               </View>
           </View>
           <View tabLabel="Aktualizacja" style={[AppStyles.mainContainer]}>
@@ -212,9 +213,8 @@ const styles = StyleSheet.create({
 function mapStateToProps(state) {
   return { 
     user: state.auth,
-    currentDate: state.date
  };
 }
 
 /* Export Component ==================================================================== */
-export default connect(mapStateToProps, {updateWeight })(UserSettings);
+export default connect(mapStateToProps, {updateWeight, updateCalories })(UserSettings);

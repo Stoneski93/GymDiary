@@ -37,8 +37,14 @@ export const SET_CURRENT_WORKOUT = "SET_CURRENT_WORKOUT";
 export const SET_LOADING = "SET_LOADING";
 
 export const AUTH_PLAIN = "AUTH_PLAIN";
+export const ADD_WEIGHT = "ADD_WEIGHT";
+export const ADD_CALORIES = "ADD_CALORIES";
 export const AUTH_ERROR = "AUTH_ERROR";
 export const USER_LOGIN = "USER_LOGIN";
 export const USER_LOGOUT = "USER_LOGOUT";
 export const USER_SIGNIN = "USER_SIGNIN";
+
+export const ADD_RECORDS = "ADD_RECORDS";
+export const ADD_RECORD = "ADD_RECORD";
+
 

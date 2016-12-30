@@ -3,12 +3,12 @@ import { database, firebaseAuth } from '../db';
 import { Actions } from 'react-native-router-flux';
 import { AsyncStorage } from 'react-native';
 import { fetchWorkouts } from './workouts';
+import { fetchRecords } from './records';
 
-function userLogin (email, uid) {
+function userLogin (user) {
     return {
         type: actions.USER_LOGIN,
-        payload: email,
-        uid: uid
+        payload: user,
     }
 }
 
@@ -21,6 +21,19 @@ function userSignIn () {
 function userLogout () {
     return {
         type: actions.USER_LOGOUT,
+    }
+}
+
+function addWeight (weight) {
+    return {
+        type: actions.ADD_WEIGHT,
+        payload: weight
+    }
+}
+function addCalories (calories) {
+    return {
+        type: actions.ADD_CALORIES,
+        payload: calories
     }
 }
 
@@ -45,10 +58,12 @@ export function createUser (email, password) {
               email: response.email,
               uid: response.uid,
           }
+          let uid = response.uid;
+          AsyncStorage.setItem('user_data', JSON.stringify({email, password, uid}));
           dispatch(saveUser(user));
       })
         .then(() => {
-            dispatch(loginUser(email, password));
+            dispatch(loginUser(user));
         })
       .catch((error) => {
           dispatch(authError(true));
@@ -83,13 +98,14 @@ export function resetPassword (email) {
     }
 }
 
-export function loginUser (email, password) {
+export function loginUser (user) {
+    //console.log(user);
   return dispatch => {
-    firebaseAuth.signInWithEmailAndPassword(email, password)
+    firebaseAuth.signInWithEmailAndPassword(user.email, user.password)
       .then((response) => {
           let uid = response.uid;
-          AsyncStorage.setItem('user_data', JSON.stringify({email, password, uid}));
-          dispatch(userLogin(email, response.uid));
+          //AsyncStorage.setItem('user_data', JSON.stringify({email, password, uid}));
+          dispatch(userLogin(user));
           Actions.training();
       })
       .catch((error) => {
@@ -117,30 +133,56 @@ export function getAsyncUser (date) {
     return dispatch => {
         AsyncStorage.getItem('user_data').then((user_data_json) => {
             let user_data = JSON.parse(user_data_json);
-            dispatch(loginUser(user_data.email, user_data.password));
-            dispatch(fetchWorkouts(date, user_data.uid));
+            dispatch(loginUser(user_data));
         })
             .then(() => Actions.training());
     }
 }
 
-export function updateWeight(weight, user_id, currentDate) {
-    let user = {};
+export function updateWeight(weight) {
+    return (dispatch, getState) => {
+        let store = getState();
+        let user = store.auth;
+        let currentDate = store.date;
+        
+        let newUser = {
+            uid: user.userId,
+            weight: weight
+        }
+         let historyWeight = {
+             date: currentDate,
+             weight: weight
+        }
 
-    return dispatch => {
-        database.ref().child(`/users/${user_id}`)
-            .once('value', snap => user = snap.val())
-                .then(() => {
-                    let newKey = `${user_id}_${currentDate}`;
-                    let historyWeight = {
-                        date: currentDate,
-                        weight: weight
-                    }
-                    user.weight = weight;
+        database.ref().child(`/users/${user.userId}`).update(newUser);
+        database.ref().child(`/weight_history/${user.userId}/${currentDate}`).set(historyWeight);
 
-                    database.ref().child(`/users/${user_id}`).update(user);
-                    database.ref().child(`/weight_history/${user_id}/${currentDate}`).set(historyWeight);
-                    dispatch(authPlain());
-                })
+        AsyncStorage.mergeItem('user_data', JSON.stringify(newUser));
+
+        dispatch(addWeight(weight));
+    }
+}
+
+export function updateCalories(calories) {
+    return (dispatch, getState) => {
+        let store = getState();
+        let user = store.auth;
+        let currentDate = store.date;
+        
+        let newUser = {
+            uid: user.userId,
+            calories: calories
+        }
+         let historyCalories = {
+             date: currentDate,
+             calories: calories
+        }
+
+        database.ref().child(`/users/${user.userId}`).update(newUser);
+        database.ref().child(`/calories_history/${user.userId}/${currentDate}`).set(historyCalories);
+
+        AsyncStorage.mergeItem('user_data', JSON.stringify(newUser));
+
+        dispatch(addCalories(calories));
     }
 }

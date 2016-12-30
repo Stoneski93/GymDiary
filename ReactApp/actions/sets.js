@@ -2,6 +2,7 @@ import * as actions from './actionTypes';
 import { database } from '../db';
 import { fetchTraining, updateTraining, addTraining, deleteTrainingSet, deleteTraining } from './trainings';
 import { deleteWorkoutTraining, addWorkout, deleteWorkout, fetchWorkouts } from './workouts';
+import { addRecordFb } from './records';
 
 export function addSet (set) {
   return {
@@ -19,13 +20,9 @@ export function addWorkoutTraining (workout, training) {
 }
 
 export function addWorkoutTrainingSet (workout, training, set) {
-    console.log(workout);
-    console.log(training);
-    console.log(set);
     return dispatch => {
         Promise.resolve(dispatch(addSet(set)))
             .then(() => {
-                console.log('jestem');
                 dispatch(addWorkoutTraining(workout, training))});
         // Promise.all([dispatch(addWorkoutTraining(workout, training)), dispatch(addSet(set))])
         //     .then(console.log('hehe'));
@@ -68,11 +65,15 @@ export function addSetFb (workout, training, set, uid) {
                 listSets.push(newSetKey);
                 database.ref(`/sets/${newSetKey}`).update(newSet)
                     .then(() => {
+                        let record = {
+                            id_exe: newTraining.id_exe,
+                            weight: newSet.weight
+                        }
                         newTraining.sets = listSets;
-                        console.log(newTraining.sets);
                         database.ref(`/trainings/${training.id}/sets`).set(listSets)
                             .then(() => {
-                                dispatch(addWorkoutTrainingSet(workout, newTraining, newSet));
+                                //dispatch(addWorkoutTrainingSet(workout, newTraining, newSet))
+                                    dispatch(addRecordFb(record));
                             });
                     });
 

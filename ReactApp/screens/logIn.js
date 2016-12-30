@@ -40,13 +40,13 @@ class LogIn extends Component {
         error: '',
       },
       form_fields: FormValidation.struct({
-        login: FormValidation.String,
+        email: FormValidation.String,
         password: FormValidation.String,
       }),
       form_values: {},
       options: {
         fields: {
-          login: { label: 'E-mail', error: 'Podaj login' },
+          email: { label: 'E-mail', error: 'Podaj login' },
           password: { label: 'Hasło', password: true, secureTextEntry: true, error: 'Podaj hasło' },
         },
         hasError: true,
@@ -62,7 +62,7 @@ class LogIn extends Component {
     const formValues = this.refs.form.getValue();
     if(formValues) {
       const {login, password} = formValues;
-      this.props.loginUser(login, password);
+      this.props.loginUser(formValues);
     }
   }
 

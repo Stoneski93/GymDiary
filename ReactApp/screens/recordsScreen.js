@@ -44,21 +44,20 @@ class recordsScreen extends Component {
   }
   componentDidMount() {
     this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(this.props.exercises),
+      dataSource: this.state.dataSource.cloneWithRows(this.props.records),
     });
   }
 
   componentWillReceiveProps(nextProps) {
     this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(nextProps.exercises),
+      dataSource: this.state.dataSource.cloneWithRows(nextProps.records),
     });
   }
 
   renderRow(data) {
-    // let { title, image, favourite, } = this.props.exercises;
-
+    console.log(data)
     return (
-      <ListRow {...data} />
+      <ListRow record={data} exercises={this.props.exercises}  />
     );
   }
 
@@ -89,8 +88,11 @@ const styles = StyleSheet.create({
   },
 });
 
-function mapStateToProps(state) {
-  return { exercises: state.exercises };
+function mapStateToProps(state) { 
+  return {
+    records: state.records,
+    exercises: state.exercises
+  };
 }
 
 /* Export Component ==================================================================== */
