@@ -98,13 +98,15 @@ export function resetPassword (email) {
     }
 }
 
-export function loginUser (user) {
-    //console.log(user);
+export function loginUser (user, fromAsync = false) {
+    let { email, password } = user;
   return dispatch => {
-    firebaseAuth.signInWithEmailAndPassword(user.email, user.password)
+    firebaseAuth.signInWithEmailAndPassword(email, password)
       .then((response) => {
           let uid = response.uid;
-          //AsyncStorage.setItem('user_data', JSON.stringify({email, password, uid}));
+          if(!fromAsync) {
+            AsyncStorage.setItem('user_data', JSON.stringify({email, password, uid}));
+          }
           dispatch(userLogin(user));
           Actions.training();
       })
@@ -133,9 +135,13 @@ export function getAsyncUser (date) {
     return dispatch => {
         AsyncStorage.getItem('user_data').then((user_data_json) => {
             let user_data = JSON.parse(user_data_json);
-            dispatch(loginUser(user_data));
+            let fromAsync = true;
+            
+            if(user_data) {
+                dispatch(loginUser(user_data, fromAsync));
+            } 
         })
-            .then(() => Actions.training());
+            //.then(() => Actions.training());
     }
 }
 

@@ -84,7 +84,6 @@ class UserSettings extends Component {
 
   updateCalories() {
     let formValues  = this.refs.formCalories.getValue();
-    console.log(formValues);
 
     if(formValues) {
       this.props.updateCalories(formValues.calories);

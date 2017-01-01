@@ -47,7 +47,7 @@ export function addAsyncExercises () {
 
 export function exerciseToogleFavourite (data) { 
   return dispatch => {
-    AsyncStorage.setItem(""+data.id, JSON.stringify(data), cal => console.log(cal))
+    AsyncStorage.setItem(""+data.id, JSON.stringify(data))
       .then(dispatch({
         type: actions.EXERCISE_TOOGLE_FAVOURITE,
         payload: data

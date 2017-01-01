@@ -60,8 +60,8 @@ class LogIn extends Component {
   sendLogin() {
     this.props.authError(false);
     const formValues = this.refs.form.getValue();
+    
     if(formValues) {
-      const {login, password} = formValues;
       this.props.loginUser(formValues);
     }
   }

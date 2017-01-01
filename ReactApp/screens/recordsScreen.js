@@ -1,9 +1,3 @@
-/**
- * Listing SCREEN
- *
- * React Native Starter App
- * https://github.com/mcnamee/react-native-starter-app
- */
 'use strict';
 
 /* Setup ==================================================================== */
@@ -55,7 +49,6 @@ class recordsScreen extends Component {
   }
 
   renderRow(data) {
-    console.log(data)
     return (
       <ListRow record={data} exercises={this.props.exercises}  />
     );

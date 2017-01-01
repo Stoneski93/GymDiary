@@ -17,7 +17,7 @@ import Calendar from 'react-native-calendar';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import { changeDateWithFetch, changeDate } from '../actions/date';
-//import { fetchSets } from '../actions/sets';
+import { fetchWorkouts } from '../actions/workouts';
 
 import { setLoading } from '../actions/current';
 
@@ -50,6 +50,11 @@ class MainScreen extends Component {
     this.toggleCalendar = this.toggleCalendar.bind(this);
     this.changeDate = this.changeDate.bind(this);
     this.filterWorkouts = this.filterWorkouts.bind(this);
+  }
+
+  componentWillMount() {
+    console.log('pobieram')
+    this.props.fetchWorkouts(this.props.date, this.props.uid)
   }
 
   toggleCalendar() {
@@ -155,7 +160,7 @@ function mapStateToProps(state) {
 }
 
 /* Export Component ==================================================================== */
-export default connect(mapStateToProps, { changeDateWithFetch, changeDate })(MainScreen);
+export default connect(mapStateToProps, { changeDateWithFetch, changeDate, fetchWorkouts })(MainScreen);
 
 MainScreen.propTypes = {
  //TODO

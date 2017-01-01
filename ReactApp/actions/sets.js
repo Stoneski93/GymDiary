@@ -24,8 +24,7 @@ export function addWorkoutTrainingSet (workout, training, set) {
         Promise.resolve(dispatch(addSet(set)))
             .then(() => {
                 dispatch(addWorkoutTraining(workout, training))});
-        // Promise.all([dispatch(addWorkoutTraining(workout, training)), dispatch(addSet(set))])
-        //     .then(console.log('hehe'));
+      
     }
     //TODO
 }

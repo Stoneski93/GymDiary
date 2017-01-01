@@ -18,6 +18,7 @@ import { fetchTrainings } from '../actions/trainings';
 import { fetchWorkouts } from '../actions/workouts';
 import { getAsyncUser } from '../actions/auth';
 import { fetchRecords } from '../actions/records';
+import { setLoading } from '../actions/current';
 // App Globals
 import AppStyles from '../styles'
 import AppConfig from '../config'
@@ -34,9 +35,13 @@ import Spinner from 'react-native-loading-spinner-overlay';
 class Home extends Component {
   constructor(props) {
 		super(props);
+
+		this.props.getAsyncUser(this.props.date);
+		
 		this.goToNextScreen = this.goToNextScreen.bind(this);
 		this.props.fetchExercises();
-		this.props.getAsyncUser(this.props.date);
+		//this.props.setLoading(true);
+		
 	}
 
 	goToNextScreen() {
@@ -125,4 +130,4 @@ function mapStateToProps(state) {
 
 
 /* Export Component ==================================================================== */
-export default connect(mapStateToProps,{ addExercises, fetchExercises, fetchSets, fetchWorkouts, fetchTrainings, getAsyncUser, fetchRecords })(Home);
+export default connect(mapStateToProps,{ addExercises, fetchExercises, fetchSets, fetchWorkouts, fetchTrainings, getAsyncUser, fetchRecords, setLoading })(Home);
