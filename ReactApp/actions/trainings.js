@@ -61,7 +61,7 @@ export function addTrainingFb(workout, id_exe, set, uid, exist = false) {
       .once('value', snap => listTrainings = snap.val())
         .then(() => {
           listTrainings = listTrainings ? listTrainings : [];
-            if(!exist) {
+             if(!exist) {
                 newTrainingKey = database.ref().child('/trainings').push().key;
                 listTrainings.push(newTrainingKey);
                 training.id = newTrainingKey;
@@ -70,9 +70,9 @@ export function addTrainingFb(workout, id_exe, set, uid, exist = false) {
                     .then(() => {
                         newWorkout.trainings = listTrainings;
                         dispatch(addSetFb(newWorkout, training, set, uid));
-                    });
+                });
             } else {
-                dispatch(addSetFb(newWorkout, training, set, uid));
+              dispatch(addSetFb(newWorkout, training, set, uid));
             }
         });
     }

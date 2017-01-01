@@ -79,7 +79,7 @@ addTraining() {
         }
       });
       if(!isTraining) {
-        this.props.addTrainingFb(workout, this.props.currentExercise, set, this.props.uid);
+        this.props.addWorkoutFb(this.props.date, this.props.uid, this.props.currentExercise, set);
       }
     }
   });

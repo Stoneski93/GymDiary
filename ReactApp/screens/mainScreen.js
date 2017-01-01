@@ -149,7 +149,8 @@ class MainScreen extends Component {
 
 function mapStateToProps(state) {
   const workouts = Object.keys(state.workouts).map(function (key) { return state.workouts[key]; });
-  return { 
+  return {
+    newWorkouts: state.workouts,
     date: state.date,
     uid: state.auth.userId,
     workouts: workouts,

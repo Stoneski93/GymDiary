@@ -71,14 +71,14 @@ class ListTrainingRow extends Component {
     Actions.trainingScreen();
   }
   renderSets(data) {
-     return (
-      <SetsRow
-        set={data}
-        idTraining={this.props.idTraining}
-        idWorkout={this.props.idWorkout}
-        onPress={this.goToTrainingScreen}
-      />
-    );
+        return (
+          <SetsRow
+            set={data}
+            idTraining={this.props.idTraining}
+            idWorkout={this.props.idWorkout}
+            onPress={this.goToTrainingScreen}
+          />
+        );
   }
 /* Render ==================================================================== */
   render() {

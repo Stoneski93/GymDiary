@@ -27,9 +27,7 @@ import AppConfig from '../config'
 class SetsRow extends Component {
   constructor(props) {
     super(props);  
-
-    this.removeSet = this.removeSet.bind(this);
-
+      this.removeSet = this.removeSet.bind(this);
   }
   removeSet() {
     this.props.deleteSetFb(this.props.set, this.props.idTraining, this.props.idWorkout);
@@ -37,10 +35,10 @@ class SetsRow extends Component {
 
 /* Render ==================================================================== */
   render() {
-    let { reps, weight } = this.props.set;
       return (
         <TouchableOpacity style={[styles.listRow]} onPress={this.goToTrainingScreen}
         activeOpacity={0.7}>
+        {this.props.set ?  
           <View style={[AppStyles.row, styles.trainingBar]}>
             <TouchableOpacity
               onPress={this.removeSet}
@@ -50,9 +48,10 @@ class SetsRow extends Component {
             <Icon name='trash-o' size={25} color={'#ff2600'} />
             </TouchableOpacity>
             <Text style={[styles.label]}>
-              Seria: {reps} powt.  x {weight} kg
+              Seria: {this.props.set.reps} powt.  x {this.props.set.weight} kg
             </Text>
-          </View>
+          </View> : null } 
+         
         </TouchableOpacity>
       )
     }

@@ -69,7 +69,7 @@ export function addWorkoutFb(date, uid, id_exe, set) {
                         .then(() => {
                             dispatch(addTrainingFb(workout, id_exe, set, uid));
                         })
-                }
+               }
             });
     }
 
