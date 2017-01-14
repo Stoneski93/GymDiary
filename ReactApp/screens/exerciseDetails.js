@@ -54,8 +54,13 @@ class ExerciseDetails extends Component {
               source={{ uri: screenshot }}
             />
           </View>
+          <View style={[styles.titleContainer]}>
+            <Text style={[styles.title]}>Opis ćwiczenia: </Text>
+          </View>
           <View style={[styles.imageContainer]}>
-            <Text>{description}</Text>
+            <Text>
+              { description }
+            </Text>
           </View>
         </ScrollView>
         <TouchableOpacity
@@ -76,9 +81,6 @@ class ExerciseDetails extends Component {
 ExerciseDetails.propTypes = {
  //TODO
 }
-//TODO
-//TEXT POWROT 100% OF BUTTON
-
 
 /* Styles ==================================================================== */
 const styles = StyleSheet.create({
@@ -101,6 +103,15 @@ const styles = StyleSheet.create({
     height: 132,
     marginTop: 20,
     alignItems: 'center'
+  },
+  titleContainer: {
+    width: 320,
+    height: 20,
+    marginTop: 10,
+    alignItems: 'flex-start',
+  },
+  title: {
+    fontWeight: 'bold'
   },
   mainImage: {
     width: 200,

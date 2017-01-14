@@ -47,4 +47,7 @@ export const USER_SIGNIN = "USER_SIGNIN";
 export const ADD_RECORDS = "ADD_RECORDS";
 export const ADD_RECORD = "ADD_RECORD";
 
+export const ADD_HISTORY_WEIGHTS = "ADD_HISTORY_WEIGHTS";
+export const ADD_HISTORY_CALORIES = "ADD_HISTORY_CALORIES";
+
 

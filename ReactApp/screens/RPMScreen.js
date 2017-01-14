@@ -155,7 +155,6 @@ countProgression(rpm) {
             </View>
               }
             <ScrollView>
-               
               {this.state.tables}
             </ScrollView>
           </View>
@@ -165,7 +164,7 @@ countProgression(rpm) {
           AppStyles.detailsBar,
           AppStyles.containerCentered,
           styles.customActionBar]}
-          onPress={Actions.listExercisesScreen}>
+          onPress={Actions.training}>
           <Text>
             Powrót
           </Text>

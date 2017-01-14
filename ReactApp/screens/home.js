@@ -68,7 +68,7 @@ class Home extends Component {
 								styles.mainTitle,
 								AppStyles.centered,
 								styles.headerHeight]}>
-							GymDiary
+							Pamiętnik Treningowy
 						</Text>
 					</View>
 					<View style={[AppStyles.paddingVertical]}>
@@ -108,11 +108,12 @@ const styles = StyleSheet.create({
 	mainTitle: {
 		fontSize: AppConfig.baseFontSize * 3,
 		color: AppConfig.thirdColor,
+		lineHeight: 50,
 		fontFamily: 'Roboto',
 		fontWeight: '300',
 	},
 	headerHeight: {
-		height: 60,
+		height: 100,
 	},
 	imageRotate: {
 		transform: [{rotate: '-30deg'}],

@@ -40,6 +40,7 @@ export function fetchRecords(id) {
 
 export function addRecordFb (record) {
   return (dispatch, getState) => {
+
     let user = getState().auth;
     let currentDate = getState().date;
     
@@ -48,6 +49,7 @@ export function addRecordFb (record) {
       date: currentDate,
       weight: record.weight
     }
+    
     database.ref().child(`/records_history/${user.userId}/${record.id_exe}/${currentDate}`).set(newRecord);
     database.ref().child(`/records/${user.userId}/${newRecord.id_exe}`).set(newRecord);
     

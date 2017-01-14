@@ -40,7 +40,7 @@ class Menu extends Component {
         {title: 'Start', action: Actions.home, icon: 'home' },
         {title: 'Trening', action: Actions.training, icon: 'clock-o' },
         {title: 'Lista Ćwiczeń', action: Actions.listExercisesScreen, props: {passProps: {noImages: true}}, icon: 'list-ul'},
-        {title: 'Statystyki', action: Actions.userSettings, icon: 'area-chart' },
+        {title: 'Statystyki', action: Actions.statisticScreen, icon: 'area-chart' },
         {title: 'Rekordy', action: Actions.recordsScreen, icon: 'trophy' },
         {title: 'RPM', action: Actions.RPMScreen, icon: 'tachometer' },
         {title: 'Ustawienia', action: Actions.userSettings, icon: 'cog' },
@@ -70,9 +70,14 @@ class Menu extends Component {
             <View style={[styles.headerBoxAvatar]}>
               <View style={[styles.headerAvatar]}>
                 <Image style={[styles.avatar]}
-                source={require('../images/10.jpg')}
+                source={require('../images/10.png')}
                 />
               </View>
+            </View>
+            <View style={[styles.headerLogo]}>
+                <Image style={[styles.logo]}
+                source={require('../images/4.png')}
+                />
             </View>
           </View>
           <View style={[styles.headerBoxSubtitle]}>
@@ -107,14 +112,15 @@ const styles = StyleSheet.create({
     paddingBottom: 8,
   },
   logo: {
-    width: 50,
-    height: 50,
+    width: 33,
+    height: 33,
   },
   headerImagesContent: {
     flex:1,
     flexDirection: 'column',
     alignSelf: 'stretch',
     justifyContent: 'space-around',
+    position: 'relative',
   },
   headerBoxAvatar: {
     height: 84,
@@ -125,8 +131,17 @@ const styles = StyleSheet.create({
     height: 63,
     width: 63,
     borderRadius: 100,
+    borderWidth: 4,
+    borderColor: AppConfig.thirdColor,
     backgroundColor: '#fff',
     overflow: 'hidden',
+  },
+  headerLogo: {
+    position: 'absolute',
+    top: 52,
+    left: 65,
+    height: 103,
+    width: 103,
   },
   headerBoxSubtitle: {
     height: 56,
@@ -152,8 +167,8 @@ const styles = StyleSheet.create({
     paddingTop: 8,
   },
   avatar: {
-    width: 63,
-    height: 63,
+    width: 53,
+    height: 53,
     borderRadius: 100,
   }
 });

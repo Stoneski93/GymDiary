@@ -20,30 +20,10 @@ export function addWorkoutTraining (workout, training) {
 }
 
 export function addWorkoutTrainingSet (workout, training, set) {
-    console.log('wszedlemmmmmm')
-    console.log(workout);
-    console.log(training);
-    console.log(set);
-
     return (dispatch, getState) => {
         dispatch(addSet(set))
         dispatch(addWorkoutTraining(workout, training));
     }
-        // Promise.resolve(dispatch(addSet(set)))
-        //     .then(() => {
-        //         console.log('czy tu jestem');
-        //         dispatch(addWorkoutTraining(workout, training))});
-       // dispatch(addSet(set));
-       // console.log(getState());
-        // return dispatch => {
-        //     dispatch(addWorkoutTraining(workout, training));
-        // }
-
-        //    .then(() => ;
-        
-      
-    //}
-    //TODO
 }
 
 export function deleteSet (data) {
@@ -72,7 +52,7 @@ export function addSetFb (workout, training, set, uid) {
     }
     let newTraining = training;
 
-    return dispatch => {
+    return (dispatch, getState) => {
         database.ref(`/trainings/${training.id}/sets`).once('value', (snap) => {
             listSets = snap.val()
         })
@@ -89,20 +69,19 @@ export function addSetFb (workout, training, set, uid) {
                         database.ref(`/trainings/${training.id}/sets`).set(listSets)
                             .then(() => {
                                 dispatch(addWorkoutTrainingSet(workout, newTraining, newSet))
-                            //  }
-                                    // dispatch(addRecordFb(record));
+                            })
+                            .then(() => {
+                                const { records } = getState();
+                                const store = getState();
+                                
+                                if (records === null) {
+                                    dispatch(addRecordFb(record));
+                                } else if (newSet.weight > records[newTraining.id_exe].weight) {
+                                    dispatch(addRecordFb(record));
+                                }
                             });
                     });
             });
-                //Promise.resolve(dispatch(addWorkoutTrainingSet(workout, newTraining, newSet)))
-                // Promise.resolve([
-                //     dispatch(addWorkout(workout)),
-                //         dispatch(addTraining(training))
-                //     ])
-                //     .then(() => dispatch(addSet(newSet)));
-            // });
-            // dispatch(addWorkoutTraining(workout, newTraining));
-            // dispatch(addSet(newSet));
     }
 }
 export function deleteSetFb(set, id_tren, id_workout) {

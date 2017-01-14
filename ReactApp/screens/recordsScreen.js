@@ -37,15 +37,19 @@ class recordsScreen extends Component {
     this.renderRow = this.renderRow.bind(this);
   }
   componentDidMount() {
-    this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(this.props.records),
-    });
+    if(this.props.records) {
+      this.setState({
+        dataSource: this.state.dataSource.cloneWithRows(this.props.records),
+      });
+    }
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({
-      dataSource: this.state.dataSource.cloneWithRows(nextProps.records),
-    });
+    if(nextProps.records) {
+      this.setState({
+        dataSource: this.state.dataSource.cloneWithRows(nextProps.records),
+      });
+    }
   }
 
   renderRow(data) {
@@ -57,16 +61,19 @@ class recordsScreen extends Component {
   /* Render ==================================================================== */
   render() {
     return (
-      <View style={[AppStyles.container, styles.pad]}>
-        <ListView
-          initialListSize={3}
-          automaticallyAdjustContentInsets={false}
-          dataSource={this.state.dataSource}
-          renderRow={this.renderRow}
-          contentContainerStyle={AppStyles.paddingBottom} 
-          style={[styles.listContainer]}
-          />
-      </View>
+        <View style={[AppStyles.container, styles.pad]}>
+        { this.props.records ? 
+          <ListView
+            initialListSize={3}
+            automaticallyAdjustContentInsets={false}
+            dataSource={this.state.dataSource}
+            renderRow={this.renderRow}
+            contentContainerStyle={AppStyles.paddingBottom} 
+            style={[styles.listContainer]}
+            />
+            : null
+        }
+        </View>
     );
   }
 }

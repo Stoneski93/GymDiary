@@ -126,7 +126,10 @@ module.exports = StyleSheet.create({
     tintColor: AppConfig.thirdColor,
     width: 18,
   },
-
+  customActionBar: {
+    position: 'absolute',
+    bottom: 0,
+  },
 	/* Default */
   windowSize: {
     height: AppConfig.windowHeight,

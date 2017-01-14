@@ -107,9 +107,6 @@ toogleFavourite(data) {
   }
 }
 
-ListExercises.propTypes = {
-}
-
 /* Styles ==================================================================== */
 const styles = StyleSheet.create({
   searchInput: {

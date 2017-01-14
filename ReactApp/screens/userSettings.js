@@ -161,6 +161,16 @@ class UserSettings extends Component {
             </View>
           </View>
         </ScrollableTabView>
+        <TouchableOpacity style={[
+            AppStyles.row,
+            AppStyles.detailsBar,
+            AppStyles.containerCentered,
+            AppStyles.customActionBar]}
+            onPress={Actions.training}>
+            <Text>
+              Powrót
+            </Text>
+          </TouchableOpacity>
       </View>
     );
   }

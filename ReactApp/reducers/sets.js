@@ -4,7 +4,6 @@ import update from 'react-addons-update';
 export default function reducer(state = {}, action = {}) {
   switch (action.type) {
     case actions.ADD_SET:
-    console.log('dodaje set');
       return {...state, [action.set.id]: {...action.set}};
     // case actions.ADD_WORKOUT_TRAINING_SET:
     //   return {...state, [action.set.id]: {...action.set}};

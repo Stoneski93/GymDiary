@@ -51,24 +51,30 @@ export function authError (payload) {
 }
 
 export function createUser (email, password) {
-  return dispatch => {
-    firebaseAuth.createUserWithEmailAndPassword(email, password)
-      .then((response) => {
-          let user = {
-              email: response.email,
-              uid: response.uid,
-          }
-          let uid = response.uid;
-          AsyncStorage.setItem('user_data', JSON.stringify({email, password, uid}));
-          dispatch(saveUser(user));
-      })
+    let user = {};
+    return dispatch => {
+        firebaseAuth.createUserWithEmailAndPassword(email, password)
+        .then((response) => {
+            user = {
+                email: response.email,
+                uid: response.uid,
+                password: password,
+                weight: 0,
+                calories: 0,
+            };
+            let calories = 0;
+            let weight = 0;
+            let uid = response.uid;
+            AsyncStorage.setItem('user_data', JSON.stringify({email, password, uid, weight, calories}));
+            dispatch(saveUser(user));
+        })
         .then(() => {
             dispatch(loginUser(user));
         })
-      .catch((error) => {
-          dispatch(authError(true));
-      });
-  }
+        .catch((error) => {
+            dispatch(authError(true));
+        });
+    }
 }
 
 export function logoutUser () {
@@ -99,22 +105,33 @@ export function resetPassword (email) {
 }
 
 export function loginUser (user, fromAsync = false) {
-    let { email, password } = user;
-  return dispatch => {
-    firebaseAuth.signInWithEmailAndPassword(email, password)
-      .then((response) => {
-          let uid = response.uid;
-          if(!fromAsync) {
-            AsyncStorage.setItem('user_data', JSON.stringify({email, password, uid}));
-          }
-          dispatch(userLogin(user));
-          Actions.training();
-      })
-      .catch((error) => {
-          dispatch(authError(true));
-      });
+    let uid;
+    let { email, password, weight, calories } = user;
+    return (dispatch, getState) => {
+        firebaseAuth.signInWithEmailAndPassword(email, password)
+        .then((response) => {
+            uid = response.uid;
+            if(!fromAsync) {
+                AsyncStorage.setItem('user_data', JSON.stringify({email, password, uid, weight, calories}));
+            }
+        })
+        .then(() => {
+            let store = getState();
+            dispatch(fetchWorkouts(store.date, uid));
+        })
+        .then(() =>  {
+            if(!fromAsync) {
+                dispatch(getUser(uid, password));
+            } else {
+                dispatch(userLogin(user));
+            }
+            Actions.training();
+        })
+        .catch((error) => {
+            dispatch(authError(true));
+        });
 
-  }
+    }
 }
 
 export function saveUser (user) {
@@ -123,7 +140,9 @@ export function saveUser (user) {
           .set({
               email: user.email,
               uid: user.uid,
-              workouts: {}
+              workouts: {},
+              weight: 0,
+              calories: 0,
           })
           .then(() => {
               dispatch(userSignIn());
@@ -136,12 +155,10 @@ export function getAsyncUser (date) {
         AsyncStorage.getItem('user_data').then((user_data_json) => {
             let user_data = JSON.parse(user_data_json);
             let fromAsync = true;
-            
             if(user_data) {
                 dispatch(loginUser(user_data, fromAsync));
             } 
         })
-            //.then(() => Actions.training());
     }
 }
 
@@ -190,5 +207,24 @@ export function updateCalories(calories) {
         AsyncStorage.mergeItem('user_data', JSON.stringify(newUser));
 
         dispatch(addCalories(calories));
+    }
+}
+
+export function getUser(uid, password) {
+    return dispatch => {
+        database.ref().child(`/users/${uid}`).once('value', snapshot => {
+            let { email, uid, weight, calories } = snapshot.val();
+            let user = {
+                email: email,
+                password: password,
+                uid: uid,
+                weight: weight,
+                calories: calories
+            }
+            AsyncStorage.setItem('user_data', JSON.stringify({email, password, uid, weight, calories}));
+            dispatch(userLogin(user));
+        }).then(() => {
+            dispatch(authPlain());
+        });
     }
 }

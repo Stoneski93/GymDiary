@@ -53,7 +53,6 @@ class MainScreen extends Component {
   }
 
   componentWillMount() {
-    console.log('pobieram')
     this.props.fetchWorkouts(this.props.date, this.props.uid)
   }
 

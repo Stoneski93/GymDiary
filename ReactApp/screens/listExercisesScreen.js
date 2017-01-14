@@ -7,6 +7,8 @@ import {
   View,
   ListView,
   RefreshControl,
+  TouchableOpacity,
+  Text
 } from 'react-native'
 import { connect } from 'react-redux';
 import database from '../db';
@@ -14,6 +16,8 @@ import database from '../db';
 import AppStyles from '../styles'
 import AppConfig from '../config'
 import AppUtil from '../util'
+
+import { Actions } from 'react-native-router-flux';
 
 import ScrollableTabView, { ScrollableTabBar, } from 'react-native-scrollable-tab-view';
 
@@ -29,8 +33,6 @@ import ListExercisesFav from './listExercisesFav'
 class ListExercisesScreen extends Component {
   constructor(props) {
     super(props);
-
-    
   }
   /* Render ==================================================================== */
   render() {
@@ -40,6 +42,16 @@ class ListExercisesScreen extends Component {
           <ListExercises tabLabel="Cwiczenia" />
           <ListExercisesFav tabLabel="Ulubione" />
         </ScrollableTabView>
+        <TouchableOpacity style={[
+          AppStyles.row,
+          AppStyles.detailsBar,
+          AppStyles.containerCentered,
+          AppStyles.customActionBar]}
+          onPress={Actions.training}>
+          <Text>
+            Powrót
+          </Text>
+        </TouchableOpacity>
       </View>
     );
   }

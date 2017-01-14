@@ -7,7 +7,6 @@ export default function reducer(state = {}, action = {}) {
     case actions.ADD_TRAINING:
       return {...state, [action.payload.id]: {...action.payload}};
     case actions.ADD_WORKOUT_TRAINING:
-      console.log('dodaje workout oraz treining');
       return {...state, [action.training.id]: {...action.training}};
     case actions.ADD_TRAININGS:
       return action.payload;
