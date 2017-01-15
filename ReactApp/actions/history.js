@@ -11,9 +11,9 @@ function addHistoryCalories(data) {
   } 
 }
 
-function addHistoryWeight(data) { 
+function addHistoryWeights(data) { 
   return {
-    type: actions.ADD_HISTORY_WEIGHT,
+    type: actions.ADD_HISTORY_WEIGHTS,
     payload: data,
   } 
 }
@@ -33,7 +33,7 @@ export function fetchHistoryWeightsFb (uid) {
         weights = snap.val()
       })
       .then(() => {
-        dispatch(addHistoryWeight(weights));
+        dispatch(addHistoryWeights(weights));
       })
   }
 }
@@ -46,7 +46,7 @@ export function fetchHistoryCaloriesFb (uid) {
         calories = snap.val()
       })
       .then(() => {
-        dispatch(addCaloriesWeight(calories));
+        dispatch(addHistoryCalories(calories));
       })
   }
 }

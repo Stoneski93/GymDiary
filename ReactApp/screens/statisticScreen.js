@@ -7,6 +7,7 @@ import {
   View,
   ListView,
   RefreshControl,
+  Text
 } from 'react-native'
 
 import { connect } from 'react-redux';
@@ -24,15 +25,18 @@ class statisticScreen extends Component {
   constructor(props) {
     super(props);
 
+  }
+  
+  componentWillMount() {
     this.props.fetchHistoryWeightsFb(this.props.user.userId);
-    this.props.fetchHistoryCaloriesFb(this.props.user.userId);
+    //this.props.fetchHistoryCaloriesFb(this.props.user.userId);
   }
 
   /* Render ==================================================================== */
   render() {
     return (
         <View style={[AppStyles.container, styles.pad]}>
-        
+        <Text> TROLOLO </Text>
         </View>
     );
   }
