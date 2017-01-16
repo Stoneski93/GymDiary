@@ -4,6 +4,7 @@ import { Actions } from 'react-native-router-flux';
 import { AsyncStorage } from 'react-native';
 import { fetchWorkouts } from './workouts';
 import { fetchRecords } from './records';
+import { addHistoryWeight, addHistoryCalorie } from './history';
 
 function userLogin (user) {
     return {
@@ -178,11 +179,12 @@ export function updateWeight(weight) {
         }
 
         database.ref().child(`/users/${user.userId}`).update(newUser);
-        database.ref().child(`/weight_history/${user.userId}/${currentDate}`).set(historyWeight);
+        database.ref().child(`/weight_history/${user.userId}/${currentDate}`).set(historyWeight)
+            .then(() => { dispatch(addWeight(weight))})
+            .then(() => { dispatch(addHistoryWeight(historyWeight))});
 
         AsyncStorage.mergeItem('user_data', JSON.stringify(newUser));
 
-        dispatch(addWeight(weight));
     }
 }
 
@@ -202,11 +204,11 @@ export function updateCalories(calories) {
         }
 
         database.ref().child(`/users/${user.userId}`).update(newUser);
-        database.ref().child(`/calories_history/${user.userId}/${currentDate}`).set(historyCalories);
+        database.ref().child(`/calories_history/${user.userId}/${currentDate}`).set(historyCalories)
+        .then(() => { dispatch(addCalories(calories))})
+        .then(() => { dispatch(addHistoryCalorie(historyCalories))});
 
         AsyncStorage.mergeItem('user_data', JSON.stringify(newUser));
-
-        dispatch(addCalories(calories));
     }
 }
 

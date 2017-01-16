@@ -208,7 +208,7 @@ const styles = StyleSheet.create({
     alignSelf: "stretch",
   },
   calendar: {
-   marginTop: -40,
+   marginTop: 0,
   },
   dateText: {
     fontFamily: AppConfig.baseFont,

@@ -11,9 +11,23 @@ function addHistoryCalories(data) {
   } 
 }
 
+export function addHistoryCalorie(data) { 
+  return {
+    type: actions.ADD_HISTORY_CALORIE,
+    payload: data,
+  } 
+}
+
 function addHistoryWeights(data) { 
   return {
     type: actions.ADD_HISTORY_WEIGHTS,
+    payload: data,
+  } 
+}
+
+export function addHistoryWeight(data) { 
+  return {
+    type: actions.ADD_HISTORY_WEIGHT,
     payload: data,
   } 
 }
@@ -32,7 +46,6 @@ export function fetchHistoryWeightsFb (uid) {
     database.ref().child(`/weight_history/${uid}`)
       .once('value', (snap) => {
         weights = snap.val()
-        console.log(weights);
       })
       .then(() => {
         dispatch(addHistoryWeights(weights));
