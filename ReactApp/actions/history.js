@@ -27,10 +27,12 @@ function editRecord(data) {
 
 export function fetchHistoryWeightsFb (uid) {
   let weights = {};
+  console.log('jestem');
   return dispatch => {
     database.ref().child(`/weight_history/${uid}`)
       .once('value', (snap) => {
         weights = snap.val()
+        console.log(weights);
       })
       .then(() => {
         dispatch(addHistoryWeights(weights));

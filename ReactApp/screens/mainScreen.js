@@ -128,7 +128,9 @@ class MainScreen extends Component {
             <ScrollableTabView renderTabBar={() => <ScrollableTabBar />} >
               <View tabLabel="Dziennik" style={[AppStyles.container, styles.paddingBottom, styles.mainContainer]}>
                 {dailyTrainings && !this.props.loading ? 
-                <ListTrainings trainings={this.props.trainings} dailyTrainings={dailyTrainings.trainings} dailyWorkout={dailyTrainings} />
+                <ListTrainings trainings={this.props.trainings}
+                dailyTrainings={dailyTrainings.trainings}
+                dailyWorkout={dailyTrainings} />
                   : 
                 null }
               </View>

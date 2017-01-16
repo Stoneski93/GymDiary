@@ -63,8 +63,6 @@ class Menu extends Component {
       );
     });
 
-    console.log(menuItems);
-
     return (
       <View style={[styles.menuContainer]}>
         <View style={[styles.header]}>

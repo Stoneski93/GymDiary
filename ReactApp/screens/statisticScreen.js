@@ -28,8 +28,9 @@ class statisticScreen extends Component {
   }
   
   componentWillMount() {
+    console.log('wchodze');
     this.props.fetchHistoryWeightsFb(this.props.user.userId);
-    //this.props.fetchHistoryCaloriesFb(this.props.user.userId);
+    this.props.fetchHistoryCaloriesFb(this.props.user.userId);
   }
 
   /* Render ==================================================================== */
@@ -55,9 +56,8 @@ const styles = StyleSheet.create({
 function mapStateToProps(state) { 
   return {
     user: state.auth,
-    weight_history: state.weight_history,
-    calories_history: state.calories_history
-  };
+    history: state.history
+  }
 }
 
 /* Export Component ==================================================================== */
