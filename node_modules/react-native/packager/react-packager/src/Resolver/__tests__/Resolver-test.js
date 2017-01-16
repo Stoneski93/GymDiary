@@ -9,20 +9,21 @@
 'use strict';
 
 jest.unmock('../');
+jest.unmock('../../../../defaults');
 jest.mock('path');
 
-const Promise = require('promise');
-const Resolver = require('../');
-
-const path = require('path');
-
-let DependencyGraph = jest.fn();
-jest.setMock('node-haste', DependencyGraph);
+const {join: pathJoin} = require.requireActual('path');
+const DependencyGraph = jest.fn();
+jest.setMock('../../node-haste', DependencyGraph);
 let Module;
 let Polyfill;
 
 describe('Resolver', function() {
+  let Resolver, path;
+
   beforeEach(function() {
+    Resolver = require('../');
+    path = require('path');
     DependencyGraph.mockClear();
     Module = jest.fn(function() {
       this.getName = jest.fn();
@@ -36,7 +37,7 @@ describe('Resolver', function() {
       return polyfill;
     });
 
-    DependencyGraph.replacePatterns = require.requireActual('node-haste/lib/lib/replacePatterns');
+    DependencyGraph.replacePatterns = require.requireActual('../../node-haste/lib/replacePatterns');
     DependencyGraph.prototype.createPolyfill = jest.fn();
     DependencyGraph.prototype.getDependencies = jest.fn();
 
@@ -106,6 +107,15 @@ describe('Resolver', function() {
       });
     });
 
+    it('passes custom platforms to the dependency graph', function() {
+      new Resolver({ // eslint-disable-line no-new
+        projectRoot: '/root',
+        platforms: ['ios', 'windows', 'vr'],
+      });
+      const platforms = DependencyGraph.mock.calls[0][0].platforms;
+      expect(platforms).toEqual(['ios', 'windows', 'vr']);
+    });
+
     pit('should get dependencies with polyfills', function() {
       var module = createModule('index');
       var deps = [module];
@@ -131,7 +141,14 @@ describe('Resolver', function() {
         ).then(function(result) {
           expect(result.mainModuleId).toEqual('index');
           expect(result.dependencies[result.dependencies.length - 1]).toBe(module);
-          expect(DependencyGraph.prototype.createPolyfill.mock.calls.map((call) => call[0])).toEqual([
+          expect(
+            DependencyGraph
+              .prototype
+              .createPolyfill
+              .mock
+              .calls
+              .map((call) => call[0]))
+          .toEqual([
             { id: 'polyfills/polyfills.js',
               file: 'polyfills/polyfills.js',
               dependencies: []
@@ -212,7 +229,11 @@ describe('Resolver', function() {
                 'polyfills/Object.es7.js',
               ],
             },
-          ]);
+          ].map(({id, file, dependencies}) => ({
+            id: pathJoin(__dirname, '..', id),
+            file: pathJoin(__dirname, '..', file),
+            dependencies: dependencies.map((d => pathJoin(__dirname, '..', d))),
+          })));
         });
     });
 
@@ -288,7 +309,7 @@ describe('Resolver', function() {
                 'polyfills/Array.es6.js',
                 'polyfills/Object.es7.js',
                 'polyfills/babelHelpers.js',
-              ]
+              ].map(d => pathJoin(__dirname, '..', d))
             },
           ]);
         });
@@ -354,19 +375,19 @@ describe('Resolver', function() {
         dev: false,
       }).then(({code: processedCode}) => {
         expect(processedCode).toEqual([
-          `__d(${resolutionResponse.getModuleId(module)} /* test module */, function(global, require, module, exports) {` +
+          '__d(/* test module */function(global, require, module, exports) {' +
           // require
           `require(${moduleIds.get('x')} /* x */)`,
           `require(${moduleIds.get('y')} /* y */)`,
           'require( \'z\' )',
           'require( "a")',
           'require("b" )',
-          '});',
+          `}, ${resolutionResponse.getModuleId(module)});`,
         ].join('\n'));
       });
     });
 
-    pit('should add module transport names as third argument to `__d`', () => {
+    pit('should add module transport names as fourth argument to `__d`', () => {
       const module = createModule('test module');
       const code = 'arbitrary(code)'
       const resolutionResponse = new ResolutionResponseMock({
@@ -381,9 +402,9 @@ describe('Resolver', function() {
         dev: true,
       }).then(({code: processedCode}) =>
         expect(processedCode).toEqual([
-          `__d(${resolutionResponse.getModuleId(module)} /* test module */, function(global, require, module, exports) {` +
+          '__d(/* test module */function(global, require, module, exports) {' +
             code,
-          '}, "test module");'
+          `}, ${resolutionResponse.getModuleId(module)}, null, "test module");`
         ].join('\n'))
       );
     });
@@ -443,8 +464,8 @@ describe('Resolver', function() {
           .wrapModule({resolutionResponse, module, name: id, code, dev: false})
           .then(({code: processedCode}) =>
             expect(processedCode).toEqual([
-              `__d(${resolutionResponse.getModuleId(module)} /* ${id} */, function(global, require, module, exports) {`,
-              `module.exports = ${code}\n});`,
+              `__d(/* ${id} */function(global, require, module, exports) {`,
+              `module.exports = ${code}\n}, ${resolutionResponse.getModuleId(module)});`,
             ].join('')));
       });
     });
@@ -471,7 +492,9 @@ describe('Resolver', function() {
       });
 
       pit('should invoke the minifier with the wrapped code', () => {
-        const wrappedCode = `__d(${resolutionResponse.getModuleId(module)} /* ${id} */, function(global, require, module, exports) {${code}\n});`
+        const wrappedCode =
+          `__d(/* ${id} */function(global, require, module, exports) {${
+            code}\n}, ${resolutionResponse.getModuleId(module)});`
         return depResolver
           .wrapModule({
             resolutionResponse,

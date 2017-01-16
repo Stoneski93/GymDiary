@@ -97,7 +97,8 @@ class UserSettings extends Component {
     return (
       <View ref={'scrollView'} style={[AppStyles.container]}>
         <ScrollableTabView style={{marginTop: 52}} renderTabBar={() => <ScrollableTabBar />} >
-           <View tabLabel="Informacje" style={[AppStyles.innerContainer]}>
+           <View tabLabel="Informacje" style={[AppStyles.mainContainer]}>
+            <View style={[styles.help]}>
               <View style={[styles.rowAvatar]}>
                 <Image style={[styles.avatar]}
                 source={require('../images/user.png')}
@@ -121,6 +122,7 @@ class UserSettings extends Component {
               <View style={[styles.row]}>
                 <Text style={styles.info}> {this.props.user.calories} KCAL </Text>
               </View>
+            </View>
           </View>
           <View tabLabel="Aktualizacja" style={[AppStyles.mainContainer]}>
             <View>
@@ -178,13 +180,19 @@ class UserSettings extends Component {
 
 /* Styles ==================================================================== */
 const styles = StyleSheet.create({
+  help: {
+    
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingBottom: 150,
+  },
   container: {
     flex: 1,
     flexDirection: 'column',
     paddingTop: 15,
     paddingBottom: 20,
     justifyContent: 'center',
-    //alignItems: 'center',
   },
   innerContainer: {
     flex: 1
@@ -193,12 +201,8 @@ const styles = StyleSheet.create({
     marginTop: 30,
   },
   row: {
-    flex: 1,
-    alignSelf: 'stretch',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
-    height: 35
+    height: 35,
+    backgroudColor: 'blue',
   },
   rowAvatar: {
     flex: 1,
@@ -206,7 +210,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
-    height: 100,
+    height: 200,
     borderWidth: 1
   },
   avatar: {
@@ -216,6 +220,7 @@ const styles = StyleSheet.create({
   info: {
     fontSize: 20,
     color: AppConfig.primaryColor,
+    backgroudColor: 'blue',
   }
 });
 

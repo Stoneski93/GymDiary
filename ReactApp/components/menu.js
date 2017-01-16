@@ -63,6 +63,8 @@ class Menu extends Component {
       );
     });
 
+    console.log(menuItems);
+
     return (
       <View style={[styles.menuContainer]}>
         <View style={[styles.header]}>
@@ -158,6 +160,7 @@ const styles = StyleSheet.create({
   },
   menu: {
     flex: 1,
+    top: 0,
     left: 0,
     right: 0,
     height: AppConfig.windowHeight,

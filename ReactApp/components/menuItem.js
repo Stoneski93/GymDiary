@@ -34,7 +34,8 @@ class MenuItem extends Component {
   render() {
     return (
       <TouchableOpacity key={'menu-item-'+this.props.item.title}
-        onPress={this.props.item.action}>
+        onPress={this.props.item.action}
+        style={styles.wrapper}>
         <View style={[styles.menuItem]}>
             <Icon name={this.props.item.icon} size={20} color={AppConfig.primaryColor} />
             <Text style={[AppStyles.baseText, styles.menuItemText]}>{this.props.item.title}</Text>
@@ -46,9 +47,13 @@ class MenuItem extends Component {
 
 /* Styles ==================================================================== */
 const styles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+  },
   menuItem: {
     flex: 1,
     height: 48,
+    //width: 100,
     paddingLeft: 15,
     flexDirection: 'row',
     alignItems: 'center',

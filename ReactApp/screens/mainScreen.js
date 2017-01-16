@@ -85,9 +85,7 @@ class MainScreen extends Component {
     let dailyTrainings = this.filterWorkouts();
     return (
       <View style={[AppStyles.container, styles.back]}>
-        <View style={[styles.centering]}>
-					<Spinner visible={this.props.loading} />
-				</View>
+        
         <View style={[
           AppStyles.row,
           AppStyles.trainingBar]}>
@@ -102,6 +100,7 @@ class MainScreen extends Component {
               <Icon name='calendar' size={30} color={AppConfig.primaryColor} />
           </TouchableOpacity>
         </View>
+          <View style={[AppStyles.container]}>
           {this.state.visibleCalendar ? 
             <View style={[styles.calendar]}>
                 <Calendar
@@ -125,7 +124,7 @@ class MainScreen extends Component {
                 </View>
             </View>
           : null }
-          <View style={[AppStyles.container]}>
+          { !this.state.visibleCalendar ?
             <ScrollableTabView renderTabBar={() => <ScrollableTabBar />} >
               <View tabLabel="Dziennik" style={[AppStyles.container, styles.paddingBottom, styles.mainContainer]}>
                 {dailyTrainings && !this.props.loading ? 
@@ -137,6 +136,13 @@ class MainScreen extends Component {
                 <Timer secondsRemaining={60} />
               </View>
             </ScrollableTabView>
+          : 
+              <TouchableOpacity 
+              style={[AppStyles.container, styles.paddingBottom, styles.mainContainer]}
+              activeOpacity={1} 
+              onPress={this.toggleCalendar}>
+              </TouchableOpacity>
+          }
           </View>
           <View style={[styles.bulbButtonContainer]}>
             <Button type='bulb' text="+"  onPress={Actions.listExercisesScreen} />
@@ -200,7 +206,7 @@ const styles = StyleSheet.create({
     alignSelf: "stretch",
   },
   calendar: {
-    marginTop: -40,
+   marginTop: -40,
   },
   dateText: {
     fontFamily: AppConfig.baseFont,
@@ -213,7 +219,7 @@ const styles = StyleSheet.create({
   },
   centering: {
 		position: 'absolute',
-		backgroundColor: 'black',
+		//backgroundColor: 'black',
 		left: 0,
 		right: 0,
 		top: 0,
