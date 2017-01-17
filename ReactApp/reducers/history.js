@@ -11,6 +11,8 @@ export default function reducer(state = {}, action = {}) {
      return {...state, ['calories']: {...state.calories, ...action.payload}}
     case actions.ADD_HISTORY_CALORIE:
       return {...state, ['calories']: {...state.calories, [action.payload.date]: action.payload}}
+     case actions.ADD_HISTORY_RECORDS:
+     return {...state, ['records']: {...state.records, ...action.payload}}
     default:
       return state;
   }

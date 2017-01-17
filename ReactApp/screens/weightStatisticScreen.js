@@ -41,7 +41,6 @@ class weightStatisticScreen extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps)
     let chartArray = [];
     let weightsToTable = [];
     let counter = 0;

@@ -8,7 +8,8 @@ import {
   ListView,
   RefreshControl,
   Text,
-  TouchableOpacity
+  TouchableOpacity,
+  Picker
 } from 'react-native'
 
 import { connect } from 'react-redux';
@@ -18,6 +19,7 @@ import ScrollableTabView, { ScrollableTabBar, } from 'react-native-scrollable-ta
 
 import WeightStatisticScreen from './weightStatisticScreen';
 import CaloriesStatisticScreen from './caloriesStatisticScreen';
+import RecordsStatisticScreen from './recordsStatisticScreen';
 
 import { Actions } from 'react-native-router-flux';
 
@@ -123,9 +125,7 @@ class statisticScreen extends Component {
             </TouchableOpacity>
           </View>
           <View tabLabel="Rekordy" style={[AppStyles.container, styles.pad]}>
-            { this.state.weights.length ?
-              <StockLine data={this.state.weights} options={options} xKey='date' yKey='weight' />
-            : null}
+            <RecordsStatisticScreen />
             <TouchableOpacity style={[
               AppStyles.row,
               AppStyles.detailsBar,

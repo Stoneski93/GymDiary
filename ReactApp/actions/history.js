@@ -32,6 +32,20 @@ export function addHistoryWeight(data) {
   } 
 }
 
+function addHistoryRecords(data) { 
+  return {
+    type: actions.ADD_HISTORY_RECORDS,
+    payload: data,
+  } 
+}
+
+export function addHistoryRecord(data) { 
+  return {
+    type: actions.ADD_HISTORY_RECORD,
+    payload: data,
+  } 
+}
+
 function editRecord(data) {
   return {
     type: actions.EDIT_RECORD,
@@ -65,3 +79,17 @@ export function fetchHistoryCaloriesFb (uid) {
       })
   }
 }
+
+export function fetchHistoryRecordsFb (uid) {
+  let calories = {};
+  return dispatch => {
+    database.ref().child(`/records_history/${uid}`)
+      .once('value', (snap) => {
+        records = snap.val()
+      })
+      .then(() => {
+        dispatch(addHistoryRecords(records));
+      })
+  }
+}
+
