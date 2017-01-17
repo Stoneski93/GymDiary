@@ -135,7 +135,11 @@ class weightStatisticScreen extends Component {
               <ListStatistic stats={this.state.weightsToTable} firstHeader={'Data'} secondHeader={'Waga'} />
             </View>
           </View>
-        : null }
+        : 
+        <View style={[styles.absolute]}>
+            <Text style={[styles.attention]}>Brak danych</Text>
+        </View>
+       }
         </View>
     );
   }
@@ -153,6 +157,12 @@ const styles = StyleSheet.create({
   top: {
     paddingTop: 60,
   },
+  absolute: {
+    position: 'absolute',
+    top: 50,
+    left: 50
+
+  },
   help: {
     paddingTop: 30,
   },
@@ -169,6 +179,10 @@ const styles = StyleSheet.create({
   statisticWrapper: {
     marginTop: 20,
     height: 200,
+  },
+  attention: {
+    paddingLeft: 30,
+    fontSize: 20
   }
   
 });

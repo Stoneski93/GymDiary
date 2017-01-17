@@ -76,7 +76,6 @@ class caloriesStatisticScreen extends Component {
 
   /* Render ==================================================================== */
   render() {
-    console.log('rerender')
     let options = {
       width: 300,
       height: 150,
@@ -136,7 +135,11 @@ class caloriesStatisticScreen extends Component {
               firstHeader={'Data'} secondHeader={'Kalorie'} />
             </View>
           </View>
-        : null }
+        : 
+          <View style={[styles.absolute]}>
+            <Text style={[styles.attention]}>Brak danych</Text>
+          </View>
+      }
       </View>
     );
   }
@@ -170,6 +173,10 @@ const styles = StyleSheet.create({
   statisticWrapper: {
     marginTop: 20,
     height: 200,
+  },
+  attention: {
+    paddingLeft: 30,
+    fontSize: 20
   }
 });
 

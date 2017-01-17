@@ -63,40 +63,40 @@ class Timer extends Component {
 
   render() {
     return (
-      <View style={[AppStyles.container]}>
-        <View style={[AppStyles.containerCentered]}>
-          <Text style={[styles.time]}>
-            {this.state.secondsRemaining}
-          </Text>
+        <View style={[AppStyles.container]}>
+          <View style={[AppStyles.containerCentered]}>
+            <Text style={[styles.time]}>
+              {this.state.secondsRemaining}
+            </Text>
+          </View>
+          <View style={[AppStyles.container,
+            AppStyles.containerCentered,
+            AppStyles.paddingVerticalSml]}
+            >
+            <TextInput
+              placeholder="Czas"
+              style={styles.searchInput}
+              value={this.state.timerValue}
+              onChangeText={this.setTimer}
+              />
+              <View style={[AppStyles.row]}>
+                <View style={[AppStyles.flex1, styles.searchInput]}>
+                  <Button
+                  text={this.state.button}
+                  onPress={this.startTimer}
+                  />
+                </View>  
+              </View>
+              <View style={[AppStyles.row]}>
+                <View style={[AppStyles.flex1, styles.searchInput]}>
+                  <Button
+                  text={'Restart'}
+                  onPress={this.resetTimer}
+                  />
+                </View>  
+              </View>
+          </View>
         </View>
-        <View style={[AppStyles.container,
-          AppStyles.containerCentered,
-          AppStyles.paddingVerticalSml]}
-          >
-           <TextInput
-            placeholder="Czas"
-            style={styles.searchInput}
-            value={this.state.timerValue}
-            onChangeText={this.setTimer}
-            />
-            <View style={[AppStyles.row]}>
-              <View style={[AppStyles.flex1, styles.searchInput]}>
-                <Button
-                text={this.state.button}
-                onPress={this.startTimer}
-                />
-              </View>  
-            </View>
-            <View style={[AppStyles.row]}>
-              <View style={[AppStyles.flex1, styles.searchInput]}>
-                <Button
-                text={'Restart'}
-                onPress={this.resetTimer}
-                />
-              </View>  
-            </View>
-        </View>
-      </View>
     );
   }
 };

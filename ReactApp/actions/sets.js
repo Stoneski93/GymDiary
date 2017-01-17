@@ -74,14 +74,14 @@ export function addSetFb (workout, training, set, uid) {
                                 const { records } = getState();
                                 const store = getState();
 
-                                if (records === null && records[newTraining.id_exe]) {
+                                if (records !== null && records[newTraining.id_exe]) {
                                     if(newSet.weight > records[newTraining.id_exe].weight) {
                                         dispatch(addRecordFb(record));
                                     }
                                 } else {
                                      dispatch(addRecordFb(record));
                                 }
-                            });
+                            })
                     });
             });
     }

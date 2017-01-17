@@ -8,7 +8,8 @@ import {
   ListView,
   RefreshControl,
   Text,
-  Picker
+  Picker,
+  TouchableOpacity
 } from 'react-native'
 
 import { connect } from 'react-redux';
@@ -17,6 +18,7 @@ import { StockLine } from 'react-native-pathjs-charts'
 import ScrollableTabView, { ScrollableTabBar, } from 'react-native-scrollable-tab-view';
 
 import ListStatistic from '../containers/listStatistic'
+import Button from '../components/button';
 
 // App Globals
 import AppStyles from '../styles'
@@ -35,14 +37,25 @@ class recordsStatisticScreen extends Component {
       currentExerciseId: 0,
       currentRecords: null
     }
+    this.resetState = this.resetState.bind(this);
   }
   
   componentWillMount() {
     this.props.fetchHistoryRecordsFb(this.props.user.userId);
   }
+
+  resetState() {
+    this.setState({
+      currentExercise: '',
+      currentExerciseId: 0,
+      currentRecords: null
+    })
+  }
   
   /* Render ==================================================================== */
   render() {
+    let k = 0;
+
     let options = {
       width: 300,
       height: 150,
@@ -115,45 +128,59 @@ class recordsStatisticScreen extends Component {
       data.push(chartArray);
     }
 
+    let pickerItems = this.props.exercises;
+    
+
     return (
        <View style={[styles.help]}>
           <View style={[styles.wrapper]}>
           {this.props.exercises ?
             <Picker
-              prompt="wybierz"
+              prompt="Ćwiczenie"
               style={[styles.picker]}
               selectedValue={this.state.currentExercise}
               onValueChange={(currentExercise) => {
                 let finded = this.props.exercises.filter((exercise) => exercise.title === currentExercise)
-                
-                this.setState({
-                  currentExercise: currentExercise,
-                  currentRecords: this.props.records[finded[0].id],
-                  currentExerciseId: finded[0].id
-                })
+                  this.setState({
+                    currentExercise: currentExercise,
+                    currentRecords: this.props.records[finded[0].id],
+                    currentExerciseId: finded[0].id
+                  })
+                  this.props.fetchHistoryRecordsFb(this.props.user.userId);
             }
               }
             >
-              {this.props.exercises.map((exercise) => {
+              {pickerItems.map((exercise) => {
                 return <Picker.Item label={exercise.title} value={exercise.title} />
               })}
             </Picker>
           : null}
+          <View>
+            <Text style={[styles.attention]}>Przeładuj wykres przed kazdym następnym wyborem</Text>
+          </View>
+          <View style={[AppStyles.row, styles.reloadButton]}>
+              <View style={[AppStyles.flex1]}>
+                <Button
+                  text={'Przeładuj'}
+                  onPress={this.resetState} />
+              </View>
+            </View>
           <View style={[styles.chartWrapper]}>
             {data.length
               ? <StockLine data={data} options={options} xKey='id' yKey='weight' />
-              : <Text>Brak danych</Text>
+              :
+              <View style={[styles.absolute]}>
+                <Text style={[styles.info]}>Brak danych</Text>
+              </View>
             }
           </View>
             {this.state.currentRecords ? 
               <View style={[styles.statisticWrapper]}>
                  <ListStatistic stats={recordsToTable} firstHeader={'Data'} secondHeader={'Cięzar'} />
               </View>
-              : 
-              <Text>Brak danych</Text>
+              : null
             }
           </View>
-
       </View>
     );
   }
@@ -171,11 +198,20 @@ const styles = StyleSheet.create({
   top: {
     paddingTop: 60,
   },
-  help: {
-    //paddingTop: 30,
+  reloadButton: {
+    padding: 10,
   },
-  picker: {
-    
+  emptyWrapper: {
+    flex: 1,
+    justifyContent: 'center',
+  },
+  empty: {
+    fontSize: 30,
+  },
+  attention: {
+    color: 'red',
+    fontWeight: 'bold',
+    paddingLeft: 10,
   },
   axisX: {
     position: 'absolute',
@@ -189,7 +225,11 @@ const styles = StyleSheet.create({
   },
   statisticWrapper: {
     marginTop: 20,
-    height: 200,
+    height: 180,
+  },
+  info: {
+    paddingLeft: 30,
+    fontSize: 20
   }
 });
 

@@ -18,6 +18,7 @@ import moment from 'moment';
 import { connect } from 'react-redux';
 import { changeDateWithFetch, changeDate } from '../actions/date';
 import { fetchWorkouts } from '../actions/workouts';
+import { fetchHistoryRecordsFb } from '../actions/history';
 
 import { setLoading } from '../actions/current';
 
@@ -85,7 +86,6 @@ class MainScreen extends Component {
     let dailyTrainings = this.filterWorkouts();
     return (
       <View style={[AppStyles.container, styles.back]}>
-        
         <View style={[
           AppStyles.row,
           AppStyles.trainingBar]}>
@@ -168,7 +168,7 @@ function mapStateToProps(state) {
 }
 
 /* Export Component ==================================================================== */
-export default connect(mapStateToProps, { changeDateWithFetch, changeDate, fetchWorkouts })(MainScreen);
+export default connect(mapStateToProps, { changeDateWithFetch, changeDate, fetchWorkouts, fetchHistoryRecordsFb })(MainScreen);
 
 MainScreen.propTypes = {
  //TODO

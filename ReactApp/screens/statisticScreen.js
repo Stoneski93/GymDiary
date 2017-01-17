@@ -126,16 +126,6 @@ class statisticScreen extends Component {
           </View>
           <View tabLabel="Rekordy" style={[AppStyles.container, styles.pad]}>
             <RecordsStatisticScreen />
-            <TouchableOpacity style={[
-              AppStyles.row,
-              AppStyles.detailsBar,
-              AppStyles.containerCentered,
-              AppStyles.customActionBar]}
-              onPress={Actions.training}>
-              <Text>
-                Powrót
-              </Text>
-            </TouchableOpacity>
           </View>
         </ScrollableTabView>
     );

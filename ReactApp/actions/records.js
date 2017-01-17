@@ -51,9 +51,10 @@ export function addRecordFb (record) {
     }
     
     database.ref().child(`/records_history/${user.userId}/${record.id_exe}/${currentDate}`).set(newRecord);
-    database.ref().child(`/records/${user.userId}/${newRecord.id_exe}`).set(newRecord);
-    
+    database.ref().child(`/records/${user.userId}/${newRecord.id_exe}`).set(newRecord)
     dispatch(addRecord(newRecord));
+
+    
           
   }
 }
