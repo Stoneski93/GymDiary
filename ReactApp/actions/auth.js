@@ -84,6 +84,9 @@ export function logoutUser () {
           .then((response) => {
               AsyncStorage.removeItem('user_data').then(() => {
                 dispatch(userLogout());
+              })
+              .then(() => {
+                  AsyncStorage.clear();
               });
           })
           .catch((error) => {

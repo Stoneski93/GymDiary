@@ -70,15 +70,12 @@ class UserSettings extends Component {
     this.updateWeight = this.updateWeight.bind(this);
   }
   
-  componentWillReceiveProps(nextProps) {
-    
-  }
-
   updateWeight() {
      let formValues  = this.refs.formWeight.getValue();
   
     if(formValues) {
       this.props.updateWeight(formValues.weight);
+      Actions.training();
     }
   }
 
@@ -87,6 +84,7 @@ class UserSettings extends Component {
 
     if(formValues) {
       this.props.updateCalories(formValues.calories);
+      Actions.training();
     }
   }
 

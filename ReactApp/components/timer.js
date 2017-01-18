@@ -15,6 +15,8 @@ import AppConfig from '../config'
 import AppUtil from '../util'
 
 import Button from '../components/button'
+var Sound = require('react-native-sound');
+
 
 class Timer extends Component {
   constructor(props) {
@@ -39,16 +41,18 @@ class Timer extends Component {
     this.setState({secondsRemaining: this.state.secondsRemaining - 1});
     if (this.state.secondsRemaining <= 0) {
       clearInterval(this.interval);
+      whoosh.play();
     }
   }
 
   startTimer() {
-    if(!this.state.started) {
+    if(!this.state.started && this.state.secondsRemaining > 0) {
       this.interval = setInterval(this.tick, 1000);
       this.setState({started: true, button:'Stop'});
     } else {
       clearInterval(this.interval);
       this.setState({started: false, button:'Start'});
+      whoosh.stop();
     }
   }
 
@@ -59,6 +63,7 @@ class Timer extends Component {
   resetTimer(value) {
      clearInterval(this.interval);
      this.setState({started: false, secondsRemaining: this.state.timerValue, button:'Start' });
+     whoosh.stop();
   }
 
   render() {
@@ -113,6 +118,15 @@ const styles = StyleSheet.create({
   time: {
     fontSize: 50,
     color: 'red',
+  }
+});
+
+var whoosh = new Sound('music.mp3', Sound.MAIN_BUNDLE, (error) => {
+  if (error) {
+    console.log('failed to load the sound', error);
+  } else { // loaded successfully
+    console.log('duration in seconds: ' + whoosh.getDuration() +
+        'number of channels: ' + whoosh.getNumberOfChannels());
   }
 });
 

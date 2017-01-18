@@ -53,5 +53,4 @@ export function exerciseToogleFavourite (data) {
         payload: data
       }));
   }
-
 }

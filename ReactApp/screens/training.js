@@ -60,34 +60,36 @@ class Training extends Component {
 }
 
 addTraining() {
-  let { weight, reps }  = this.refs.form.getValue();
+  let formValues = this.refs.form.getValue();
   let isWorkout = false;
   let isTraining = false;
 
-  let set = {
-    weight: weight,
-    reps: reps,
-  }
-
-  this.props.workouts.filter(workout => {
-    if(this.props.date === workout.data) {
-      isWorkout = true;
-      workout.trainings.map(training => {
-        if(this.props.trainings[training].id_exe === this.props.currentExercise){
-          isTraining = true;
-          this.props.addTrainingFb(workout, this.props.trainings[training].id_exe, set, this.props.uid, this.props.trainings[training].id);
-        }
-      });
-      if(!isTraining) {
-        this.props.addWorkoutFb(this.props.date, this.props.uid, this.props.currentExercise, set);
-      }
+  if(formValues) {
+    let { weight, reps }  = this.refs.form.getValue();
+    let set = {
+      weight: weight,
+      reps: reps,
     }
-  });
 
-if(!isWorkout) {
-  this.props.addWorkoutFb(this.props.date, this.props.uid, this.props.currentExercise, set );
-}
-Actions.training();
+    this.props.workouts.filter(workout => {
+      if(this.props.date === workout.data) {
+        isWorkout = true;
+        workout.trainings.map(training => {
+          if(this.props.trainings[training].id_exe === this.props.currentExercise){
+            isTraining = true;
+            this.props.addTrainingFb(workout, this.props.trainings[training].id_exe, set, this.props.uid, this.props.trainings[training].id);
+          }
+        });
+        if(!isTraining) {
+          this.props.addWorkoutFb(this.props.date, this.props.uid, this.props.currentExercise, set);
+        }
+      }
+    });
+    if(!isWorkout) {
+      this.props.addWorkoutFb(this.props.date, this.props.uid, this.props.currentExercise, set );
+    }
+    Actions.training();
+  }
 }
   /* Render ==================================================================== */
   render() {

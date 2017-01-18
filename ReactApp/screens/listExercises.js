@@ -112,6 +112,9 @@ const styles = StyleSheet.create({
   searchInput: {
     paddingLeft: 20,
     paddingRight: 20
+  },
+  listContainer: {
+    paddingBottom: 20,
   }
 });
 

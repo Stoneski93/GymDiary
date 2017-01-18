@@ -3,25 +3,25 @@
       "id": 0,
       "title":"Wyciskanie żołnierskie sprzed głowy",
       "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F1.png?alt=media&token=f0dc580c-6da8-4be0-979d-4a1f81e2ff48",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+      "description": "Stań na stosunkowo szeroko, chwyć sztangę na szerokości barków, mocno napinając core całego ciała, nadaj łopatce retrakcję wypchnij cięazar nad głowę. Trzymając powietrzę opuść sztangę do pozycji początkowej. Pamiętaj o napiętym brzuchu oraz pośladkach."
     },
     { 
       "id": 1,
       "title": "Wyciskanie sztangielek",
       "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F2.png?alt=media&token=9330940c-11ec-4a02-b493-9c7e2b86842c",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+      "description": "Chwyć sztangielki oraz wypchnij do góry za pomocą kolan. Nabierając powietrze zepnij brzuch i wypchnij cięzarki w górę. Przez całe ćwiczenie prowadź łokcie pod sztangielkami, w linii wraz z barkiem."
     },
     { 
       "id": 2,
       "title": "Unoszenie sztangielek bokiem w górę",
-      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F2.png?alt=media&token=9330940c-11ec-4a02-b493-9c7e2b86842c",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F3.png?alt=media&token=3811c75a-4b72-4c2e-b2bc-04c1dd0aa0bc",
+      "description": "Napinając core całego ciała, chwyć sztangielki i odwodź ręce w bok. Unieś ręcę w górę, ruch prowadząc za pomocą łokci. Nadgarstki przez trwanie całości mają znajdować się niezj niz łokcie. Wypychając powietrze wróć do pozycji wyjściowej."
     },
     { 
       "id": 3,
       "title": "Podciąganie sztangi wzdłuż tułowia",
       "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F4.png?alt=media&token=5bb50f25-3754-4f08-8a99-8134e8862472",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+      "description": "Chwyć sztangę na szerokość barków. Napinając cały core ciała podciągnij sztangę w kierunku brody, by znalazła się na wysokości klatki piersiowej"
     },
     { 
       "id": 4,
@@ -68,7 +68,7 @@
     { 
       "id": 11,
       "title": "Rozpiętki",
-      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F12.png?alt=media&token=60098f48-1b4a-4a46-b43b-2d6e4b449c61",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F11.png?alt=media&token=f19a80c7-906c-4bfc-89d3-25bcc7e481b1",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
     },
     { 
@@ -128,14 +128,14 @@
     { 
       "id": 21,
       "title": "Hiptrust",
-      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F2.png?alt=media&token=9330940c-11ec-4a02-b493-9c7e2b86842c",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F22.png?alt=media&token=7c3f11a3-4123-4edd-b1e2-25cba87273f2",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
     },
     { 
       "id": 22,
       "title": "Przysiady ze sztangą",
-      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F22.png?alt=media&token=7c3f11a3-4123-4edd-b1e2-25cba87273f2",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F23.png?alt=media&token=b01c021b-02ab-4753-a21b-684eb6dc4049",
+      "description": "She squats bro."
     },
     { 
       "id": 23,
@@ -254,7 +254,7 @@
      { 
       "id": 42,
       "title": "Wyciskanie w leżeniu na ławce poziomej wąskim uchwytem",
-      "screenshot": "hhttps://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F43.png?alt=media&token=49a10186-be34-4bb6-a339-2217cb8df485",
+      "screenshot": "https://firebasestorage.googleapis.com/v0/b/gymapp-7b1ac.appspot.com/o/exercises%2F43.png?alt=media&token=49a10186-be34-4bb6-a339-2217cb8df485",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
     }
   ]
