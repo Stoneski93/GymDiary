@@ -5,8 +5,6 @@ export default function reducer(state = {}, action = {}) {
   switch (action.type) {
     case actions.ADD_SET:
       return {...state, [action.set.id]: {...action.set}};
-    // case actions.ADD_WORKOUT_TRAINING_SET:
-    //   return {...state, [action.set.id]: {...action.set}};
     case actions.DELETE_SET:
       let copyState = Object.assign({}, state); // assuming you use Object.assign() polyfill!
       delete copyState[action.payload.id]; // shallowly mutating a shallow copy is fine

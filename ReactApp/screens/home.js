@@ -40,8 +40,6 @@ class Home extends Component {
 		
 		this.goToNextScreen = this.goToNextScreen.bind(this);
 		this.props.fetchExercises();
-		//this.props.setLoading(true);
-		
 	}
 
 	goToNextScreen() {

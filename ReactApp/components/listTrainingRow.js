@@ -1,14 +1,3 @@
-/**
- * List Row
- *
-    <ListRow 
-      title={title}
-      image={entry.entry_image}
-      onPress={()=>{alert('Go To Entry View')}} />
- *
- * React Native Starter App
- * https://github.com/mcnamee/react-native-starter-app
- */
 'use strict';
 
 /* Setup ==================================================================== */
@@ -58,8 +47,6 @@ class ListTrainingRow extends Component {
       });
   }
   componentWillReceiveProps(nextProps) {
-    //TODO
-    //mimo iz trening dostaje sety, sety nie aktualizuja sie, zwraca stara ilosc
     let daily = nextProps.dailySets.map(set => nextProps.sets[set]);
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(daily),
@@ -67,7 +54,6 @@ class ListTrainingRow extends Component {
   }
 
   goToTrainingScreen() {
-    //this.props.setCurrentTraining(this.props.id);
     Actions.trainingScreen();
   }
   renderSets(data) {

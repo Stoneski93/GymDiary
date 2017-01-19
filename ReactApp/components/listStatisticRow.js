@@ -1,14 +1,3 @@
-/**
- * List Row
- *
-    <ListRow 
-      title={title}
-      image={entry.entry_image}
-      onPress={()=>{alert('Go To Entry View')}} />
- *
- * React Native Starter App
- * https://github.com/mcnamee/react-native-starter-app
- */
 'use strict';
 
 /* Setup ==================================================================== */

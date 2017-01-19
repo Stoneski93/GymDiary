@@ -11,8 +11,6 @@ import sets from './sets';
 import current from './current';
 import date from './date';
 
-// Our custom reducers
-// We need to import each one here and add them to the combiner at the bottom
 import sideMenu from './sidemenu'
 //Add routes with sceses
 import routes from './routes';

@@ -3,7 +3,6 @@
 /* Setup ==================================================================== */
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-// import { addUser, editUser } from '../actions/user';
 import {
   StyleSheet,
   View,

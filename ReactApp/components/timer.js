@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
 var whoosh = new Sound('music.mp3', Sound.MAIN_BUNDLE, (error) => {
   if (error) {
     console.log('failed to load the sound', error);
-  } else { // loaded successfully
+  } else { 
     console.log('duration in seconds: ' + whoosh.getDuration() +
         'number of channels: ' + whoosh.getNumberOfChannels());
   }
